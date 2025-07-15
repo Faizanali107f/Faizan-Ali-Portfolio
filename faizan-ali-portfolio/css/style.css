@@ -11,10 +11,13 @@ body {
 }
 
 header {
-    background: #35424a;
+    background: #061927;
     color: #ffffff;
-    padding: 20px 0;
+    padding: 10px 30px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h1 {
@@ -27,8 +30,13 @@ nav {
 
 nav a {
     color: #ffffff;
-    text-decoration: none;
+    text-decoration: none; 
     margin: 0 15px;
+
+}
+.main-menu li{
+    list-style: none;
+    display: inline-flex;
 }
 
 nav a:hover {
