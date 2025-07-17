@@ -3,43 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faizan Ali's Portfolio</title>
+    <title>Faizan Ali | Portfolio</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <a href="#" aria-label="Home" style="display:inline-block; vertical-align:middle;">
-            <img src="images/logo.png" alt="Faizan Ali Logo" style="height:64px; width:auto; display:block;" />
-        </a>
-        <nav>
-            <ul class="main-menu">
-                <li><a href="#about">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Sticky Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo" aria-label="Home">
+                <img src="images/logo.png" alt="Faizan Ali Logo" />
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p>This section will contain information about me and my skills.</p>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Faizan Ali</h1>
+                <h2>Web Developer & Designer</h2>
+                <p>I'm a passionate web developer crafting modern, responsive websites and web apps. Let's build something amazing together!</p>
+                <a href="#contact" class="btn btn-primary">Hire Me</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-placeholder.png" alt="Faizan Ali Portrait">
+            </div>
+        </div>
     </section>
-    
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>This section will showcase my projects with links to their detailed pages.</p>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container about-container">
+            <div class="about-bio">
+                <h2>About Me</h2>
+                <p>Hello! I'm Faizan Ali, a creative web developer with a knack for building engaging digital experiences. I specialize in front-end development, UI/UX design, and love turning ideas into reality.</p>
+            </div>
+            <div class="about-skills">
+                <h3>Skills</h3>
+                <ul class="skills-list">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React</li>
+                    <li>UI/UX Design</li>
+                </ul>
+            </div>
+        </div>
     </section>
-    
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>This section will provide contact information and a form for inquiries.</p>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>My Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="images/service1.png" alt="Web Development">
+                    <h3>Web Development</h3>
+                    <p>Modern, responsive websites using the latest technologies for a seamless user experience.</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/service2.png" alt="UI/UX Design">
+                    <h3>UI/UX Design</h3>
+                    <p>Intuitive and engaging interfaces that delight users and drive results.</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/service3.png" alt="Branding">
+                    <h3>Branding</h3>
+                    <p>Distinctive branding solutions to make your business stand out online.</p>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <footer>
-        <p>&copy; 2025 Faizan Ali. All rights reserved.</p>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/project1.jpg" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h4>Project Title 1</h4>
+                        <a href="#" class="portfolio-link">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/project2.jpg" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h4>Project Title 2</h4>
+                        <a href="#" class="portfolio-link">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/project3.jpg" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h4>Project Title 3</h4>
+                        <a href="#" class="portfolio-link">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/project4.jpg" alt="Project 4">
+                    <div class="portfolio-overlay">
+                        <h4>Project Title 4</h4>
+                        <a href="#" class="portfolio-link">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container contact-container">
+            <h2>Contact Me</h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Faizan Ali. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
