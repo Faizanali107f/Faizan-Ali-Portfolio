@@ -13,15 +13,15 @@
     <header class="header">
         <div class="container header-container">
             <a href="#" class="logo" aria-label="Home">
-                <img src="images/logo.png" alt="Faizan Ali Logo" />
+                <img src="assets/logo.png" alt="Faizan Ali Logo" />
             </a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,13 +31,13 @@
     <section id="hero" class="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Faizan Ali</h1>
-                <h2>Web Developer & Designer</h2>
-                <p>I'm a passionate web developer crafting modern, responsive websites and web apps. Let's build something amazing together!</p>
-                <a href="#contact" class="btn btn-primary">Hire Me</a>
+                <h1 class="typing" id="typing-name"></h1>
+                <h2 class="fade-in">Web Developer & Designer</h2>
+                <p class="fade-in">I'm a passionate web developer crafting modern, responsive websites and web apps. Let's build something amazing together!</p>
+                <a href="#contact" class="btn btn-primary fade-in">Hire Me</a>
             </div>
-            <div class="hero-image">
-                <img src="images/hero-placeholder.png" alt="Faizan Ali Portrait">
+            <div class="hero-image parallax-container">
+                <img src="images/hero-placeholder.png" alt="Faizan Ali Portrait" class="parallax-img">
             </div>
         </div>
     </section>
@@ -45,11 +45,12 @@
     <!-- About Section -->
     <section id="about" class="about reveal">
         <div class="container about-container">
-            <div class="about-bio">
+            <div class="about-image fade-in-left">
+                <img src="images/about-placeholder.jpg" alt="About Faizan Ali" />
+            </div>
+            <div class="about-bio fade-in-right">
                 <h2>About Me</h2>
                 <p>Hello! I'm Faizan Ali, a creative web developer with a knack for building engaging digital experiences. I specialize in front-end development, UI/UX design, and love turning ideas into reality.</p>
-            </div>
-            <div class="about-skills">
                 <h3>Skills</h3>
                 <ul class="skills-list">
                     <li>HTML5</li>
@@ -63,57 +64,70 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section id="services" class="services-section reveal">
         <div class="container">
-            <h2>My Services</h2>
+            <h2 class="section-title">My Services</h2>
             <div class="services-grid">
-                <div class="service-card reveal">
-                    <img src="images/service1.png" alt="Web Development">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <img src="assets/service1.svg" alt="Web Development">
+                    </div>
                     <h3>Web Development</h3>
                     <p>Modern, responsive websites using the latest technologies for a seamless user experience.</p>
                 </div>
-                <div class="service-card reveal">
-                    <img src="images/service2.png" alt="UI/UX Design">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <img src="assets/service2.svg" alt="UI/UX Design">
+                    </div>
                     <h3>UI/UX Design</h3>
                     <p>Intuitive and engaging interfaces that delight users and drive results.</p>
                 </div>
-                <div class="service-card reveal">
-                    <img src="images/service3.png" alt="Branding">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <img src="assets/service3.svg" alt="Branding">
+                    </div>
                     <h3>Branding</h3>
                     <p>Distinctive branding solutions to make your business stand out online.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <img src="assets/service4.svg" alt="Consulting">
+                    </div>
+                    <h3>Consulting</h3>
+                    <p>Expert advice to help you grow your digital presence and achieve your goals.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
+    <section id="portfolio" class="portfolio-section reveal">
         <div class="container">
-            <h2>Portfolio</h2>
+            <h2 class="section-title">Portfolio</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item reveal">
-                    <img src="images/project1.jpg" alt="Project 1">
+                <div class="portfolio-item fade-in-up">
+                    <img src="assets/project1.jpg" alt="Project 1">
                     <div class="portfolio-overlay">
                         <h4>Project Title 1</h4>
                         <a href="#" class="portfolio-link">View Details</a>
                     </div>
                 </div>
-                <div class="portfolio-item reveal">
-                    <img src="images/project2.jpg" alt="Project 2">
+                <div class="portfolio-item fade-in-up">
+                    <img src="assets/project2.jpg" alt="Project 2">
                     <div class="portfolio-overlay">
                         <h4>Project Title 2</h4>
                         <a href="#" class="portfolio-link">View Details</a>
                     </div>
                 </div>
-                <div class="portfolio-item reveal">
-                    <img src="images/project3.jpg" alt="Project 3">
+                <div class="portfolio-item fade-in-up">
+                    <img src="assets/project3.jpg" alt="Project 3">
                     <div class="portfolio-overlay">
                         <h4>Project Title 3</h4>
                         <a href="#" class="portfolio-link">View Details</a>
                     </div>
                 </div>
-                <div class="portfolio-item reveal">
-                    <img src="images/project4.jpg" alt="Project 4">
+                <div class="portfolio-item fade-in-up">
+                    <img src="assets/project4.jpg" alt="Project 4">
                     <div class="portfolio-overlay">
                         <h4>Project Title 4</h4>
                         <a href="#" class="portfolio-link">View Details</a>
@@ -124,18 +138,21 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact-section reveal">
         <div class="container contact-container">
-            <h2>Contact Me</h2>
-            <form class="contact-form" id="contactForm">
+            <h2 class="section-title">Contact Me</h2>
+            <form class="contact-form" id="contactForm" novalidate>
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
+                    <span class="form-error"></span>
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" placeholder="Your Email" required>
+                    <span class="form-error"></span>
                 </div>
                 <div class="form-group">
                     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <span class="form-error"></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
@@ -144,7 +161,12 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="container footer-container">
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Twitter"><img src="assets/twitter.svg" alt="Twitter"></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" class="social-icon" aria-label="GitHub"><img src="assets/github.svg" alt="GitHub"></a>
+            </div>
             <p>&copy; 2025 Faizan Ali. All rights reserved.</p>
         </div>
     </footer>
