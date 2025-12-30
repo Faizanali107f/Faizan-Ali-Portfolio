@@ -1,7 +1,3 @@
-Here’s a **cleaned and professional README** with **Lovable-related details removed**, suitable for a **developer portfolio project**:
-
----
-
 # **Faizan Ali – Web Developer Portfolio**
 
 ## **Project Overview**
@@ -66,13 +62,3 @@ This portfolio is designed to demonstrate my expertise as a **Professional Web D
 Professional Web Developer
 🌐 Portfolio: https://faizan-ali.lovable.app/
 🔗 LinkedIn: [https://www.linkedin.com/in/faizan-ali-471877243/](https://www.linkedin.com/in/faizan-ali-471877243/)
-
----
-
-If you want, I can also:
-
-* Make it **shorter**
-* Convert it into a **GitHub-optimized README**
-* Add a **Projects section template**
-
-Just tell me 👍
