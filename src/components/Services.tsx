@@ -3,40 +3,40 @@ import { Palette, Code2, Layers, Megaphone, Monitor, PenTool } from 'lucide-reac
 
 const services = [
   {
-    icon: Palette,
-    title: 'UI/Visual Design',
-    percentage: 90,
-    description: 'A personal portfolio is a curated collection of an individual\'s professional work, showcasing their skills',
+    icon: Code2,
+    title: 'WordPress Development',
+    percentage: 95,
+    description: 'Building and customizing high-performance WordPress websites tailored to client needs with responsive design and cross-browser compatibility',
   },
   {
     icon: Layers,
-    title: 'Branding Design',
-    percentage: 85,
-    description: 'Creating memorable brand identities that resonate with your target audience and stand the test of time',
-  },
-  {
-    icon: Code2,
-    title: 'Web Development',
-    percentage: 80,
-    description: 'Building responsive, performant websites using modern technologies and best practices',
+    title: 'Theme Development',
+    percentage: 90,
+    description: 'Creating custom WordPress themes from scratch or converting PSD, Figma, and XD designs to fully functional WordPress sites',
   },
   {
     icon: Monitor,
-    title: 'App Development',
-    percentage: 75,
-    description: 'Developing intuitive mobile and web applications that deliver exceptional user experiences',
+    title: 'WooCommerce Solutions',
+    percentage: 90,
+    description: 'Integrating and customizing WooCommerce for complete e-commerce solutions with payment gateways and inventory management',
   },
   {
     icon: PenTool,
-    title: 'UX Research',
-    percentage: 88,
-    description: 'Conducting thorough user research to inform design decisions and create user-centered products',
+    title: 'Plugin Development',
+    percentage: 85,
+    description: 'Developing custom WordPress plugins and integrating REST APIs to extend functionality and meet specific requirements',
+  },
+  {
+    icon: Palette,
+    title: 'Page Builders',
+    percentage: 95,
+    description: 'Expert in Elementor, Divi, WPBakery, and Avada theme to create beautiful, responsive layouts quickly and efficiently',
   },
   {
     icon: Megaphone,
-    title: 'Digital Marketing',
-    percentage: 70,
-    description: 'Strategic digital marketing solutions to increase visibility and drive meaningful engagement',
+    title: 'SEO & Performance',
+    percentage: 85,
+    description: 'Site maintenance, speed optimization, security updates, and SEO best practices to improve visibility and performance',
   },
 ];
 
@@ -54,10 +54,10 @@ const Services = () => {
             My Expertise
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Elevated Designs Personalized <br />the Best Experiences
+            Professional WordPress <br />Development Services
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Business consulting consultants provide expert advice and guidance to businesses to help them improve their performance, efficiency, and organizational growth.
+            I provide expert WordPress development services to help businesses establish their online presence with high-quality, performant, and user-friendly websites.
           </p>
         </div>
 

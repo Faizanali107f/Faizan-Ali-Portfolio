@@ -7,23 +7,23 @@ import portfolio4 from '@/assets/portfolio-4.jpg';
 
 const projects = [
   {
-    title: 'SaaS Dashboard Design',
-    categories: ['Development', 'UI Design'],
+    title: 'The PartnerX',
+    categories: ['WordPress', 'Custom Theme'],
     image: portfolio1,
   },
   {
-    title: 'Fitness App Design',
-    categories: ['Branding', 'UI Design'],
+    title: 'Khired Networks',
+    categories: ['Corporate', 'WordPress'],
     image: portfolio2,
   },
   {
-    title: 'E-Commerce Platform',
-    categories: ['Development', 'UI Design'],
+    title: 'Simple Rishta',
+    categories: ['Matrimony', 'WooCommerce'],
     image: portfolio3,
   },
   {
-    title: 'Brand Identity System',
-    categories: ['Branding', 'Design'],
+    title: 'Padel Cafe',
+    categories: ['Business', 'Elementor'],
     image: portfolio4,
   },
 ];
@@ -38,10 +38,10 @@ const Portfolio = () => {
             Latest Portfolio
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Transforming Ideas into <br />Exceptional Experiences
+            Featured WordPress <br />Projects & Websites
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Business consulting consultants provide expert advice and guidance to businesses to help them improve their performance, efficiency, and organizational growth.
+            A showcase of my recent WordPress development projects including corporate websites, e-commerce platforms, and custom theme implementations.
           </p>
         </div>
 
