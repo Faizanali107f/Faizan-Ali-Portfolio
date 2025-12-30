@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUp, Heart } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -11,18 +12,16 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">R</span>
-            </div>
-            <span className="font-display text-xl font-semibold text-foreground">Reeni</span>
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Faizan Ali Logo" className="w-10 h-10 rounded-lg object-cover" />
+            <span className="font-display text-xl font-semibold text-foreground">Faizan Ali</span>
           </div>
 
           {/* Copyright */}
           <div className="flex items-center gap-1 text-muted-foreground text-sm">
             <span>© 2024 Made with</span>
             <Heart size={14} className="text-primary fill-primary" />
-            <span>by Ralph Edwards</span>
+            <span>by Faizan Ali</span>
           </div>
 
           {/* Scroll to Top */}

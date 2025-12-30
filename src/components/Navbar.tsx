@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Instagram, Linkedin, Twitter, Facebook } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -41,11 +42,9 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">R</span>
-            </div>
-            <span className="font-display text-xl font-semibold text-foreground">Reeni</span>
+          <a href="#home" className="flex items-center gap-3">
+            <img src={logo} alt="Faizan Ali Logo" className="w-10 h-10 rounded-lg object-cover" />
+            <span className="font-display text-xl font-semibold text-foreground">Faizan Ali</span>
           </a>
 
           {/* Desktop Navigation */}
