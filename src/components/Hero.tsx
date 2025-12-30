@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Instagram, Linkedin, Twitter, Facebook } from 'lucide-react';
 import profileImage from '@/assets/profile-image.png';
 
-const roles = ['UI/UX Designer', 'Web Designer', 'Creative Director', 'Brand Strategist'];
+const roles = ['WordPress Developer', 'Web Developer', 'Theme Developer', 'Plugin Developer'];
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
@@ -52,16 +52,16 @@ const Hero = () => {
               I AM
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
-              Ralph Edwards, a Complete{' '}
+              Faizan Ali, a Complete{' '}
               <span className="text-gradient block mt-2">
                 {displayText}
                 <span className="animate-pulse">|</span>
               </span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-xl mb-8">
-              A personal <span className="text-primary">portfolio</span> is a collection of your work, 
-              that is achievements, and skills that highlights in your abilities and professional{' '}
-              <span className="text-primary">web design</span> growth. It serves as
+              Expert <span className="text-primary">WordPress Developer</span> with 2+ years of experience 
+              building high-performance websites, custom themes & plugins, and{' '}
+              <span className="text-primary">WooCommerce</span> solutions. Based in Lahore, Pakistan.
             </p>
 
             <motion.a
@@ -105,17 +105,17 @@ const Hero = () => {
               
               {/* Large Text Behind */}
               <div className="absolute right-0 top-1/3 text-7xl md:text-8xl font-display font-bold text-foreground/10 whitespace-nowrap">
-                Ux Designer
+                Developer
               </div>
               <div className="absolute right-0 top-1/2 text-5xl md:text-6xl font-display font-bold text-foreground/20 whitespace-nowrap">
-                Ux Designer
+                Developer
               </div>
 
               {/* Profile Image */}
               <div className="relative z-10">
                 <img
                   src={profileImage}
-                  alt="Ralph Edwards - UX Designer"
+                  alt="Faizan Ali - WordPress Developer"
                   className="w-full max-w-md mx-auto object-cover"
                 />
               </div>
@@ -136,7 +136,7 @@ const Hero = () => {
                     </defs>
                     <text className="text-[10px] fill-muted-foreground tracking-widest">
                       <textPath href="#circlePath">
-                        Best Work • Since 2009 • Best Work •
+                        Best Work • Since 2022 • Best Work •
                       </textPath>
                     </text>
                   </svg>

@@ -4,37 +4,32 @@ import { useRef } from 'react';
 import { ArrowRight, Briefcase, GraduationCap } from 'lucide-react';
 
 const stats = [
-  { value: '8+', label: 'Years of Experience' },
-  { value: '241', label: 'Projects Completed' },
-  { value: '50+', label: 'Happy Clients' },
+  { value: '2+', label: 'Years of Experience' },
+  { value: '17+', label: 'Projects Completed' },
+  { value: '10+', label: 'Happy Clients' },
 ];
 
 const experience = [
-  { year: '2022 - Present', title: 'Senior Developer', company: 'CodeGenius (USA)' },
-  { year: '2020 - 2022', title: 'Web Developer', company: 'Modarni Tomoli' },
-  { year: '2018 - 2020', title: 'UI Designer', company: 'Tech Design Company' },
-  { year: '2016 - 2018', title: 'Intern UI/UX Designer', company: 'USA Web Company' },
+  { year: 'June 2022 - Present', title: 'WordPress Developer', company: 'Khired Networks, DHA Phase 6, Lahore' },
 ];
 
 const education = [
-  { year: '2022 - Present', title: 'Programming Course', institution: 'Harvard University' },
-  { year: '2016 - 2020', title: 'Graphic Design Course', institution: 'University of Denmark' },
-  { year: '2012 - 2015', title: 'Web Design Course', institution: 'University of California' },
-  { year: '2010 - 2011', title: 'Design & Technology', institution: 'Parsons, The New School' },
+  { year: '2021 - Present', title: 'BSIT (Bachelor of Science in IT)', institution: 'Virtual University of Pakistan' },
 ];
 
 const designSkills = [
-  { name: 'Photoshop', percentage: 100 },
-  { name: 'Figma', percentage: 95 },
-  { name: 'Adobe XD', percentage: 60 },
-  { name: 'Illustrator', percentage: 70 },
+  { name: 'Figma to WordPress', percentage: 95 },
+  { name: 'PSD to WordPress', percentage: 95 },
+  { name: 'XD to WordPress', percentage: 90 },
+  { name: 'Elementor', percentage: 95 },
 ];
 
 const devSkills = [
-  { name: 'HTML', percentage: 100 },
-  { name: 'CSS', percentage: 95 },
-  { name: 'JavaScript', percentage: 60 },
-  { name: 'WordPress', percentage: 70 },
+  { name: 'WordPress', percentage: 95 },
+  { name: 'PHP', percentage: 85 },
+  { name: 'HTML/CSS', percentage: 95 },
+  { name: 'JavaScript', percentage: 75 },
+  { name: 'WooCommerce', percentage: 90 },
 ];
 
 const SkillBar = ({ name, percentage, delay }: { name: string; percentage: number; delay: number }) => {
@@ -92,18 +87,18 @@ const About = () => {
         <div className="text-center mb-16">
           <span className="text-primary font-semibold tracking-widest text-sm mb-4 block">About Me</span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Boost Business Strategic <br />Solutions with Us
+            Building High-Performance <br />WordPress Solutions
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Business consulting consultants provide expert advice and guidance to businesses to help them improve their performance, efficiency, and organizational growth.
+            I specialize in building and customizing WordPress websites tailored to client needs, focusing on responsive design, performance optimization, and cross-browser compatibility.
           </p>
         </div>
 
         {/* Feature Cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-16">
           {[
-            { title: 'Business Solutions', desc: 'Each one showcases my approach and dedication to detail, creativity' },
-            { title: 'Profit Partners', desc: 'Business consulting consul us to provide expert advice businesses' },
+            { title: 'Custom Development', desc: 'Custom themes and plugins development with clean, maintainable code' },
+            { title: 'E-Commerce Solutions', desc: 'WooCommerce integration and customization for online stores' },
           ].map((item, index) => (
             <motion.div
               key={index}

@@ -13,7 +13,7 @@ const navLinks = [
 
 const socialLinks = [
   { icon: Instagram, href: '#' },
-  { icon: Linkedin, href: '#' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/faizan-ali-471877243/' },
   { icon: Twitter, href: '#' },
   { icon: Facebook, href: '#' },
 ];

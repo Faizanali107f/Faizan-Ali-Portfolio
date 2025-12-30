@@ -7,15 +7,15 @@ import { Textarea } from '@/components/ui/textarea';
 
 const socialLinks = [
   { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/faizan-ali-471877243/', label: 'LinkedIn' },
   { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Facebook, href: '#', label: 'Facebook' },
 ];
 
 const contactInfo = [
-  { icon: MapPin, label: 'Address', value: '123 Design Street, New York, NY 10001' },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-  { icon: Mail, label: 'Email', value: 'hello@ralphdesigns.com' },
+  { icon: MapPin, label: 'Address', value: 'Lahore, Pakistan' },
+  { icon: Phone, label: 'Phone', value: '+92 321-8956-107' },
+  { icon: Mail, label: 'Email', value: 'faizanali107f@gmail.com' },
 ];
 
 const Contact = () => {
