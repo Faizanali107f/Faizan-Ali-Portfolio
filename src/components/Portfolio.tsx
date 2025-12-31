@@ -1,30 +1,54 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import portfolio1 from '@/assets/portfolio-1.jpg';
-import portfolio2 from '@/assets/portfolio-2.jpg';
-import portfolio3 from '@/assets/portfolio-3.jpg';
-import portfolio4 from '@/assets/portfolio-4.jpg';
+import { ArrowUpRight, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
     title: 'The PartnerX',
     categories: ['WordPress', 'Custom Theme'],
-    image: portfolio1,
+    url: 'http://thepartnerx.com/',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
   },
   {
-    title: 'Khired Networks',
-    categories: ['Corporate', 'WordPress'],
-    image: portfolio2,
+    title: 'Different Calculators',
+    categories: ['WordPress', 'Tools'],
+    url: 'https://differentcalculators.com/',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
   },
   {
-    title: 'Simple Rishta',
-    categories: ['Matrimony', 'WooCommerce'],
-    image: portfolio3,
+    title: 'Say Cheese Kids Dental',
+    categories: ['Healthcare', 'Elementor'],
+    url: 'https://www.saycheesekidsdental.com/',
+    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop',
+  },
+  {
+    title: 'SN Builder',
+    categories: ['Construction', 'WordPress'],
+    url: 'http://snbuilder.com/',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop',
+  },
+  {
+    title: 'Eagnatech AI',
+    categories: ['Technology', 'AI'],
+    url: 'http://eagnatech.ai/',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
+  },
+  {
+    title: 'Teeth and Gums',
+    categories: ['Healthcare', 'Dental'],
+    url: 'https://teethandgums.co/',
+    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&h=600&fit=crop',
+  },
+  {
+    title: 'Team 99',
+    categories: ['Sports', 'E-Commerce'],
+    url: 'https://team99.pk/',
+    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=800&h=600&fit=crop',
   },
   {
     title: 'Padel Cafe',
     categories: ['Business', 'Elementor'],
-    image: portfolio4,
+    url: 'https://padelcafe.pk/',
+    image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=600&fit=crop',
   },
 ];
 
@@ -48,13 +72,16 @@ const Portfolio = () => {
         {/* Portfolio Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={index}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover:border-primary/50 transition-all duration-500"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover:border-primary/50 transition-all duration-500 block"
             >
               {/* Image Container */}
               <div className="relative overflow-hidden aspect-[4/3]">
@@ -68,11 +95,10 @@ const Portfolio = () => {
                 
                 {/* View Button */}
                 <motion.div
-                  initial={{ scale: 0, rotate: -45 }}
                   whileHover={{ scale: 1.1 }}
                   className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer"
                 >
-                  <ArrowUpRight size={20} className="text-primary-foreground" />
+                  <ExternalLink size={20} className="text-primary-foreground" />
                 </motion.div>
               </div>
 
@@ -92,7 +118,7 @@ const Portfolio = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
