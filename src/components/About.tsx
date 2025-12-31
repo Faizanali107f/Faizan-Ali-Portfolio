@@ -4,9 +4,9 @@ import { useRef } from 'react';
 import { ArrowRight, Briefcase, GraduationCap } from 'lucide-react';
 
 const stats = [
-  { value: '2+', label: 'Years of Experience' },
-  { value: '17+', label: 'Projects Completed' },
-  { value: '10+', label: 'Happy Clients' },
+  { value: '2.5+', label: 'Years of Experience' },
+  { value: '20+', label: 'Projects Completed' },
+  { value: '15+', label: 'Happy Clients' },
 ];
 
 const experience = [
@@ -15,13 +15,15 @@ const experience = [
 
 const education = [
   { year: '2021 - Present', title: 'BSIT (Bachelor of Science in IT)', institution: 'Virtual University of Pakistan' },
+  { year: '2018 - 2020', title: 'Intermediate (ICS)', institution: 'Punjab College' },
 ];
 
 const designSkills = [
   { name: 'Figma to WordPress', percentage: 95 },
   { name: 'PSD to WordPress', percentage: 95 },
   { name: 'XD to WordPress', percentage: 90 },
-  { name: 'Elementor', percentage: 95 },
+  { name: 'Elementor Pro', percentage: 98 },
+  { name: 'Divi Builder', percentage: 90 },
 ];
 
 const devSkills = [
@@ -29,7 +31,8 @@ const devSkills = [
   { name: 'PHP', percentage: 85 },
   { name: 'HTML/CSS', percentage: 95 },
   { name: 'JavaScript', percentage: 75 },
-  { name: 'WooCommerce', percentage: 90 },
+  { name: 'WooCommerce', percentage: 92 },
+  { name: 'MySQL', percentage: 80 },
 ];
 
 const SkillBar = ({ name, percentage, delay }: { name: string; percentage: number; delay: number }) => {
@@ -90,15 +93,16 @@ const About = () => {
             Building High-Performance <br />WordPress Solutions
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            I specialize in building and customizing WordPress websites tailored to client needs, focusing on responsive design, performance optimization, and cross-browser compatibility.
+            I specialize in building and customizing WordPress websites tailored to client needs, focusing on responsive design, performance optimization, SEO, and cross-browser compatibility. Experienced with Elementor, Divi, WPBakery, and custom theme/plugin development.
           </p>
         </div>
 
         {/* Feature Cards */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           {[
             { title: 'Custom Development', desc: 'Custom themes and plugins development with clean, maintainable code' },
             { title: 'E-Commerce Solutions', desc: 'WooCommerce integration and customization for online stores' },
+            { title: 'Page Builders', desc: 'Expert in Elementor, Divi, WPBakery & Gutenberg builders' },
           ].map((item, index) => (
             <motion.div
               key={index}
