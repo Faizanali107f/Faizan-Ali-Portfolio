@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Instagram, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { ArrowRight, Download, Instagram, Linkedin, Github } from 'lucide-react';
 import profileImage from '@/assets/profile-image.png';
 
-const roles = ['WordPress Developer', 'Web Developer', 'Theme Developer', 'Plugin Developer'];
+const roles = ['WordPress Developer', 'Web Developer', 'Theme Developer', 'Plugin Developer', 'WooCommerce Expert'];
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
@@ -59,35 +59,65 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-xl mb-8">
-              Expert <span className="text-primary">WordPress Developer</span> with 2+ years of experience 
+              Expert <span className="text-primary">WordPress Developer</span> with 2.5+ years of experience 
               building high-performance websites, custom themes & plugins, and{' '}
-              <span className="text-primary">WooCommerce</span> solutions. Based in Lahore, Pakistan.
+              <span className="text-primary">WooCommerce</span> solutions. Specializing in Elementor, Divi, and page builders. Based in Lahore, Pakistan.
             </p>
 
-            <motion.a
-              href="#about"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground px-8 py-4 rounded-full font-semibold shadow-glow hover:shadow-lg transition-all duration-300"
-            >
-              Learn More
-              <ArrowRight size={20} />
-            </motion.a>
+            <div className="flex flex-wrap gap-4">
+              <motion.a
+                href="#about"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 bg-gradient-primary text-primary-foreground px-8 py-4 rounded-full font-semibold shadow-glow hover:shadow-lg transition-all duration-300"
+              >
+                Learn More
+                <ArrowRight size={20} />
+              </motion.a>
+              
+              <motion.a
+                href="/Faizan_Ali_Resume.pdf"
+                download
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-4 rounded-full font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                Download CV
+                <Download size={20} />
+              </motion.a>
+            </div>
 
             {/* Social Links */}
             <div className="mt-12">
               <span className="text-muted-foreground text-sm mb-4 block">Find me on</span>
               <div className="flex items-center gap-3">
-                {[Instagram, Linkedin, Twitter, Facebook].map((Icon, index) => (
-                  <motion.a
-                    key={index}
-                    href="#"
-                    whileHover={{ y: -3 }}
-                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
-                  >
-                    <Icon size={18} />
-                  </motion.a>
-                ))}
+                <motion.a
+                  href="https://www.linkedin.com/in/faizan-ali-471877243/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -3 }}
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                >
+                  <Linkedin size={18} />
+                </motion.a>
+                <motion.a
+                  href="https://github.com/faizanali107"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -3 }}
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                >
+                  <Github size={18} />
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -3 }}
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                >
+                  <Instagram size={18} />
+                </motion.a>
               </div>
             </div>
           </motion.div>
