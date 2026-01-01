@@ -17,7 +17,7 @@ const projects = [
   },
   {
     title: 'Say Cheese Kids Dental',
-    categories: ['WordPress', 'Healthcare'],
+    categories: ['WordPress', 'Healthcare', 'Kids Dental & Orthodontics'],
     url: 'https://www.saycheesekidsdental.com/',
     image: '/portfolio/saycheesekidsdental.png',
   },
