@@ -11,45 +11,51 @@ const projects = [
   },
   {
     title: 'Different Calculators',
-    categories: ['WordPress', 'Tools'],
+    categories: ['WordPress', 'HTML/CSS/JS'],
     url: 'https://differentcalculators.com/',
     image: '/portfolio/differentcalculators.png',
   },
   {
     title: 'Say Cheese Kids Dental',
-    categories: ['Healthcare', 'Elementor'],
+    categories: ['WordPress', 'Kids Dental & Orthodontics'],
     url: 'https://www.saycheesekidsdental.com/',
     image: '/portfolio/saycheesekidsdental.png',
   },
   {
     title: 'SN Builder',
-    categories: ['Construction', 'WordPress'],
+    categories: ['WordPress', 'Construction'],
     url: 'http://snbuilder.com/',
     image: '/portfolio/snbuilder.png',
   },
   {
     title: 'Eagnatech AI',
-    categories: ['Technology', 'AI'],
+    categories: ['WordPress', 'Technology'],
     url: 'http://eagnatech.ai/',
     image: '/portfolio/eagnatech.png',
   },
   {
     title: 'Teeth and Gums',
-    categories: ['Healthcare', 'Dental'],
+    categories: ['WordPress', 'Healthcare'],
     url: 'https://teethandgums.co/',
     image: '/portfolio/teethandgums.png',
   },
   {
     title: 'Team 99',
-    categories: ['Sports', 'E-Commerce'],
+    categories: ['WordPress', 'Real Estate'],
     url: 'https://team99.pk/',
     image: '/portfolio/team99.png',
   },
   {
     title: 'Nazia Hafeez',
-    categories: ['Branding', 'Coming Soon'],
+    categories: ['WordPress', 'WooCommerce'],
     url: 'https://naziahafeez.com/',
     image: '/portfolio/naziahafeez.png',
+  },
+  {
+    title: 'Simple Rishta',
+    categories: ['WordPress', 'Matrimonial'],
+    url: 'https://simplerishta.com/',
+    image: '/portfolio/simplerishta.png',
   },
 ];
 
