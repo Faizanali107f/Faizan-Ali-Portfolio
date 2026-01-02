@@ -11,6 +11,7 @@ const stats = [
 
 const experience = [
   { year: 'June 2022 - Present', title: 'WordPress Developer', company: 'Khired Networks, DHA Phase 6, Lahore' },
+  { year: '2021 - 2022', title: 'Freelance Web Developer', company: 'Self-Employed' },
 ];
 
 const education = [
