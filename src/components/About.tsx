@@ -11,12 +11,12 @@ const stats = [
 
 const experience = [
   { year: 'June 2022 - Present', title: 'WordPress Developer', company: 'Khired Networks, DHA Phase 6, Lahore' },
-  { year: 'Dec 2021 - Aug 2022', title: 'Software Engineer Internship', company: '9 months' },
+  { year: 'Dec 2021 - Aug 2022', title: 'Software Engineer Internship', company: 'Khired Networks, DHA Phase 6, Lahore' },
 ];
 
 const education = [
   { year: '2021 - Present', title: 'BSIT (Bachelor of Science in IT)', institution: 'Virtual University of Pakistan' },
-  { year: '2018 - 2020', title: 'Intermediate (ICS)', institution: 'Punjab College' },
+  { year: '2018 - 2020', title: 'Intermediate (ICS)', institution: 'Aspire Group Off College' },
 ];
 
 const designSkills = [
