@@ -59,7 +59,7 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-xl mb-8">
-              Expert <span className="text-primary">WordPress Developer</span> with 2.5+ years of experience 
+              Expert <span className="text-primary">WordPress Developer</span> with 3.5+ years of experience 
               building high-performance websites, custom themes & plugins, and{' '}
               <span className="text-primary">WooCommerce</span> solutions. Specializing in Elementor, Divi, and page builders. Based in Lahore, Pakistan.
             </p>
