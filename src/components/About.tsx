@@ -4,14 +4,14 @@ import { useRef } from 'react';
 import { ArrowRight, Briefcase, GraduationCap } from 'lucide-react';
 
 const stats = [
-  { value: '2.5+', label: 'Years of Experience' },
+  { value: '3.5+', label: 'Years of Experience' },
   { value: '20+', label: 'Projects Completed' },
   { value: '15+', label: 'Happy Clients' },
 ];
 
 const experience = [
   { year: 'June 2022 - Present', title: 'WordPress Developer', company: 'Khired Networks, DHA Phase 6, Lahore' },
-  { year: '2021 - 2022', title: 'Freelance Web Developer', company: 'Self-Employed' },
+  { year: 'Dec 2021 - Aug 2022', title: 'Software Engineer Internship', company: '9 months' },
 ];
 
 const education = [
