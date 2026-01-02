@@ -19,7 +19,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="flex items-center gap-1 text-muted-foreground text-sm">
-            <span>© 2025 Made with</span>
+            <span>© 2026 Made with</span>
             <Heart size={14} className="text-primary fill-primary" />
             <span>by Faizan Ali</span>
           </div>
