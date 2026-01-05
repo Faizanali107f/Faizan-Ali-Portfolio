@@ -110,13 +110,21 @@ const Hero = () => {
                   <Github size={18} />
                 </motion.a>
                 <motion.a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/its_faizan412/?hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -3 }}
                   className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
                 >
                   <Instagram size={18} />
+                </motion.a>
+                <motion.a
+                  href="/Faizan_Ali_Resume.pdf"
+                  download
+                  whileHover={{ y: -3 }}
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                >
+                  <Download size={18} />
                 </motion.a>
               </div>
             </div>

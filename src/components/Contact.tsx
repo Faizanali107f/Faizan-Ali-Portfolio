@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Twitter, Facebook, Loader2 } from 'lucide-react';
+import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Download, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -28,10 +28,9 @@ const services = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Instagram, href: 'https://www.instagram.com/its_faizan412/?hl=en', label: 'Instagram' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/faizan-ali-471877243/', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Download, href: '/Faizan_Ali_Resume.pdf', label: 'Download CV', download: true },
 ];
 
 const contactInfo = [
@@ -145,6 +144,7 @@ const Contact = () => {
                   <motion.a
                     key={index}
                     href={social.href}
+                    {...(social.download ? { download: true } : { target: '_blank', rel: 'noopener noreferrer' })}
                     whileHover={{ y: -3, scale: 1.1 }}
                     className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
                     aria-label={social.label}
