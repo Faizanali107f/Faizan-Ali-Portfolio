@@ -11,64 +11,54 @@ interface Service {
 
 const services: Service[] = [
   {
+    icon: Paintbrush,
+    title: 'Website Design & Development',
+    description: 'Creating stunning, responsive websites from scratch with modern design principles, UX best practices, and pixel-perfect attention to detail',
+  },
+  {
     icon: Globe,
     title: 'WordPress Development',
     description: 'Building and customizing high-performance WordPress websites tailored to client needs with responsive design and cross-browser compatibility',
   },
   {
-    icon: Paintbrush,
-    title: 'Theme Development',
-    description: 'Creating custom WordPress themes from scratch or converting PSD, Figma, and XD designs to fully functional WordPress sites',
+    icon: ShoppingCart,
+    title: 'WooCommerce & Shopify Development',
+    description: 'Expert e-commerce solutions with WooCommerce and Shopify, including payment gateways, inventory management, and custom storefronts',
   },
   {
-    icon: ShoppingCart,
-    title: 'WooCommerce Solutions',
-    description: 'Integrating and customizing WooCommerce for complete e-commerce solutions with payment gateways and inventory management',
+    icon: LayoutGrid,
+    title: 'E-Commerce Store Development',
+    description: 'Complete online store solutions with product catalogs, shopping carts, secure checkout, and seamless customer experiences',
+  },
+  {
+    icon: FileCode,
+    title: 'Theme Development',
+    description: 'Creating custom WordPress themes from scratch or converting PSD, Figma, and XD designs to fully functional, responsive websites',
   },
   {
     icon: Puzzle,
     title: 'Plugin Development',
-    description: 'Developing custom WordPress plugins and integrating REST APIs to extend functionality and meet specific requirements',
-  },
-  {
-    icon: LayoutGrid,
-    title: 'Page Builders',
-    description: 'Expert in Elementor Pro, Divi Builder, WPBakery, and Avada theme to create beautiful, responsive layouts quickly',
-  },
-  {
-    icon: Rocket,
-    title: 'SEO & Performance',
-    description: 'Site maintenance, speed optimization, security updates, and SEO best practices to improve visibility and performance',
-  },
-  {
-    icon: Figma,
-    title: 'Figma to WordPress',
-    description: 'Pixel-perfect conversion of Figma designs to fully responsive WordPress websites with clean, optimized code',
-  },
-  {
-    icon: FileCode,
-    title: 'PSD to WordPress',
-    description: 'Converting Photoshop designs into functional WordPress themes with attention to detail and cross-browser compatibility',
+    description: 'Developing custom WordPress plugins and integrating REST APIs to extend functionality and meet specific business requirements',
   },
   {
     icon: Code,
-    title: 'PHP Development',
-    description: 'Custom PHP development for WordPress including hooks, filters, custom post types, and advanced functionality',
+    title: 'Custom Web Applications',
+    description: 'Building tailored web applications with PHP, JavaScript, and modern frameworks to solve unique business challenges',
+  },
+  {
+    icon: Rocket,
+    title: 'Website Speed & Performance Optimization',
+    description: 'Optimizing website loading speed, Core Web Vitals, caching, image optimization, and server performance for better user experience',
   },
   {
     icon: Database,
-    title: 'MySQL Database',
-    description: 'Database optimization, custom queries, and data management for WordPress sites to ensure fast and reliable performance',
+    title: 'SEO & Analytics Integration',
+    description: 'Implementing SEO best practices, Google Analytics, Search Console integration, and data-driven insights for improved visibility',
   },
   {
     icon: Wrench,
-    title: 'Website Maintenance',
-    description: 'Regular updates, backups, security monitoring, and troubleshooting to keep your WordPress site running smoothly',
-  },
-  {
-    icon: LayoutGrid,
-    title: 'Gutenberg Development',
-    description: 'Creating custom Gutenberg blocks and patterns for modern WordPress editing experience with full site editing support',
+    title: 'Website Maintenance & Support',
+    description: 'Regular updates, backups, security monitoring, troubleshooting, and ongoing support to keep your website running smoothly',
   },
 ];
 
