@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
-import { Globe, Paintbrush, ShoppingCart, Puzzle, LayoutGrid, Rocket, MessageCircle } from 'lucide-react';
+import { Globe, Paintbrush, ShoppingCart, Puzzle, LayoutGrid, Rocket, MessageCircle, FileCode, Figma, Code, Database, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import type { LucideIcon } from 'lucide-react';
 
-const services = [
+interface Service {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+const services: Service[] = [
   {
     icon: Globe,
     title: 'WordPress Development',
@@ -26,12 +33,42 @@ const services = [
   {
     icon: LayoutGrid,
     title: 'Page Builders',
-    description: 'Expert in Elementor, Divi, WPBakery, and Avada theme to create beautiful, responsive layouts quickly and efficiently',
+    description: 'Expert in Elementor Pro, Divi Builder, WPBakery, and Avada theme to create beautiful, responsive layouts quickly',
   },
   {
     icon: Rocket,
     title: 'SEO & Performance',
     description: 'Site maintenance, speed optimization, security updates, and SEO best practices to improve visibility and performance',
+  },
+  {
+    icon: Figma,
+    title: 'Figma to WordPress',
+    description: 'Pixel-perfect conversion of Figma designs to fully responsive WordPress websites with clean, optimized code',
+  },
+  {
+    icon: FileCode,
+    title: 'PSD to WordPress',
+    description: 'Converting Photoshop designs into functional WordPress themes with attention to detail and cross-browser compatibility',
+  },
+  {
+    icon: Code,
+    title: 'PHP Development',
+    description: 'Custom PHP development for WordPress including hooks, filters, custom post types, and advanced functionality',
+  },
+  {
+    icon: Database,
+    title: 'MySQL Database',
+    description: 'Database optimization, custom queries, and data management for WordPress sites to ensure fast and reliable performance',
+  },
+  {
+    icon: Wrench,
+    title: 'Website Maintenance',
+    description: 'Regular updates, backups, security monitoring, and troubleshooting to keep your WordPress site running smoothly',
+  },
+  {
+    icon: LayoutGrid,
+    title: 'Gutenberg Development',
+    description: 'Creating custom Gutenberg blocks and patterns for modern WordPress editing experience with full site editing support',
   },
 ];
 
@@ -66,52 +103,55 @@ const Services = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 group flex flex-col"
-            >
-              {/* Icon */}
-              <div className="mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-300">
-                  <service.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+          {services.map((service, index) => {
+            const IconComponent = service.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                whileHover={{ y: -10 }}
+                className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 group flex flex-col"
+              >
+                {/* Icon */}
+                <div className="mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-300">
+                    <IconComponent size={28} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <h3 className="font-display text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                {service.description}
-              </p>
+                {/* Content */}
+                <h3 className="font-display text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+                  {service.description}
+                </p>
 
-              {/* CTA Buttons */}
-              <div className="mt-6 flex gap-3">
-                <Button
-                  onClick={handleWhatsApp}
-                  size="sm"
-                  className="flex-1 bg-gradient-primary hover:opacity-90"
-                >
-                  <MessageCircle size={16} className="mr-2" />
-                  WhatsApp
-                </Button>
-                <Button
-                  onClick={handleContact}
-                  size="sm"
-                  variant="outline"
-                  className="flex-1 border-primary/50 hover:bg-primary/10"
-                >
-                  Contact
-                </Button>
-              </div>
-            </motion.div>
-          ))}
+                {/* CTA Buttons */}
+                <div className="mt-6 flex gap-3">
+                  <Button
+                    onClick={handleWhatsApp}
+                    size="sm"
+                    className="flex-1 bg-gradient-primary hover:opacity-90"
+                  >
+                    <MessageCircle size={16} className="mr-2" />
+                    WhatsApp
+                  </Button>
+                  <Button
+                    onClick={handleContact}
+                    size="sm"
+                    variant="outline"
+                    className="flex-1 border-primary/50 hover:bg-primary/10"
+                  >
+                    Contact
+                  </Button>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
