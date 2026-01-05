@@ -6,6 +6,26 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+const services = [
+  'Website Design & Development',
+  'WordPress Development',
+  'WooCommerce & Shopify Development',
+  'E-Commerce Store Development',
+  'Theme Development',
+  'Plugin Development',
+  'Custom Web Applications',
+  'Website Speed & Performance Optimization',
+  'SEO & Analytics Integration',
+  'Website Maintenance & Support',
+];
 
 const socialLinks = [
   { icon: Instagram, href: '#', label: 'Instagram' },
@@ -26,7 +46,9 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
+    service: '',
     message: '',
   });
 
@@ -46,7 +68,7 @@ const Contact = () => {
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
 
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', subject: '', service: '', message: '' });
     } catch (error: any) {
       console.error('Error sending message:', error);
       toast({
@@ -61,6 +83,10 @@ const Contact = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleServiceChange = (value: string) => {
+    setFormData({ ...formData, service: value });
   };
 
   return (
@@ -142,7 +168,7 @@ const Contact = () => {
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="text-sm font-medium text-foreground mb-2 block">
-                    Your Name
+                    Your Name <span className="text-destructive">*</span>
                   </label>
                   <Input
                     id="name"
@@ -156,7 +182,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="email" className="text-sm font-medium text-foreground mb-2 block">
-                    Email Address
+                    Email Address <span className="text-destructive">*</span>
                   </label>
                   <Input
                     id="email"
@@ -171,19 +197,54 @@ const Contact = () => {
                 </div>
               </div>
 
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label htmlFor="phone" className="text-sm font-medium text-foreground mb-2 block">
+                    Phone Number <span className="text-destructive">*</span>
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+92 300 1234567"
+                    className="bg-muted border-border focus:border-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="subject" className="text-sm font-medium text-foreground mb-2 block">
+                    Subject <span className="text-destructive">*</span>
+                  </label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Project Inquiry"
+                    className="bg-muted border-border focus:border-primary"
+                    required
+                  />
+                </div>
+              </div>
+
               <div className="mb-6">
-                <label htmlFor="subject" className="text-sm font-medium text-foreground mb-2 block">
-                  Subject
+                <label htmlFor="service" className="text-sm font-medium text-foreground mb-2 block">
+                  Service Interested In
                 </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Project Inquiry"
-                  className="bg-muted border-border focus:border-primary"
-                  required
-                />
+                <Select value={formData.service} onValueChange={handleServiceChange}>
+                  <SelectTrigger className="bg-muted border-border focus:border-primary">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border-border z-50">
+                    {services.map((service) => (
+                      <SelectItem key={service} value={service}>
+                        {service}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="mb-8">
@@ -198,7 +259,6 @@ const Contact = () => {
                   placeholder="Tell me about your project..."
                   rows={5}
                   className="bg-muted border-border focus:border-primary resize-none"
-                  required
                 />
               </div>
 
