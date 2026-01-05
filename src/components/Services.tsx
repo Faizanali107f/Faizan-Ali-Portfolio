@@ -1,46 +1,49 @@
 import { motion } from 'framer-motion';
-import { Palette, Code2, Layers, Megaphone, Monitor, PenTool } from 'lucide-react';
+import { Globe, Paintbrush, ShoppingCart, Puzzle, LayoutGrid, Rocket, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const services = [
   {
-    icon: Code2,
+    icon: Globe,
     title: 'WordPress Development',
-    percentage: 95,
     description: 'Building and customizing high-performance WordPress websites tailored to client needs with responsive design and cross-browser compatibility',
   },
   {
-    icon: Layers,
+    icon: Paintbrush,
     title: 'Theme Development',
-    percentage: 90,
     description: 'Creating custom WordPress themes from scratch or converting PSD, Figma, and XD designs to fully functional WordPress sites',
   },
   {
-    icon: Monitor,
+    icon: ShoppingCart,
     title: 'WooCommerce Solutions',
-    percentage: 90,
     description: 'Integrating and customizing WooCommerce for complete e-commerce solutions with payment gateways and inventory management',
   },
   {
-    icon: PenTool,
+    icon: Puzzle,
     title: 'Plugin Development',
-    percentage: 85,
     description: 'Developing custom WordPress plugins and integrating REST APIs to extend functionality and meet specific requirements',
   },
   {
-    icon: Palette,
+    icon: LayoutGrid,
     title: 'Page Builders',
-    percentage: 95,
     description: 'Expert in Elementor, Divi, WPBakery, and Avada theme to create beautiful, responsive layouts quickly and efficiently',
   },
   {
-    icon: Megaphone,
+    icon: Rocket,
     title: 'SEO & Performance',
-    percentage: 85,
     description: 'Site maintenance, speed optimization, security updates, and SEO best practices to improve visibility and performance',
   },
 ];
 
 const Services = () => {
+  const handleWhatsApp = () => {
+    window.open('https://wa.me/923244972277?text=Hi%20Faizan,%20I%20am%20interested%20in%20your%20services.', '_blank');
+  };
+
+  const handleContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="services" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
@@ -71,15 +74,12 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 group"
+              className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 group flex flex-col"
             >
-              {/* Icon & Percentage */}
-              <div className="flex items-start justify-between mb-6">
+              {/* Icon */}
+              <div className="mb-6">
                 <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-300">
                   <service.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                </div>
-                <div className="text-right">
-                  <span className="text-3xl font-display font-bold text-gradient">{service.percentage}%</span>
                 </div>
               </div>
 
@@ -87,21 +87,28 @@ const Services = () => {
               <h3 className="font-display text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
                 {service.description}
               </p>
 
-              {/* Progress Bar */}
-              <div className="mt-6">
-                <div className="h-1 bg-muted rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${service.percentage}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="h-full bg-gradient-primary rounded-full"
-                  />
-                </div>
+              {/* CTA Buttons */}
+              <div className="mt-6 flex gap-3">
+                <Button
+                  onClick={handleWhatsApp}
+                  size="sm"
+                  className="flex-1 bg-gradient-primary hover:opacity-90"
+                >
+                  <MessageCircle size={16} className="mr-2" />
+                  WhatsApp
+                </Button>
+                <Button
+                  onClick={handleContact}
+                  size="sm"
+                  variant="outline"
+                  className="flex-1 border-primary/50 hover:bg-primary/10"
+                >
+                  Contact
+                </Button>
               </div>
             </motion.div>
           ))}
