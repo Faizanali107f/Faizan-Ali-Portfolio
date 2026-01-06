@@ -4,12 +4,12 @@ import { Menu, X, Instagram, Linkedin, Github, Download, MessageCircle } from 'l
 import logo from '@/assets/logo.png';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Services', href: '#services' },
-  { name: 'Testimonials', href: '#testimonials' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '#home', id: 'home' },
+  { name: 'About', href: '#about', id: 'about' },
+  { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
+  { name: 'Services', href: '#services', id: 'services' },
+  { name: 'Testimonials', href: '#testimonials', id: 'testimonials' },
+  { name: 'Contact', href: '#contact', id: 'contact' },
 ];
 
 const socialLinks = [
@@ -21,14 +21,45 @@ const socialLinks = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Find active section based on scroll position
+      const sections = navLinks.map(link => link.id);
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+      setActiveSection(targetId);
+    }
+    
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <motion.nav
@@ -44,7 +75,11 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
+          <a 
+            href="#home" 
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="flex items-center gap-3 group"
+          >
             <div className="relative">
               <img 
                 src={logo} 
@@ -64,10 +99,19 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`relative px-4 py-2 transition-colors duration-300 text-sm font-medium group ${
+                  activeSection === link.id 
+                    ? 'text-primary' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-4/5" />
+                <span 
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-300 ${
+                    activeSection === link.id ? 'w-4/5' : 'w-0 group-hover:w-4/5'
+                  }`} 
+                />
               </a>
             ))}
           </div>
@@ -101,6 +145,7 @@ const Navbar = () => {
             {/* Let's Chat Button - Desktop */}
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-all duration-300 shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
             >
               <span className="relative flex h-2 w-2">
@@ -137,11 +182,13 @@ const Navbar = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="text-foreground hover:text-primary transition-colors duration-300 text-lg font-medium py-2 border-b border-white/5 last:border-0"
+                  className={`transition-colors duration-300 text-lg font-medium py-2 border-b border-white/5 last:border-0 ${
+                    activeSection === link.id ? 'text-primary' : 'text-foreground hover:text-primary'
+                  }`}
                 >
                   {link.name}
                 </motion.a>
@@ -174,7 +221,7 @@ const Navbar = () => {
               {/* Mobile Chat Button */}
               <a
                 href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, '#contact')}
                 className="flex items-center justify-center gap-2 mt-4 px-6 py-3 bg-primary text-primary-foreground rounded-full text-sm font-medium"
               >
                 <span className="relative flex h-2 w-2">
