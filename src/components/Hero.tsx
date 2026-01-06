@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Instagram, Linkedin, Github } from 'lucide-react';
-import profileImage from '@/assets/profile-image.png';
+import profileImage from '@/assets/faizan-nobg.png';
 
 const roles = ['WordPress Developer', 'Web Developer', 'Theme Developer', 'Plugin Developer', 'WooCommerce Expert'];
 
@@ -33,14 +33,18 @@ const Hero = () => {
   }, [displayText, isDeleting, currentRole]);
 
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden flex items-center">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-dark" />
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-2xl" />
+    <section id="home" className="min-h-screen relative overflow-hidden flex items-center bg-[hsl(0,0%,8%)]">
+      {/* Background Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(0,0%,6%)] via-[hsl(0,0%,8%)] to-[hsl(340,80%,15%,0.3)]" />
+      
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)',
+        backgroundSize: '40px 40px'
+      }} />
 
       <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -135,18 +139,27 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 relative"
+            className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Background Shape */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-80 h-[500px] bg-gradient-primary rounded-full blur-sm" />
+              {/* Pink/Magenta accent shape behind person */}
+              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[280px] md:w-[350px] h-[400px] md:h-[500px]">
+                {/* Main blob shape */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,80%,40%)] via-[hsl(340,70%,45%)] to-[hsl(340,60%,50%)] rounded-t-[150px] rounded-b-[40px]" />
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,80%,40%,0.8)] via-[hsl(340,70%,45%,0.5)] to-transparent rounded-t-[150px] rounded-b-[40px] blur-xl -z-10" />
+              </div>
               
-              {/* Large Text Behind */}
-              <div className="absolute right-0 top-1/3 text-7xl md:text-8xl font-display font-bold text-foreground/10 whitespace-nowrap">
+              {/* Large Text Behind - first layer */}
+              <div className="absolute right-0 top-[20%] text-6xl md:text-7xl lg:text-8xl font-display font-bold text-foreground/5 whitespace-nowrap pointer-events-none select-none">
                 Developer
               </div>
-              <div className="absolute right-0 top-1/2 text-5xl md:text-6xl font-display font-bold text-foreground/20 whitespace-nowrap">
-                Developer
+              
+              {/* Large Text Behind - second layer (overlapping person) */}
+              <div className="absolute right-0 top-[45%] text-4xl md:text-5xl lg:text-6xl font-display font-bold whitespace-nowrap pointer-events-none select-none z-20">
+                <span className="text-transparent" style={{ WebkitTextStroke: '1px hsl(var(--foreground) / 0.2)' }}>
+                  Developer
+                </span>
               </div>
 
               {/* Profile Image */}
@@ -154,7 +167,7 @@ const Hero = () => {
                 <img
                   src={profileImage}
                   alt="Faizan Ali - WordPress Developer"
-                  className="w-full max-w-md mx-auto object-cover"
+                  className="w-full max-w-[320px] md:max-w-[400px] mx-auto object-contain drop-shadow-2xl"
                 />
               </div>
 
@@ -162,7 +175,7 @@ const Hero = () => {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute bottom-10 left-10 w-28 h-28 border-2 border-dashed border-muted-foreground rounded-full flex items-center justify-center"
+                className="absolute bottom-16 -left-4 md:left-0 w-24 h-24 md:w-28 md:h-28 border-2 border-dashed border-muted-foreground/50 rounded-full flex items-center justify-center bg-background/10 backdrop-blur-sm z-30"
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
