@@ -12,7 +12,9 @@ const corsHeaders = {
 interface ContactFormRequest {
   name: string;
   email: string;
+  phone: string;
   subject: string;
+  service: string;
   message: string;
 }
 
@@ -23,9 +25,9 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, subject, message }: ContactFormRequest = await req.json();
+    const { name, email, phone, subject, service, message }: ContactFormRequest = await req.json();
 
-    console.log("Received contact form submission:", { name, email, subject });
+    console.log("Received contact form submission:", { name, email, phone, subject, service });
 
     // Send notification email to Faizan
     const notificationEmail = await resend.emails.send({
@@ -38,7 +40,9 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="background: #f4f4f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Service Interested:</strong> ${service}</p>
           </div>
           <h3>Message:</h3>
           <p style="background: #f4f4f5; padding: 20px; border-radius: 8px;">${message}</p>
