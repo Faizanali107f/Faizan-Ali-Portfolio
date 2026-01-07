@@ -88,8 +88,8 @@ const Hero = () => {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="text-muted-foreground text-lg leading-relaxed max-w-xl mb-10"
             >
-              A personal <span className="text-primary">portfolio</span> is a collection of your work, that is achievements, and skills that highlights in your abilities and professional{' '}
-              <span className="text-primary">web design</span> growth. It serves as
+              Expert <span className="text-primary">WordPress Developer</span> with 3.5+ years of experience building high-performance websites, custom themes & plugins, and{' '}
+              <span className="text-primary">WooCommerce</span> solutions. Specializing in Elementor, Divi, and modern page builders.
             </motion.p>
 
             <motion.div
