@@ -162,86 +162,71 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 relative flex justify-center lg:justify-end items-end"
           >
-            <div className="relative">
-              {/* Large "Ux" Text - Outline style behind image */}
-              <div className="absolute right-[0px] md:right-[20px] lg:right-[40px] top-[10%] md:top-[15%] z-0 pointer-events-none select-none">
+            <div className="relative w-full max-w-[600px]">
+              {/* Large outline text behind image */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-visible">
                 <span 
-                  className="text-[120px] md:text-[180px] lg:text-[220px] font-display font-bold text-transparent whitespace-nowrap leading-none"
+                  className="text-[100px] md:text-[140px] lg:text-[180px] font-display font-bold text-transparent whitespace-nowrap leading-none absolute top-[5%] right-[-10%]"
                   style={{ 
-                    WebkitTextStroke: '2px hsl(var(--foreground) / 0.15)',
+                    WebkitTextStroke: '1.5px hsl(var(--foreground) / 0.12)',
                   }}
                 >
-                  Ux
-                </span>
-              </div>
-              
-              {/* "er" continuation text */}
-              <div className="absolute right-[-20px] md:right-[-30px] lg:right-[-40px] top-[10%] md:top-[15%] z-0 pointer-events-none select-none">
-                <span 
-                  className="text-[120px] md:text-[180px] lg:text-[220px] font-display font-bold text-transparent whitespace-nowrap leading-none"
-                  style={{ 
-                    WebkitTextStroke: '2px hsl(var(--foreground) / 0.15)',
-                  }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;er
+                  Developer
                 </span>
               </div>
 
-              {/* Pink/Magenta accent shape behind person - larger */}
-              <div className="absolute left-1/2 -translate-x-1/3 bottom-0 w-[320px] md:w-[420px] lg:w-[500px] h-[400px] md:h-[550px] lg:h-[650px]">
-                {/* Main blob shape */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,35%)] via-[hsl(340,75%,40%)] to-[hsl(340,70%,50%)] rounded-t-[200px] rounded-b-[60px]" />
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,40%,0.6)] via-[hsl(340,75%,45%,0.4)] to-transparent rounded-t-[200px] rounded-b-[60px] blur-2xl -z-10" />
+              {/* Pink/Magenta accent shape behind person */}
+              <div className="absolute right-0 bottom-0 w-[280px] md:w-[360px] lg:w-[420px] h-[350px] md:h-[480px] lg:h-[580px]">
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,40%)] via-[hsl(340,75%,45%)] to-[hsl(340,70%,55%)] rounded-t-[50%] rounded-b-[30px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,45%,0.5)] to-transparent rounded-t-[50%] rounded-b-[30px] blur-3xl -z-10" />
               </div>
               
-              {/* "Ux Designer" Text - Italic with glow at bottom */}
-              <div className="absolute right-[0px] md:right-[-20px] lg:right-[-40px] bottom-[80px] md:bottom-[120px] lg:bottom-[160px] z-20 pointer-events-none select-none">
+              {/* "WP Developer" Text - positioned at bottom right of image */}
+              <div className="absolute right-[-20px] md:right-[-40px] bottom-[100px] md:bottom-[140px] lg:bottom-[180px] z-30 pointer-events-none select-none">
                 <span 
-                  className="text-4xl md:text-5xl lg:text-6xl font-display italic font-bold text-primary whitespace-nowrap"
+                  className="text-3xl md:text-4xl lg:text-5xl font-display italic font-bold text-primary whitespace-nowrap"
                   style={{ 
-                    textShadow: '0 0 30px hsl(340 80% 50% / 0.6), 0 0 60px hsl(340 80% 50% / 0.4)'
+                    textShadow: '0 0 40px hsl(340 80% 50% / 0.8), 0 0 80px hsl(340 80% 50% / 0.5)'
                   }}
                 >
-                  Ux Designer
+                  WP Developer
                 </span>
               </div>
 
-              {/* Profile Image - Larger */}
-              <div className="relative z-10">
+              {/* Profile Image */}
+              <div className="relative z-10 flex justify-end">
                 <img
                   src={profileImage}
                   alt="Faizan Ali - WordPress Developer"
-                  className="w-full max-w-[340px] md:max-w-[450px] lg:max-w-[550px] mx-auto object-contain drop-shadow-2xl"
+                  className="w-full max-w-[320px] md:max-w-[420px] lg:max-w-[500px] object-contain drop-shadow-2xl"
                 />
               </div>
 
               {/* Rotating Badge */}
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                className="absolute bottom-[40px] md:bottom-[60px] left-[-30px] md:left-[-50px] w-28 h-28 md:w-32 md:h-32 border border-dashed border-muted-foreground/40 rounded-full flex items-center justify-center bg-background/5 backdrop-blur-sm z-30"
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                className="absolute bottom-[20px] md:bottom-[40px] left-[10%] md:left-[5%] w-24 h-24 md:w-28 md:h-28 border border-dashed border-muted-foreground/30 rounded-full flex items-center justify-center bg-background/10 backdrop-blur-sm z-30"
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
                     <defs>
                       <path
                         id="circlePath"
-                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                        d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
                       />
                     </defs>
-                    <text className="text-[9px] fill-muted-foreground tracking-[0.15em] uppercase">
+                    <text className="text-[8px] fill-muted-foreground tracking-[0.12em] uppercase">
                       <textPath href="#circlePath">
                         Best Work • Since 2022 • Best Work •
                       </textPath>
                     </text>
                   </svg>
                 </div>
-                {/* Center icon */}
-                <div className="w-8 h-8 border-2 border-primary flex items-center justify-center relative">
-                  <div className="w-3.5 h-3.5 border-2 border-primary" />
+                <div className="w-7 h-7 border-2 border-primary flex items-center justify-center">
+                  <div className="w-3 h-3 border-2 border-primary" />
                 </div>
               </motion.div>
             </div>
