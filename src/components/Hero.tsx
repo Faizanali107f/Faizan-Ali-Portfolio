@@ -165,46 +165,56 @@ const Hero = () => {
             className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Pink/Magenta accent shape behind person */}
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[260px] md:w-[320px] lg:w-[380px] h-[350px] md:h-[450px] lg:h-[520px]">
-                {/* Main blob shape */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,35%)] via-[hsl(340,75%,40%)] to-[hsl(340,70%,50%)] rounded-t-[180px] rounded-b-[50px]" />
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,40%,0.6)] via-[hsl(340,75%,45%,0.4)] to-transparent rounded-t-[180px] rounded-b-[50px] blur-2xl -z-10" />
-              </div>
-              
-              {/* Large "Creative" Text - Outline style */}
-              <div className="absolute right-[-40px] md:right-[-60px] bottom-[180px] md:bottom-[220px] z-20 pointer-events-none select-none">
+              {/* Large "Ux" Text - Outline style behind image */}
+              <div className="absolute right-[0px] md:right-[20px] lg:right-[40px] top-[10%] md:top-[15%] z-0 pointer-events-none select-none">
                 <span 
-                  className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-transparent whitespace-nowrap"
+                  className="text-[120px] md:text-[180px] lg:text-[220px] font-display font-bold text-transparent whitespace-nowrap leading-none"
                   style={{ 
-                    WebkitTextStroke: '1px hsl(var(--foreground) / 0.8)',
-                    textShadow: '0 0 40px hsl(340 80% 50% / 0.3)'
+                    WebkitTextStroke: '2px hsl(var(--foreground) / 0.15)',
                   }}
                 >
-                  Creative
+                  Ux
                 </span>
               </div>
               
-              {/* Large "Developer" Text - Outline style with glow */}
-              <div className="absolute right-[-40px] md:right-[-60px] bottom-[110px] md:bottom-[140px] z-20 pointer-events-none select-none">
+              {/* "er" continuation text */}
+              <div className="absolute right-[-20px] md:right-[-30px] lg:right-[-40px] top-[10%] md:top-[15%] z-0 pointer-events-none select-none">
                 <span 
-                  className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-transparent whitespace-nowrap"
+                  className="text-[120px] md:text-[180px] lg:text-[220px] font-display font-bold text-transparent whitespace-nowrap leading-none"
                   style={{ 
-                    WebkitTextStroke: '1px hsl(340 80% 50% / 0.8)',
-                    textShadow: '0 0 30px hsl(340 80% 50% / 0.5), 0 0 60px hsl(340 80% 50% / 0.3)'
+                    WebkitTextStroke: '2px hsl(var(--foreground) / 0.15)',
                   }}
                 >
-                  Developer
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;er
                 </span>
               </div>
 
-              {/* Profile Image */}
+              {/* Pink/Magenta accent shape behind person - larger */}
+              <div className="absolute left-1/2 -translate-x-1/3 bottom-0 w-[320px] md:w-[420px] lg:w-[500px] h-[400px] md:h-[550px] lg:h-[650px]">
+                {/* Main blob shape */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,35%)] via-[hsl(340,75%,40%)] to-[hsl(340,70%,50%)] rounded-t-[200px] rounded-b-[60px]" />
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,40%,0.6)] via-[hsl(340,75%,45%,0.4)] to-transparent rounded-t-[200px] rounded-b-[60px] blur-2xl -z-10" />
+              </div>
+              
+              {/* "Ux Designer" Text - Italic with glow at bottom */}
+              <div className="absolute right-[0px] md:right-[-20px] lg:right-[-40px] bottom-[80px] md:bottom-[120px] lg:bottom-[160px] z-20 pointer-events-none select-none">
+                <span 
+                  className="text-4xl md:text-5xl lg:text-6xl font-display italic font-bold text-primary whitespace-nowrap"
+                  style={{ 
+                    textShadow: '0 0 30px hsl(340 80% 50% / 0.6), 0 0 60px hsl(340 80% 50% / 0.4)'
+                  }}
+                >
+                  Ux Designer
+                </span>
+              </div>
+
+              {/* Profile Image - Larger */}
               <div className="relative z-10">
                 <img
                   src={profileImage}
                   alt="Faizan Ali - WordPress Developer"
-                  className="w-full max-w-[280px] md:max-w-[340px] lg:max-w-[400px] mx-auto object-contain drop-shadow-2xl"
+                  className="w-full max-w-[340px] md:max-w-[450px] lg:max-w-[550px] mx-auto object-contain drop-shadow-2xl"
                 />
               </div>
 
@@ -212,7 +222,7 @@ const Hero = () => {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                className="absolute bottom-[60px] md:bottom-[80px] left-[-20px] md:left-[-10px] w-24 h-24 md:w-28 md:h-28 border border-dashed border-muted-foreground/40 rounded-full flex items-center justify-center bg-background/5 backdrop-blur-sm z-30"
+                className="absolute bottom-[40px] md:bottom-[60px] left-[-30px] md:left-[-50px] w-28 h-28 md:w-32 md:h-32 border border-dashed border-muted-foreground/40 rounded-full flex items-center justify-center bg-background/5 backdrop-blur-sm z-30"
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
@@ -230,8 +240,8 @@ const Hero = () => {
                   </svg>
                 </div>
                 {/* Center icon */}
-                <div className="w-7 h-7 border-2 border-primary flex items-center justify-center relative">
-                  <div className="w-3 h-3 border-2 border-primary" />
+                <div className="w-8 h-8 border-2 border-primary flex items-center justify-center relative">
+                  <div className="w-3.5 h-3.5 border-2 border-primary" />
                 </div>
               </motion.div>
             </div>
