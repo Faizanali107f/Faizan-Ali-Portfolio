@@ -13,6 +13,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { z } from 'zod';
+
+// Validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name must be less than 100 characters'),
+  email: z.string().trim().email('Please enter a valid email address').max(255, 'Email must be less than 255 characters'),
+  phone: z.string().trim().min(10, 'Phone number must be at least 10 digits').max(20, 'Phone number is too long').regex(/^[+]?[\d\s-]+$/, 'Please enter a valid phone number'),
+  subject: z.string().trim().min(3, 'Subject must be at least 3 characters').max(200, 'Subject must be less than 200 characters'),
+  service: z.string().optional(),
+  message: z.string().trim().max(2000, 'Message must be less than 2000 characters').optional(),
+});
 
 const services = [
   'Website Design & Development',
@@ -42,6 +53,8 @@ const contactInfo = [
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [honeypot, setHoneypot] = useState(''); // Spam trap
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -53,6 +66,35 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Honeypot check - if filled, it's a bot
+    if (honeypot) {
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out.",
+      });
+      return;
+    }
+
+    // Validate form data
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      toast({
+        title: "Validation Error",
+        description: "Please check the form for errors.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -62,6 +104,15 @@ const Contact = () => {
 
       if (error) throw error;
 
+      if (data?.error === 'rate_limit') {
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait a few minutes before sending another message.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
@@ -69,10 +120,9 @@ const Contact = () => {
 
       setFormData({ name: '', email: '', phone: '', subject: '', service: '', message: '' });
     } catch (error: any) {
-      console.error('Error sending message:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error.message || "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -165,6 +215,18 @@ const Contact = () => {
             className="lg:col-span-3"
           >
             <form onSubmit={handleSubmit} className="bg-gradient-card rounded-2xl p-8 border border-border">
+              {/* Honeypot field - hidden from users, visible to bots */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                className="absolute -left-[9999px] opacity-0 pointer-events-none"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+              
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="text-sm font-medium text-foreground mb-2 block">
@@ -176,9 +238,10 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="John Doe"
-                    className="bg-muted border-border focus:border-primary"
+                    className={`bg-muted border-border focus:border-primary ${errors.name ? 'border-destructive' : ''}`}
                     required
                   />
+                  {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="email" className="text-sm font-medium text-foreground mb-2 block">
@@ -191,9 +254,10 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="john@example.com"
-                    className="bg-muted border-border focus:border-primary"
+                    className={`bg-muted border-border focus:border-primary ${errors.email ? 'border-destructive' : ''}`}
                     required
                   />
+                  {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
                 </div>
               </div>
 
@@ -209,9 +273,10 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+92 300 1234567"
-                    className="bg-muted border-border focus:border-primary"
+                    className={`bg-muted border-border focus:border-primary ${errors.phone ? 'border-destructive' : ''}`}
                     required
                   />
+                  {errors.phone && <p className="text-destructive text-xs mt-1">{errors.phone}</p>}
                 </div>
                 <div>
                   <label htmlFor="subject" className="text-sm font-medium text-foreground mb-2 block">
@@ -223,9 +288,10 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Project Inquiry"
-                    className="bg-muted border-border focus:border-primary"
+                    className={`bg-muted border-border focus:border-primary ${errors.subject ? 'border-destructive' : ''}`}
                     required
                   />
+                  {errors.subject && <p className="text-destructive text-xs mt-1">{errors.subject}</p>}
                 </div>
               </div>
 

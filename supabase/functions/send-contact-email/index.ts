@@ -9,6 +9,58 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting - in-memory store (resets on cold start)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 3; // Max 3 submissions
+const RATE_WINDOW = 15 * 60 * 1000; // 15 minutes
+
+function isRateLimited(identifier: string): boolean {
+  const now = Date.now();
+  const record = rateLimitStore.get(identifier);
+
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(identifier, { count: 1, resetTime: now + RATE_WINDOW });
+    return false;
+  }
+
+  if (record.count >= RATE_LIMIT) {
+    return true;
+  }
+
+  record.count++;
+  return false;
+}
+
+// Input validation
+function validateInput(data: any): { valid: boolean; error?: string } {
+  if (!data.name || typeof data.name !== 'string' || data.name.trim().length < 2 || data.name.length > 100) {
+    return { valid: false, error: 'Invalid name' };
+  }
+  if (!data.email || typeof data.email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) || data.email.length > 255) {
+    return { valid: false, error: 'Invalid email' };
+  }
+  if (!data.phone || typeof data.phone !== 'string' || data.phone.length < 10 || data.phone.length > 20) {
+    return { valid: false, error: 'Invalid phone' };
+  }
+  if (!data.subject || typeof data.subject !== 'string' || data.subject.trim().length < 3 || data.subject.length > 200) {
+    return { valid: false, error: 'Invalid subject' };
+  }
+  if (data.message && (typeof data.message !== 'string' || data.message.length > 2000)) {
+    return { valid: false, error: 'Message too long' };
+  }
+  return { valid: true };
+}
+
+// Sanitize HTML content
+function sanitize(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 interface ContactFormRequest {
   name: string;
   email: string;
@@ -25,15 +77,43 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, phone, subject, service, message }: ContactFormRequest = await req.json();
+    const body = await req.json();
+    
+    // Validate input
+    const validation = validateInput(body);
+    if (!validation.valid) {
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
 
-    console.log("Received contact form submission:", { name, email, phone, subject, service });
+    const { name, email, phone, subject, service, message }: ContactFormRequest = body;
+
+    // Rate limiting by email
+    if (isRateLimited(email.toLowerCase())) {
+      console.log("Rate limited:", email);
+      return new Response(
+        JSON.stringify({ error: "rate_limit", message: "Too many requests. Please try again later." }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Sanitize all inputs for email HTML
+    const safeName = sanitize(name);
+    const safeEmail = sanitize(email);
+    const safePhone = sanitize(phone);
+    const safeSubject = sanitize(subject);
+    const safeService = sanitize(service || 'Not specified');
+    const safeMessage = sanitize(message || 'No message provided');
+
+    console.log("Processing contact form submission:", { name: safeName, email: safeEmail });
 
     // Send notification email to Faizan
     const notificationEmail = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["faizanali107f@gmail.com"],
-      subject: `🚀 New Inquiry: ${subject}`,
+      subject: `🚀 New Inquiry: ${safeSubject}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -57,31 +137,31 @@ const handler = async (req: Request): Promise<Response> => {
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #27272a;">
                     <span style="color: #71717a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Name</span>
-                    <p style="margin: 4px 0 0; color: #fafafa; font-size: 16px; font-weight: 600;">${name}</p>
+                    <p style="margin: 4px 0 0; color: #fafafa; font-size: 16px; font-weight: 600;">${safeName}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #27272a;">
                     <span style="color: #71717a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Email</span>
-                    <p style="margin: 4px 0 0;"><a href="mailto:${email}" style="color: #ec4899; font-size: 16px; text-decoration: none;">${email}</a></p>
+                    <p style="margin: 4px 0 0;"><a href="mailto:${safeEmail}" style="color: #ec4899; font-size: 16px; text-decoration: none;">${safeEmail}</a></p>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #27272a;">
                     <span style="color: #71717a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Phone</span>
-                    <p style="margin: 4px 0 0;"><a href="tel:${phone}" style="color: #ec4899; font-size: 16px; text-decoration: none;">${phone}</a></p>
+                    <p style="margin: 4px 0 0;"><a href="tel:${safePhone}" style="color: #ec4899; font-size: 16px; text-decoration: none;">${safePhone}</a></p>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #27272a;">
                     <span style="color: #71717a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Subject</span>
-                    <p style="margin: 4px 0 0; color: #fafafa; font-size: 16px;">${subject}</p>
+                    <p style="margin: 4px 0 0; color: #fafafa; font-size: 16px;">${safeSubject}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 0;">
                     <span style="color: #71717a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Service Interested</span>
-                    <p style="margin: 4px 0 0;"><span style="display: inline-block; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 500;">${service || 'Not specified'}</span></p>
+                    <p style="margin: 4px 0 0;"><span style="display: inline-block; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 500;">${safeService}</span></p>
                   </td>
                 </tr>
               </table>
@@ -90,7 +170,7 @@ const handler = async (req: Request): Promise<Response> => {
             <!-- Message Card -->
             <div style="background: linear-gradient(145deg, #18181b, #1f1f23); border: 1px solid #27272a; border-radius: 20px; padding: 32px;">
               <h3 style="margin: 0 0 16px; color: #fafafa; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Message</h3>
-              <p style="margin: 0; color: #a1a1aa; font-size: 16px; line-height: 1.8;">${message || 'No message provided'}</p>
+              <p style="margin: 0; color: #a1a1aa; font-size: 16px; line-height: 1.8;">${safeMessage}</p>
             </div>
             
             <!-- Footer -->
@@ -124,7 +204,7 @@ const handler = async (req: Request): Promise<Response> => {
               <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ec4899, #8b5cf6); border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;">
                 <span style="font-size: 40px;">👋</span>
               </div>
-              <h1 style="margin: 0 0 8px; color: #fafafa; font-size: 32px; font-weight: 700;">Hey ${name}!</h1>
+              <h1 style="margin: 0 0 8px; color: #fafafa; font-size: 32px; font-weight: 700;">Hey ${safeName}!</h1>
               <p style="margin: 0; color: #a1a1aa; font-size: 18px;">Thanks for getting in touch</p>
             </div>
             
@@ -137,8 +217,8 @@ const handler = async (req: Request): Promise<Response> => {
               <!-- Message Summary -->
               <div style="background: #0a0a0b; border: 1px solid #27272a; border-radius: 12px; padding: 20px; margin-top: 24px;">
                 <h3 style="margin: 0 0 12px; color: #71717a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Your Message</h3>
-                <p style="margin: 0 0 8px; color: #fafafa; font-size: 16px; font-weight: 600;">${subject}</p>
-                <p style="margin: 0; color: #a1a1aa; font-size: 14px; line-height: 1.6;">${message || 'No message provided'}</p>
+                <p style="margin: 0 0 8px; color: #fafafa; font-size: 16px; font-weight: 600;">${safeSubject}</p>
+                <p style="margin: 0; color: #a1a1aa; font-size: 14px; line-height: 1.6;">${safeMessage}</p>
               </div>
             </div>
             
