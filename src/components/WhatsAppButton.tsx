@@ -5,12 +5,8 @@ const WhatsAppButton = () => {
   const phoneNumber = '923218956107';
   const message = 'Hello Faizan! I would like to discuss a WordPress project with you.';
 
-  // Detect mobile to pick the URL that won't be blocked by browsers/extensions.
-  // wa.me redirects through api.whatsapp.com which is sometimes blocked (ERR_BLOCKED_BY_RESPONSE).
-  const isMobile = typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-  const whatsappUrl = isMobile
-    ? `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
-    : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+  // Official wa.me link — works across mobile and desktop and opens WhatsApp/WhatsApp Web reliably.
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <motion.a
