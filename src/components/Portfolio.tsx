@@ -4,10 +4,22 @@ import { ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: 'The PartnerX',
-    categories: ['WordPress', 'Custom Theme'],
-    url: 'http://thepartnerx.com/',
-    image: '/portfolio/thepartnerx.png',
+    title: 'Trends Mall',
+    categories: ['WordPress', 'WooCommerce', 'Fashion'],
+    url: 'https://trendsmall.pk/',
+    image: '/portfolio/trendsmall.png',
+  },
+  {
+    title: 'RT Centre',
+    categories: ['WordPress', 'Education', 'Security Training'],
+    url: 'https://rtcentre.co.uk/',
+    image: '/portfolio/rtcentre.png',
+  },
+  {
+    title: 'Cathy Trenary',
+    categories: ['WordPress', 'Healthcare', 'Therapy'],
+    url: 'https://cathytrenary.com/',
+    image: '/portfolio/cathytrenary.png',
   },
   {
     title: 'Different Calculators',
@@ -28,34 +40,10 @@ const projects = [
     image: '/portfolio/snbuilder.png',
   },
   {
-    title: 'Eagnatech AI',
-    categories: ['WordPress', 'Technology'],
-    url: 'http://eagnatech.ai/',
-    image: '/portfolio/eagnatech.png',
-  },
-  {
-    title: 'Teeth and Gums',
-    categories: ['WordPress', 'Healthcare'],
-    url: 'https://teethandgums.co/',
-    image: '/portfolio/teethandgums.png',
-  },
-  {
     title: 'Team 99',
     categories: ['WordPress', 'Real Estate'],
     url: 'https://team99.pk/',
     image: '/portfolio/team99.png',
-  },
-  {
-    title: 'Nazia Hafeez',
-    categories: ['WordPress', 'WooCommerce'],
-    url: 'https://naziahafeez.com/',
-    image: '/portfolio/naziahafeez.png',
-  },
-  {
-    title: 'Simple Rishta',
-    categories: ['WordPress', 'Matrimonial'],
-    url: 'https://simplerishta.com/',
-    image: '/portfolio/simplerishta.png',
   },
 ];
 
