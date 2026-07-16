@@ -45,6 +45,12 @@ const projects = [
     url: 'https://team99.pk/',
     image: '/portfolio/team99.png',
   },
+  {
+    title: 'CloudFortix',
+    categories: ['WordPress', 'HTML/CSS/JS', 'Technology'],
+    url: 'https://cloudfortix.com/',
+    image: '/portfolio/cloudfortix.png',
+  },
 ];
 
 const Portfolio = () => {
