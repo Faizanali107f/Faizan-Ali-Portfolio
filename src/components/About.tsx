@@ -1,16 +1,9 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, Briefcase, GraduationCap } from 'lucide-react';
 
-const stats = [
-  { value: '3.5+', label: 'Years of Experience' },
-  { value: '20+', label: 'Projects Completed' },
-  { value: '15+', label: 'Happy Clients' },
-];
-
 const experience = [
-  { year: 'June 2022 - Present', title: 'WordPress Developer', company: 'Khired Networks, DHA Phase 6, Lahore' },
+  { year: 'Dec 2021 - Present', title: 'WordPress Developer', company: 'Khired Networks, DHA Phase 6, Lahore' },
   { year: 'Dec 2021 - Aug 2022', title: 'Software Engineer Internship', company: 'Khired Networks, DHA Phase 6, Lahore' },
 ];
 
@@ -19,44 +12,10 @@ const education = [
   { year: '2018 - 2020', title: 'Intermediate (ICS)', institution: 'Aspire Group Off College' },
 ];
 
-const designSkills = [
-  { name: 'Figma to WordPress', percentage: 95 },
-  { name: 'PSD to WordPress', percentage: 95 },
-  { name: 'XD to WordPress', percentage: 90 },
-  { name: 'Elementor Pro', percentage: 98 },
-  { name: 'Divi Builder', percentage: 90 },
+const expertise = [
+  'WordPress Expertise', 'WooCommerce', 'Custom Plugin Development', 'Custom Theme Development',
+  'Performance Optimization', 'Website Security', 'Vue.js', 'NestJS', 'PHP', 'Git', 'REST APIs',
 ];
-
-const devSkills = [
-  { name: 'WordPress', percentage: 95 },
-  { name: 'PHP', percentage: 85 },
-  { name: 'HTML/CSS', percentage: 95 },
-  { name: 'JavaScript', percentage: 75 },
-  { name: 'WooCommerce', percentage: 92 },
-  { name: 'MySQL', percentage: 80 },
-];
-
-const SkillBar = ({ name, percentage, delay }: { name: string; percentage: number; delay: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  return (
-    <div ref={ref} className="mb-4">
-      <div className="flex justify-between mb-2">
-        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{name}</span>
-        <span className="text-xs font-semibold text-primary">{percentage}%</span>
-      </div>
-      <div className="h-1 bg-muted rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${percentage}%` } : { width: 0 }}
-          transition={{ duration: 1, delay, ease: 'easeOut' }}
-          className="h-full bg-gradient-primary rounded-full"
-        />
-      </div>
-    </div>
-  );
-};
 
 const About = () => {
   const ref = useRef(null);
@@ -65,84 +24,44 @@ const About = () => {
   return (
     <section id="about" className="py-24 relative">
       <div className="container mx-auto px-6">
-        {/* Stats Section */}
+        {/* About header */}
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-3 gap-6 mb-24"
+          className="grid lg:grid-cols-12 gap-10 mb-20"
         >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-300 group"
-            >
-              <div className="text-5xl font-display font-bold text-gradient mb-2">{stat.value}</div>
-              <div className="text-muted-foreground">{stat.label}</div>
-            </motion.div>
-          ))}
+          <div className="lg:col-span-5">
+            <span className="text-xs font-mono-tech text-primary tracking-[0.3em] uppercase mb-4 block">/ About</span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
+              Engineered for performance, built to last.
+            </h2>
+          </div>
+          <div className="lg:col-span-7 space-y-6">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              I'm Faizan Ali, a Senior WordPress Developer with 4+ years shipping fast, secure, and scalable web platforms. I specialize in high-performance WordPress and WooCommerce builds, custom plugins and themes, and modern application layers with Vue.js and NestJS.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {expertise.map((e) => (
+                <span key={e} className="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all">
+                  {e}
+                </span>
+              ))}
+            </div>
+            <a href="#contact" className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all">
+              Start a project <ArrowRight size={16} />
+            </a>
+          </div>
         </motion.div>
 
-        {/* About Me Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary font-semibold tracking-widest text-sm mb-4 block">About Me</span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Building High-Performance <br />WordPress Solutions
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            I specialize in building and customizing WordPress websites tailored to client needs, focusing on responsive design, performance optimization, SEO, and cross-browser compatibility. Experienced with Elementor, Divi, WPBakery, and custom theme/plugin development.
-          </p>
-        </div>
-
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {[
-            { title: 'Custom Development', desc: 'Custom themes and plugins development with clean, maintainable code' },
-            { title: 'E-Commerce Solutions', desc: 'WooCommerce integration and customization for online stores' },
-            { title: 'Page Builders', desc: 'Expert in Elementor, Divi, WPBakery & Gutenberg builders' },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-300 flex items-start gap-4"
-            >
-              <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                <Briefcase size={24} className="text-primary-foreground" />
-              </div>
-              <div>
-                <h3 className="text-xl font-display font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="text-center mb-16">
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-4 rounded-full font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-          >
-            Read More About Me
-            <ArrowRight size={20} />
-          </motion.a>
-        </div>
-
         {/* Experience & Education */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-24">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Experience */}
           <div>
             <div className="flex items-center gap-3 mb-8">
               <Briefcase size={24} className="text-primary" />
-              <h3 className="font-display text-2xl font-bold text-foreground">My Experience</h3>
+              <h3 className="text-2xl font-bold text-foreground">Experience</h3>
             </div>
             <div className="space-y-4">
               {experience.map((item, index) => (
@@ -152,9 +71,9 @@ const About = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gradient-card rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300"
+                  className="rounded-2xl p-6 border border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] transition-all"
                 >
-                  <span className="text-primary text-sm font-semibold">{item.year}</span>
+                  <span className="text-primary text-xs font-mono-tech tracking-wider">{item.year}</span>
                   <h4 className="text-lg font-semibold text-foreground mt-1">{item.title}</h4>
                   <p className="text-muted-foreground text-sm">{item.company}</p>
                 </motion.div>
@@ -166,7 +85,7 @@ const About = () => {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <GraduationCap size={24} className="text-primary" />
-              <h3 className="font-display text-2xl font-bold text-foreground">My Education</h3>
+              <h3 className="text-2xl font-bold text-foreground">Education</h3>
             </div>
             <div className="space-y-4">
               {education.map((item, index) => (
@@ -176,35 +95,14 @@ const About = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gradient-card rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300"
+                  className="rounded-2xl p-6 border border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] transition-all"
                 >
-                  <span className="text-primary text-sm font-semibold">{item.year}</span>
+                  <span className="text-primary text-xs font-mono-tech tracking-wider">{item.year}</span>
                   <h4 className="text-lg font-semibold text-foreground mt-1">{item.title}</h4>
                   <p className="text-muted-foreground text-sm">{item.institution}</p>
                 </motion.div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Skills */}
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Design Skills */}
-          <div className="bg-gradient-card rounded-2xl p-8 border border-border">
-            <h3 className="font-display text-2xl font-bold text-foreground mb-8">Design Skill</h3>
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-8" />
-            {designSkills.map((skill, index) => (
-              <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-            ))}
-          </div>
-
-          {/* Development Skills */}
-          <div className="bg-gradient-card rounded-2xl p-8 border border-border">
-            <h3 className="font-display text-2xl font-bold text-foreground mb-8">Development Skill</h3>
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-8" />
-            {devSkills.map((skill, index) => (
-              <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-            ))}
           </div>
         </div>
       </div>
