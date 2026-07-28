@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,6 +93,14 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(340 82% 52% / 0.4)" },
           "50%": { boxShadow: "0 0 40px hsl(340 82% 52% / 0.6)" },
         },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +109,8 @@ export default {
         "slide-in-right": "slide-in-right 0.6s ease-out forwards",
         "float": "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "marquee": "marquee 40s linear infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
       },
     },
   },
