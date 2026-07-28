@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Instagram, Linkedin, Github, Facebook } from 'lucide-react';
+import { ArrowRight, Instagram, Linkedin, Github, Facebook, Download, Briefcase, MessageCircle } from 'lucide-react';
 import profileImage from '@/assets/faizan-nobg.png';
 
 const roles = ['WordPress Developer', 'Web Developer', 'Theme Developer', 'Plugin Developer', 'WooCommerce Expert'];
@@ -96,15 +96,35 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex flex-wrap items-center gap-4"
             >
               <motion.a
-                href="#about"
-                whileHover={{ scale: 1.05, x: 5 }}
+                href="/Faizan_Ali_Resume.pdf"
+                download
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-primary/30 hover:shadow-xl transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-full font-semibold shadow-lg hover:shadow-primary/30 hover:shadow-xl transition-all duration-300"
               >
-                Learn More
-                <ArrowRight size={20} />
+                Download Resume
+                <Download size={18} />
+              </motion.a>
+              <motion.a
+                href="#portfolio"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 border border-primary/60 text-foreground px-7 py-3.5 rounded-full font-semibold hover:bg-primary/10 hover:border-primary transition-all duration-300"
+              >
+                View Projects
+                <Briefcase size={18} />
+              </motion.a>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 border border-border/60 text-foreground px-7 py-3.5 rounded-full font-semibold hover:text-primary hover:border-primary transition-all duration-300"
+              >
+                Hire Me
+                <MessageCircle size={18} />
               </motion.a>
             </motion.div>
 
