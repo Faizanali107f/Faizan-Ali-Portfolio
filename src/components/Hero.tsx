@@ -1,258 +1,200 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Instagram, Linkedin, Github, Facebook, Download, Briefcase, MessageCircle } from 'lucide-react';
+import { Download, ArrowUpRight, MessageCircle } from 'lucide-react';
 import profileImage from '@/assets/faizan-nobg.png';
 
-const roles = ['WordPress Developer', 'Web Developer', 'Theme Developer', 'Plugin Developer', 'WooCommerce Expert'];
+const floatingBadges = [
+  { label: 'PHP', color: '#777BB4', top: '4%', left: '-6%', delay: 0 },
+  { label: 'Vue', color: '#42b883', top: '18%', right: '-8%', delay: 0.4 },
+  { label: 'WP', color: '#21759B', bottom: '28%', left: '-10%', delay: 0.8 },
+  { label: 'Nest', color: '#E0234E', bottom: '10%', right: '-6%', delay: 1.2 },
+];
 
 const Hero = () => {
-  const [currentRole, setCurrentRole] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const role = roles[currentRole];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < role.length) {
-          setDisplayText(role.slice(0, displayText.length + 1));
-        } else {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(role.slice(0, displayText.length - 1));
-        } else {
-          setIsDeleting(false);
-          setCurrentRole((prev) => (prev + 1) % roles.length);
-        }
-      }
-    }, isDeleting ? 50 : 100);
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentRole]);
-
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden flex items-center bg-[hsl(0,0%,6%)]">
-      {/* Background Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(0,0%,5%)] via-[hsl(0,0%,7%)] to-[hsl(340,80%,10%,0.4)]" />
-      
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)',
-        backgroundSize: '50px 50px'
-      }} />
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(0 0% 100%) 1px, transparent 0)',
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
+        }} />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary/[0.08] blur-[140px] rounded-full" />
+        <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-primary/[0.05] blur-[120px] rounded-full" />
+      </div>
 
-      <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-6rem)]">
-          {/* Content */}
+      <div className="container relative z-10 mx-auto px-6 pt-32 pb-20">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          {/* Left: content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 order-2 lg:order-1"
           >
-            <motion.span 
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-primary text-xs font-medium tracking-wide mb-8"
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+              </span>
+              <span className="text-muted-foreground">Available for new projects</span>
+            </motion.div>
+
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-primary font-semibold tracking-[0.3em] text-sm mb-6 block"
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[0.95] mb-8"
             >
-              I AM
-            </motion.span>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
+              <span className="text-gradient-white">Senior WordPress</span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[hsl(340,90%,65%)] to-primary">
+                Developer
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 leading-[1.1]"
+              className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed mb-10"
             >
-              Faizan Ali, a Complete
-            </motion.h1>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="mb-6"
-            >
-              <span className="text-primary font-display text-4xl md:text-5xl lg:text-6xl font-bold">
-                {displayText}
-                <span className="animate-pulse text-primary">|</span>
-              </span>
-            </motion.div>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-muted-foreground text-lg leading-relaxed max-w-xl mb-10"
-            >
-              Expert <span className="text-primary">WordPress Developer</span> with 3.5+ years of experience building high-performance websites, custom themes & plugins, and{' '}
-              <span className="text-primary">WooCommerce</span> solutions. Specializing in Elementor, Divi, and modern page builders.
+              Building high-performance WordPress websites, WooCommerce stores, and modern web applications using{' '}
+              <span className="text-foreground">PHP, JavaScript, Vue.js, and NestJS</span>.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-4"
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="flex flex-wrap items-center gap-3"
             >
               <motion.a
                 href="/Faizan_Ali_Resume.pdf"
                 download
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-full font-semibold shadow-lg hover:shadow-primary/30 hover:shadow-xl transition-all duration-300"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-[0_0_30px_-5px_hsl(var(--primary))] hover:shadow-[0_0_40px_-5px_hsl(var(--primary))] transition-all"
               >
+                <Download size={16} />
                 Download Resume
-                <Download size={18} />
               </motion.a>
               <motion.a
                 href="#portfolio"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 border border-primary/60 text-foreground px-7 py-3.5 rounded-full font-semibold hover:bg-primary/10 hover:border-primary transition-all duration-300"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.03] text-foreground px-6 py-3 rounded-full text-sm font-semibold hover:bg-white/[0.06] hover:border-white/20 transition-all"
               >
                 View Projects
-                <Briefcase size={18} />
+                <ArrowUpRight size={16} />
               </motion.a>
               <motion.a
                 href="#contact"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 border border-border/60 text-foreground px-7 py-3.5 rounded-full font-semibold hover:text-primary hover:border-primary transition-all duration-300"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground px-6 py-3 rounded-full text-sm font-semibold transition-all"
               >
+                <MessageCircle size={16} />
                 Hire Me
-                <MessageCircle size={18} />
               </motion.a>
             </motion.div>
 
-            {/* Social Links */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="mt-14"
+            {/* Trust strip */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="mt-14 flex items-center gap-6 text-xs font-mono-tech text-muted-foreground/60 tracking-widest uppercase"
             >
-              <span className="text-muted-foreground text-sm mb-5 block">Find me on</span>
-              <div className="flex items-center gap-4">
-                <motion.a
-                  href="https://www.instagram.com/its_faizan412/?hl=en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -4, scale: 1.1 }}
-                  className="w-11 h-11 rounded-full border border-border/50 flex items-center justify-center text-foreground hover:text-primary hover:border-primary bg-background/5 backdrop-blur-sm transition-all duration-300"
-                >
-                  <Instagram size={18} />
-                </motion.a>
-                <motion.a
-                  href="https://www.linkedin.com/in/faizan-ali-471877243/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -4, scale: 1.1 }}
-                  className="w-11 h-11 rounded-full border border-border/50 flex items-center justify-center text-foreground hover:text-primary hover:border-primary bg-background/5 backdrop-blur-sm transition-all duration-300"
-                >
-                  <Linkedin size={18} />
-                </motion.a>
-                <motion.a
-                  href="https://github.com/faizanali107"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -4, scale: 1.1 }}
-                  className="w-11 h-11 rounded-full border border-border/50 flex items-center justify-center text-foreground hover:text-primary hover:border-primary bg-background/5 backdrop-blur-sm transition-all duration-300"
-                >
-                  <Github size={18} />
-                </motion.a>
-                <motion.a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -4, scale: 1.1 }}
-                  className="w-11 h-11 rounded-full border border-border/50 flex items-center justify-center text-foreground hover:text-primary hover:border-primary bg-background/5 backdrop-blur-sm transition-all duration-300"
-                >
-                  <Facebook size={18} />
-                </motion.a>
+              <span>Trusted stack</span>
+              <div className="h-px flex-1 bg-white/5" />
+              <div className="flex items-center gap-5">
+                {['WordPress', 'WooCommerce', 'Vue', 'NestJS'].map((t) => (
+                  <span key={t} className="hover:text-foreground transition-colors">{t}</span>
+                ))}
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Image */}
+          {/* Right: portrait */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 relative flex justify-center lg:justify-end items-end"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 order-1 lg:order-2 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[600px]">
-              {/* Large outline text behind image */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-visible">
-                <span 
-                  className="text-[100px] md:text-[140px] lg:text-[180px] font-display font-bold text-transparent whitespace-nowrap leading-none absolute top-[5%] right-[-10%]"
-                  style={{ 
-                    WebkitTextStroke: '1.5px hsl(var(--foreground) / 0.12)',
-                  }}
-                >
-                  Developer
-                </span>
-              </div>
+            <div className="relative w-full max-w-md">
+              {/* Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/25 blur-[100px] rounded-full -z-10" />
 
-              {/* Pink/Magenta accent shape behind person */}
-              <div className="absolute right-0 bottom-0 w-[280px] md:w-[360px] lg:w-[420px] h-[350px] md:h-[480px] lg:h-[580px]">
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,40%)] via-[hsl(340,75%,45%)] to-[hsl(340,70%,55%)] rounded-t-[50%] rounded-b-[30px]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(340,85%,45%,0.5)] to-transparent rounded-t-[50%] rounded-b-[30px] blur-3xl -z-10" />
-              </div>
-              
-              {/* "WP Developer" Text - positioned at bottom right of image */}
-              <div className="absolute right-[-20px] md:right-[-40px] bottom-[100px] md:bottom-[140px] lg:bottom-[180px] z-30 pointer-events-none select-none">
-                <span 
-                  className="text-3xl md:text-4xl lg:text-5xl font-display italic font-bold text-primary whitespace-nowrap"
-                  style={{ 
-                    textShadow: '0 0 40px hsl(340 80% 50% / 0.8), 0 0 80px hsl(340 80% 50% / 0.5)'
-                  }}
-                >
-                  WP Developer
-                </span>
-              </div>
-
-              {/* Profile Image */}
-              <div className="relative z-10 flex justify-end">
+              {/* Portrait frame */}
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent">
+                {/* Gradient backdrop behind portrait */}
+                <div className="absolute inset-x-6 bottom-0 top-1/4 bg-gradient-to-t from-primary/70 via-primary/40 to-transparent rounded-t-[50%] blur-2xl" />
+                <div className="absolute inset-x-8 bottom-0 top-1/3 bg-gradient-to-t from-primary via-primary/60 to-transparent rounded-t-[50%]" />
                 <img
                   src={profileImage}
-                  alt="Faizan Ali - WordPress Developer"
-                  className="w-full max-w-[320px] md:max-w-[420px] lg:max-w-[500px] object-contain drop-shadow-2xl"
+                  alt="Faizan Ali, Senior WordPress Developer"
+                  className="relative z-10 w-full h-full object-contain object-bottom drop-shadow-2xl"
+                  loading="eager"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Rotating Badge */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute bottom-[20px] md:bottom-[40px] left-[10%] md:left-[5%] w-24 h-24 md:w-28 md:h-28 border border-dashed border-muted-foreground/30 rounded-full flex items-center justify-center bg-background/10 backdrop-blur-sm z-30"
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    <defs>
-                      <path
-                        id="circlePath"
-                        d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-                      />
-                    </defs>
-                    <text className="text-[8px] fill-muted-foreground tracking-[0.12em] uppercase">
-                      <textPath href="#circlePath">
-                        Best Work • Since 2022 • Best Work •
-                      </textPath>
-                    </text>
-                  </svg>
-                </div>
-                <div className="w-7 h-7 border-2 border-primary flex items-center justify-center">
-                  <div className="w-3 h-3 border-2 border-primary" />
-                </div>
-              </motion.div>
+              {/* Rotating badge */}
+              <div className="absolute -bottom-6 -right-6 z-20 w-24 h-24 rounded-full glass-card flex items-center justify-center">
+                <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100">
+                  <defs>
+                    <path id="heroCircle" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
+                  </defs>
+                  <text className="text-[7px] fill-muted-foreground tracking-[0.25em] uppercase font-mono-tech">
+                    <textPath href="#heroCircle">Open to Work • Full Stack • WordPress •</textPath>
+                  </text>
+                </svg>
+                <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary))] animate-pulse" />
+              </div>
+
+              {/* Floating tech badges */}
+              {floatingBadges.map((b) => (
+                <motion.div
+                  key={b.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + b.delay, duration: 0.5 }}
+                  style={{ top: b.top, left: b.left, right: b.right, bottom: b.bottom }}
+                  className="absolute z-20 hidden md:flex"
+                >
+                  <motion.div
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, delay: b.delay, ease: 'easeInOut' }}
+                    className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center shadow-2xl"
+                  >
+                    <span className="text-[10px] font-bold tracking-wider font-mono-tech" style={{ color: b.color }}>
+                      {b.label}
+                    </span>
+                  </motion.div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-muted-foreground/60 font-mono-tech tracking-widest uppercase"
+      >
+        <span>Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
+      </motion.div>
     </section>
   );
 };
