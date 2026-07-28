@@ -1,36 +1,24 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Instagram, Linkedin, Github, Download, MessageCircle } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import { Menu, X, Download } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', href: '#home', id: 'home' },
   { name: 'About', href: '#about', id: 'about' },
+  { name: 'Skills', href: '#skills', id: 'skills' },
   { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
   { name: 'Services', href: '#services', id: 'services' },
-  { name: 'Testimonials', href: '#testimonials', id: 'testimonials' },
   { name: 'Contact', href: '#contact', id: 'contact' },
 ];
 
-const socialLinks = [
-  { icon: Instagram, href: 'https://www.instagram.com/its_faizan412/?hl=en', label: 'Instagram' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/faizan-ali-471877243/', label: 'LinkedIn' },
-  { icon: Github, href: 'https://github.com/faizanali107', label: 'GitHub' },
-];
-
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-
-      // Find active section based on scroll position
       const sections = navLinks.map(link => link.id);
       const scrollPosition = window.scrollY + 100;
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPosition) {
@@ -39,7 +27,6 @@ const Navbar = () => {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,189 +35,118 @@ const Navbar = () => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const targetElement = document.getElementById(targetId);
-    
     if (targetElement) {
-      const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
+      const offsetTop = targetElement.offsetTop - 100;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
       setActiveSection(targetId);
     }
-    
     setIsMobileMenuOpen(false);
   };
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[hsl(0,0%,8%)]/95 backdrop-blur-md shadow-lg border-b border-white/5' 
-          : 'bg-transparent'
-      }`}
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6"
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a 
-            href="#home" 
-            onClick={(e) => handleNavClick(e, '#home')}
-            className="flex items-center gap-3 group"
-          >
-            <div className="relative">
-              <img 
-                src={logo} 
-                alt="Faizan Ali Logo" 
-                className="w-10 h-10 rounded-lg object-cover transition-transform duration-300 group-hover:scale-110" 
-              />
-              <div className="absolute inset-0 rounded-lg bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-            <span className="font-display text-xl font-semibold text-foreground hidden sm:block">
-              Faizan Ali
-            </span>
-          </a>
+      <div className="w-full max-w-5xl px-4 md:px-6 py-2.5 flex items-center justify-between rounded-full border border-white/10 bg-black/50 backdrop-blur-xl shadow-[0_8px_32px_hsl(0_0%_0%/0.4)]">
+        <a
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
+          className="flex items-center gap-2 group"
+        >
+          <span className="text-base md:text-lg font-bold tracking-tight text-foreground">
+            Faizan<span className="text-primary">Ali</span>
+          </span>
+          <span className="hidden md:inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`relative px-4 py-2 transition-colors duration-300 text-sm font-medium group ${
-                  activeSection === link.id 
-                    ? 'text-primary' 
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {link.name}
-                <span 
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-300 ${
-                    activeSection === link.id ? 'w-4/5' : 'w-0 group-hover:w-4/5'
-                  }`} 
-                />
-              </a>
-            ))}
-          </div>
-
-          {/* Right Side: Social Links, Chat & Menu Button */}
-          <div className="flex items-center gap-3">
-            {/* Social Links - Desktop */}
-            <div className="hidden md:flex items-center gap-2">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
-                >
-                  <social.icon size={16} />
-                </a>
-              ))}
-              <a
-                href="/Faizan_Ali_Resume.pdf"
-                download
-                aria-label="Download CV"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
-              >
-                <Download size={16} />
-              </a>
-            </div>
-
-            {/* Let's Chat Button - Desktop */}
+        <div className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) => (
             <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-all duration-300 shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
+              key={link.name}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className={`relative px-3.5 py-1.5 rounded-full transition-colors duration-300 text-xs font-medium tracking-wide ${
+                activeSection === link.id
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              Let's Chat
-              <MessageCircle size={16} />
+              {activeSection === link.id && (
+                <motion.span
+                  layoutId="nav-active"
+                  className="absolute inset-0 rounded-full bg-white/[0.06] border border-white/[0.08]"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative">{link.name}</span>
             </a>
+          ))}
+        </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary lg:hidden hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+        <div className="flex items-center gap-2">
+          <a
+            href="/Faizan_Ali_Resume.pdf"
+            download
+            aria-label="Download Resume"
+            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/10 text-muted-foreground hover:text-foreground hover:border-white/20 text-xs font-medium tracking-wide transition-all"
+          >
+            <Download size={12} />
+            Resume
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold tracking-wide hover:bg-primary/90 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all"
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+            </span>
+            Hire Me
+          </a>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu"
+            className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-foreground lg:hidden hover:bg-white/5 transition-all"
+          >
+            {isMobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-[hsl(0,0%,8%)]/98 backdrop-blur-xl border-t border-white/5 overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden absolute top-full left-4 right-4 mt-2 rounded-3xl border border-white/10 bg-black/80 backdrop-blur-xl overflow-hidden shadow-2xl"
           >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <motion.a
+            <div className="p-6 flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`transition-colors duration-300 text-lg font-medium py-2 border-b border-white/5 last:border-0 ${
-                    activeSection === link.id ? 'text-primary' : 'text-foreground hover:text-primary'
+                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                    activeSection === link.id ? 'bg-white/[0.06] text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.03]'
                   }`}
                 >
                   {link.name}
-                </motion.a>
+                </a>
               ))}
-              
-              {/* Mobile Social Links */}
-              <div className="flex items-center gap-3 pt-4 mt-2">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
-                  >
-                    <social.icon size={18} />
-                  </a>
-                ))}
-                <a
-                  href="/Faizan_Ali_Resume.pdf"
-                  download
-                  aria-label="Download CV"
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
-                >
-                  <Download size={18} />
+              <div className="flex gap-2 pt-3 mt-2 border-t border-white/5">
+                <a href="/Faizan_Ali_Resume.pdf" download className="flex-1 text-center px-4 py-3 rounded-xl border border-white/10 text-foreground text-sm font-medium">
+                  Resume
+                </a>
+                <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="flex-1 text-center px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-semibold">
+                  Hire Me
                 </a>
               </div>
-
-              {/* Mobile Chat Button */}
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, '#contact')}
-                className="flex items-center justify-center gap-2 mt-4 px-6 py-3 bg-primary text-primary-foreground rounded-full text-sm font-medium"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                Let's Chat
-                <MessageCircle size={16} />
-              </a>
             </div>
           </motion.div>
         )}

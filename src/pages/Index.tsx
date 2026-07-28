@@ -1,6 +1,9 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Stats from '@/components/Stats';
 import About from '@/components/About';
+import Skills from '@/components/Skills';
+import TechStack from '@/components/TechStack';
 import Portfolio from '@/components/Portfolio';
 import Services from '@/components/Services';
 import Contact from '@/components/Contact';
@@ -15,11 +18,14 @@ const Index = () => {
       <CustomCursor />
       <Navbar />
       <Hero />
+      <Stats />
       <About />
+      <Skills />
+      <TechStack />
       <Portfolio />
       <Services />
-      <Contact />
       <Testimonials />
+      <Contact />
       <Footer />
       <WhatsAppButton />
     </div>
