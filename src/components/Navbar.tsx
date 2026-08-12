@@ -1,3 +1,4 @@
+import { trackCvDownload } from '@/lib/analytics';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
@@ -91,6 +92,7 @@ const Navbar = () => {
             href="/Faizan_Ali_Resume.pdf"
             download
             aria-label="Download Resume"
+            onClick={() => trackCvDownload('navbar')}
             className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/10 text-muted-foreground hover:text-foreground hover:border-white/20 text-xs font-medium tracking-wide transition-all"
           >
             <Download size={12} />
@@ -140,7 +142,7 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex gap-2 pt-3 mt-2 border-t border-white/5">
-                <a href="/Faizan_Ali_Resume.pdf" download className="flex-1 text-center px-4 py-3 rounded-xl border border-white/10 text-foreground text-sm font-medium">
+                <a href="/Faizan_Ali_Resume.pdf" download onClick={() => trackCvDownload('navbar_mobile')} className="flex-1 text-center px-4 py-3 rounded-xl border border-white/10 text-foreground text-sm font-medium">
                   Resume
                 </a>
                 <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="flex-1 text-center px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-semibold">

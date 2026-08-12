@@ -1,3 +1,4 @@
+import { trackCvDownload } from '@/lib/analytics';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Download, Loader2 } from 'lucide-react';
@@ -195,6 +196,7 @@ const Contact = () => {
                     key={index}
                     href={social.href}
                     {...(social.download ? { download: true } : { target: '_blank', rel: 'noopener noreferrer' })}
+                    {...(social.download ? { onClick: () => trackCvDownload('contact') } : {})}
                     whileHover={{ y: -3, scale: 1.1 }}
                     className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
                     aria-label={social.label}

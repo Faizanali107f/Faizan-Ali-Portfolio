@@ -1,3 +1,4 @@
+import { trackCvDownload } from '@/lib/analytics';
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowUpRight, MessageCircle } from 'lucide-react';
@@ -86,6 +87,7 @@ const Hero = () => {
               <motion.a
                 href="/Faizan_Ali_Resume.pdf"
                 download
+                onClick={() => trackCvDownload('hero')}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-[0_0_30px_-5px_hsl(var(--primary))] hover:shadow-[0_0_40px_-5px_hsl(var(--primary))] transition-all"
