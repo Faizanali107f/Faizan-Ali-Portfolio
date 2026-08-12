@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import Tilt3D from '@/components/three/Tilt3D';
 
 const projects = [
   {
@@ -110,8 +111,8 @@ const Portfolio = () => {
         <motion.div layout className="grid md:grid-cols-2 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
+              <Tilt3D key={project.title} className="h-full">
               <motion.a
-                key={project.title}
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -158,6 +159,7 @@ const Portfolio = () => {
                   </div>
                 </div>
               </motion.a>
+              </Tilt3D>
             ))}
           </AnimatePresence>
         </motion.div>

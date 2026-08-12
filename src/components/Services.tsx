@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Globe, Paintbrush, ShoppingCart, Puzzle, LayoutGrid, Rocket, MessageCircle, FileCode, Figma, Code, Database, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { LucideIcon } from 'lucide-react';
+import Tilt3D from '@/components/three/Tilt3D';
 
 interface Service {
   icon: LucideIcon;
@@ -96,14 +97,14 @@ const Services = () => {
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
+              <Tilt3D key={index} className="h-full" intensity={8}>
               <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
                 whileHover={{ y: -10 }}
-                className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 group flex flex-col"
+                className="bg-gradient-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-500 group flex flex-col h-full"
               >
                 {/* Icon */}
                 <div className="mb-6">
@@ -140,6 +141,7 @@ const Services = () => {
                   </Button>
                 </div>
               </motion.div>
+              </Tilt3D>
             );
           })}
         </div>

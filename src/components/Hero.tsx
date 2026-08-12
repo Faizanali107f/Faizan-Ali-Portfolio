@@ -1,6 +1,10 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowUpRight, MessageCircle } from 'lucide-react';
 import profileImage from '@/assets/faizan-nobg.png';
+import TechCube from '@/components/three/TechCube';
+
+const HeroScene = lazy(() => import('@/components/three/HeroScene'));
 
 const floatingBadges = [
   { label: 'PHP', color: '#777BB4', top: '4%', left: '-6%', delay: 0 },
@@ -22,6 +26,11 @@ const Hero = () => {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary/[0.08] blur-[140px] rounded-full" />
         <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-primary/[0.05] blur-[120px] rounded-full" />
       </div>
+
+      {/* 3D animated background */}
+      <Suspense fallback={null}>
+        <HeroScene />
+      </Suspense>
 
       <div className="container relative z-10 mx-auto px-6 pt-32 pb-20">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -172,11 +181,8 @@ const Hero = () => {
                   <motion.div
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 4, repeat: Infinity, delay: b.delay, ease: 'easeInOut' }}
-                    className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center shadow-2xl"
                   >
-                    <span className="text-[10px] font-bold tracking-wider font-mono-tech" style={{ color: b.color }}>
-                      {b.label}
-                    </span>
+                    <TechCube label={b.label} color={b.color} delay={b.delay} />
                   </motion.div>
                 </motion.div>
               ))}
