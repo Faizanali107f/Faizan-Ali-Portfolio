@@ -1,3 +1,4 @@
+import { trackCvDownload } from '@/lib/analytics';
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowUpRight, MessageCircle } from 'lucide-react';

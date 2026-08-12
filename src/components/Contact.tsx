@@ -1,3 +1,4 @@
+import { trackCvDownload } from '@/lib/analytics';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Download, Loader2 } from 'lucide-react';
