@@ -59,7 +59,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
-              className="text-[2.25rem] sm:text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[1.05] sm:leading-[0.95] mb-6 md:mb-8 break-words"
+              className="text-[2.25rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[1.05] sm:leading-[0.95] mb-6 md:mb-8 break-words"
             >
               <span className="text-gradient-white">Senior WordPress</span>
               <br />
