@@ -33,14 +33,14 @@ const Hero = () => {
         <HeroScene />
       </Suspense>
 
-      <div className="container relative z-10 mx-auto px-6 pt-32 pb-20">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+      <div className="container relative z-10 mx-auto px-5 sm:px-6 pt-28 md:pt-32 pb-20">
+        <div className="grid lg:grid-cols-12 gap-10 md:gap-12 items-center">
           {/* Left: content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 order-2 lg:order-1"
+            className="lg:col-span-7 order-2 lg:order-1 min-w-0"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -59,7 +59,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[0.95] mb-8"
+              className="text-[2.25rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[1.05] sm:leading-[0.95] mb-6 md:mb-8 break-words"
             >
               <span className="text-gradient-white">Senior WordPress</span>
               <br />
@@ -72,7 +72,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed mb-10"
+              className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed mb-8 md:mb-10"
             >
               Building high-performance WordPress websites, WooCommerce stores, and modern web applications using{' '}
               <span className="text-foreground">PHP, JavaScript, Vue.js, and NestJS</span>.
@@ -82,7 +82,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-3"
+              className="flex flex-wrap items-center gap-2.5 sm:gap-3"
             >
               <motion.a
                 href="/Faizan_Ali_Resume.pdf"
@@ -90,7 +90,7 @@ const Hero = () => {
                 onClick={() => trackCvDownload('hero')}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-semibold shadow-[0_0_30px_-5px_hsl(var(--primary))] hover:shadow-[0_0_40px_-5px_hsl(var(--primary))] transition-all"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold shadow-[0_0_30px_-5px_hsl(var(--primary))] hover:shadow-[0_0_40px_-5px_hsl(var(--primary))] transition-all"
               >
                 <Download size={16} />
                 Download Resume
@@ -99,7 +99,7 @@ const Hero = () => {
                 href="#portfolio"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.03] text-foreground px-6 py-3 rounded-full text-sm font-semibold hover:bg-white/[0.06] hover:border-white/20 transition-all"
+                className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.03] text-foreground px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold hover:bg-white/[0.06] hover:border-white/20 transition-all"
               >
                 View Projects
                 <ArrowUpRight size={16} />
@@ -108,7 +108,7 @@ const Hero = () => {
                 href="#contact"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground px-6 py-3 rounded-full text-sm font-semibold transition-all"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all"
               >
                 <MessageCircle size={16} />
                 Hire Me
@@ -120,11 +120,11 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-14 flex items-center gap-6 text-xs font-mono-tech text-muted-foreground/60 tracking-widest uppercase"
+              className="mt-10 md:mt-14 flex flex-wrap items-center gap-x-4 gap-y-3 text-[10px] sm:text-xs font-mono-tech text-muted-foreground/60 tracking-widest uppercase"
             >
               <span>Trusted stack</span>
-              <div className="h-px flex-1 bg-white/5" />
-              <div className="flex items-center gap-5">
+              <div className="hidden sm:block h-px flex-1 bg-white/5" />
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 {['WordPress', 'WooCommerce', 'Vue', 'NestJS'].map((t) => (
                   <span key={t} className="hover:text-foreground transition-colors">{t}</span>
                 ))}
@@ -137,9 +137,9 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 order-1 lg:order-2 relative flex justify-center"
+            className="lg:col-span-5 order-1 lg:order-2 relative flex justify-center min-w-0"
           >
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md">
               {/* Glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/25 blur-[100px] rounded-full -z-10" />
 
@@ -158,7 +158,7 @@ const Hero = () => {
               </div>
 
               {/* Rotating badge */}
-              <div className="absolute -bottom-6 -right-6 z-20 w-24 h-24 rounded-full glass-card flex items-center justify-center">
+              <div className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-6 z-20 w-20 h-20 sm:w-24 sm:h-24 rounded-full glass-card flex items-center justify-center">
                 <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100">
                   <defs>
                     <path id="heroCircle" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
@@ -198,7 +198,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-muted-foreground/60 font-mono-tech tracking-widest uppercase"
+        className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted-foreground/60 font-mono-tech tracking-widest uppercase"
       >
         <span>Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
