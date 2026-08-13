@@ -198,7 +198,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-muted-foreground/60 font-mono-tech tracking-widest uppercase"
+        className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted-foreground/60 font-mono-tech tracking-widest uppercase"
       >
         <span>Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
