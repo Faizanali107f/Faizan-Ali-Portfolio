@@ -2,11 +2,11 @@ import { Suspense, useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Icosahedron, TorusKnot } from '@react-three/drei';
 import * as THREE from 'three';
+import { useMotionProfile, usePageVisible } from '@/hooks/useMotionProfile';
 
-const ParticleField = () => {
+const ParticleField = ({ count, interactive }: { count: number; interactive: boolean }) => {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
-    const count = 900;
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       arr[i * 3] = (Math.random() - 0.5) * 18;
@@ -14,13 +14,13 @@ const ParticleField = () => {
       arr[i * 3 + 2] = (Math.random() - 0.5) * 10;
     }
     return arr;
-  }, []);
+  }, [count]);
 
   useFrame(({ clock, pointer }) => {
     if (!ref.current) return;
     const t = clock.getElapsedTime();
-    ref.current.rotation.y = t * 0.04 + pointer.x * 0.2;
-    ref.current.rotation.x = pointer.y * 0.12;
+    ref.current.rotation.y = t * 0.04 + (interactive ? pointer.x * 0.2 : 0);
+    ref.current.rotation.x = interactive ? pointer.y * 0.12 : 0;
   });
 
   return (
@@ -54,18 +54,37 @@ const Shapes = () => (
   </>
 );
 
-const HeroScene = () => (
+/** Static, GPU-free stand-in used when motion is reduced or the device is very weak. */
+const StaticBackdrop = () => (
   <div className="absolute inset-0 -z-0 pointer-events-none" aria-hidden="true">
-    <Canvas camera={{ position: [0, 0, 8], fov: 55 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }}>
-      <ambientLight intensity={0.6} />
-      <pointLight position={[6, 6, 6]} intensity={40} color="#ec2b62" />
-      <pointLight position={[-6, -4, 4]} intensity={20} color="#ffffff" />
-      <Suspense fallback={null}>
-        <ParticleField />
-        <Shapes />
-      </Suspense>
-    </Canvas>
+    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[40vh] bg-primary/[0.07] blur-[120px] rounded-full" />
   </div>
 );
+
+const HeroScene = () => {
+  const { tier, dpr, particleCount, showShapes } = useMotionProfile();
+  const visible = usePageVisible();
+
+  if (tier === 'off') return <StaticBackdrop />;
+
+  return (
+    <div className="absolute inset-0 -z-0 pointer-events-none" aria-hidden="true">
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 55 }}
+        dpr={dpr}
+        frameloop={visible ? 'always' : 'never'}
+        gl={{ antialias: tier === 'full', alpha: true, powerPreference: tier === 'full' ? 'high-performance' : 'low-power' }}
+      >
+        <ambientLight intensity={0.6} />
+        <pointLight position={[6, 6, 6]} intensity={40} color="#ec2b62" />
+        {showShapes && <pointLight position={[-6, -4, 4]} intensity={20} color="#ffffff" />}
+        <Suspense fallback={null}>
+          <ParticleField count={particleCount} interactive={tier === 'full'} />
+          {showShapes && <Shapes />}
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+};
 
 export default HeroScene;
