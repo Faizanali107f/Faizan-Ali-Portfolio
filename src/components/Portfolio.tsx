@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import Tilt3D from '@/components/three/Tilt3D';
 
 const projects = [
@@ -162,6 +162,37 @@ const Portfolio = () => {
               </Tilt3D>
             ))}
           </AnimatePresence>
+        </motion.div>
+
+        {/* More Work CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 md:mt-20"
+        >
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-card border border-border p-8 md:p-12 text-center">
+            {/* Background glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
+            
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                Want to see more work?
+              </h3>
+              <p className="text-muted-foreground text-base md:text-lg mb-8 leading-relaxed">
+                I have built many more WordPress, WooCommerce, and custom web projects. 
+                Let&apos;s discuss how I can help bring your idea to life.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-primary text-primary-foreground font-semibold text-sm md:text-base shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-105 group"
+              >
+                Contact Me
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
