@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useMotionProfile } from '@/hooks/useMotionProfile';
 
 interface TechCubeProps {
   label: string;
@@ -8,6 +9,7 @@ interface TechCubeProps {
 
 /** CSS 3D rotating cube showing a tech label on every face. */
 const TechCube = ({ label, color, delay = 0 }: TechCubeProps) => {
+  const { tier } = useMotionProfile();
   const size = 56;
   const half = size / 2;
   const faces = [
@@ -19,13 +21,26 @@ const TechCube = ({ label, color, delay = 0 }: TechCubeProps) => {
     `rotateX(-90deg) translateZ(${half}px)`,
   ];
 
+  if (tier === 'off') {
+    return (
+      <div
+        className="flex items-center justify-center rounded-xl glass-card shadow-2xl"
+        style={{ width: size, height: size }}
+      >
+        <span className="text-[10px] font-bold tracking-wider font-mono-tech" style={{ color }}>
+          {label}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div style={{ perspective: 600, width: size, height: size }}>
       <motion.div
         className="relative w-full h-full"
         style={{ transformStyle: 'preserve-3d' }}
         animate={{ rotateX: [0, 360], rotateY: [0, 360] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'linear', delay }}
+        transition={{ duration: tier === 'reduced' ? 34 : 18, repeat: Infinity, ease: 'linear', delay }}
       >
         {faces.map((transform) => (
           <div
