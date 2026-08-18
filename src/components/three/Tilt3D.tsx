@@ -1,5 +1,6 @@
 import { useRef, type ReactNode } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useMotionProfile } from '@/hooks/useMotionProfile';
 
 interface Tilt3DProps {
   children: ReactNode;
@@ -9,6 +10,7 @@ interface Tilt3DProps {
 
 /** Wraps content in a mouse-reactive 3D tilt with parallax depth. */
 const Tilt3D = ({ children, className = '', intensity = 10 }: Tilt3DProps) => {
+  const { tier } = useMotionProfile();
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -28,6 +30,11 @@ const Tilt3D = ({ children, className = '', intensity = 10 }: Tilt3DProps) => {
     x.set(0);
     y.set(0);
   };
+
+  // Touch / low-power / reduced-motion devices skip the tilt entirely (no transforms, no springs).
+  if (tier !== 'full') {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div ref={ref} onMouseMove={handleMove} onMouseLeave={reset} style={{ perspective: 1000 }} className={className}>
