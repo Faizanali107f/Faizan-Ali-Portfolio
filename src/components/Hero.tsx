@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Download, ArrowUpRight, MessageCircle } from 'lucide-react';
 import profileImage from '@/assets/faizan-nobg.png';
 import TechCube from '@/components/three/TechCube';
+import { useMotionProfile } from '@/hooks/useMotionProfile';
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'));
 
@@ -15,6 +16,8 @@ const floatingBadges = [
 ];
 
 const Hero = () => {
+  const { tier } = useMotionProfile();
+  const calm = tier !== 'full';
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-background">
       {/* Background */}
@@ -181,8 +184,8 @@ const Hero = () => {
                   className="absolute z-20 hidden md:flex"
                 >
                   <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, delay: b.delay, ease: 'easeInOut' }}
+                    animate={calm ? undefined : { y: [0, -8, 0] }}
+                    transition={calm ? undefined : { duration: 4, repeat: Infinity, delay: b.delay, ease: 'easeInOut' }}
                   >
                     <TechCube label={b.label} color={b.color} delay={b.delay} />
                   </motion.div>
