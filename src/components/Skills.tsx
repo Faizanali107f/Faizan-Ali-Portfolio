@@ -1,23 +1,39 @@
 import { motion } from 'framer-motion';
-import { Code2, Layers, Wrench } from 'lucide-react';
+import { Code2, Layers, Wrench, Globe, Shield, Search } from 'lucide-react';
 
 const groups = [
   {
     icon: Code2,
     title: 'Languages',
-    items: ['PHP', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'MySQL'],
+    items: ['PHP', 'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'MySQL'],
   },
   {
     icon: Layers,
-    title: 'Frameworks',
-    items: ['WordPress', 'WooCommerce', 'Elementor', 'Vue.js', 'NestJS', 'React'],
+    title: 'CMS & Builders',
+    items: ['WordPress', 'Elementor', 'WPBakery', 'Gutenberg', 'Shopify', 'WooCommerce'],
+  },
+  {
+    icon: Globe,
+    title: 'Backend & Integrations',
+    items: ['REST APIs', 'Liquid', 'Payment Gateways', 'ACF', 'Custom Post Types'],
+  },
+  {
+    icon: Shield,
+    title: 'Performance & Security',
+    items: ['Core Web Vitals', 'Caching', 'Asset Optimization', 'Security Hardening'],
+  },
+  {
+    icon: Search,
+    title: 'SEO',
+    items: ['Technical SEO', 'Google Search Console', 'On-Page SEO', 'Schema Markup'],
   },
   {
     icon: Wrench,
-    title: 'Tools',
-    items: ['Git', 'GitHub', 'Postman', 'Figma', 'Cloudflare', 'Hostinger', 'cPanel'],
+    title: 'Tools & Ops',
+    items: ['Git', 'cPanel', 'SSH', 'Staging', 'Backups', 'Figma'],
   },
 ];
+
 
 const Skills = () => {
   return (
@@ -33,7 +49,7 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {groups.map((g, i) => (
             <motion.div
               key={g.title}
