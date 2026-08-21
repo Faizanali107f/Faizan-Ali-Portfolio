@@ -11,6 +11,7 @@ import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CustomCursor from '@/components/CustomCursor';
+import Chatbot from '@/components/Chatbot';
 import { Helmet } from 'react-helmet-async';
 
 const Index = () => {
@@ -66,6 +67,7 @@ const Index = () => {
         </main>
         <Footer />
         <WhatsAppButton />
+        <Chatbot />
       </div>
     </>
   );
