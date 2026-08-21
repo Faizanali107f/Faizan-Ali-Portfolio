@@ -164,22 +164,32 @@ export const portfolioKnowledge = {
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart Inc.",
-      content: "Faizan delivered an exceptional WordPress website that exceeded our expectations. His attention to detail and understanding of our brand was remarkable. The site is fast, beautiful, and converts visitors into customers."
+      company: "TechStart Inc.",
+      content: "Faizan delivered an exceptional WordPress website that exceeded our expectations. His attention to detail and understanding of our brand was remarkable. The site is fast, beautiful, and converts visitors into customers. Would definitely recommend!"
     },
     {
       name: "Michael Chen",
       role: "Founder, Digital Solutions",
-      content: "Working with Faizan was a game-changer for our business. He transformed our outdated website into a modern, responsive platform. His expertise in WordPress and custom themes is truly impressive."
+      company: "Digital Solutions",
+      content: "Working with Faizan was a game-changer for our business. He transformed our outdated website into a modern, responsive platform. His expertise in WordPress and custom themes is truly impressive. Great communication throughout."
     },
     {
       name: "Emily Roberts",
       role: "Marketing Director, HealthPlus",
-      content: "Faizan created a stunning healthcare website for us with perfect SEO optimization. Our organic traffic increased by 200% within three months. Highly recommended for any WordPress project!"
+      company: "HealthPlus Clinic",
+      content: "Faizan created a stunning healthcare website for us with perfect SEO optimization. Our organic traffic increased by 200% within three months. Highly recommended for any WordPress project! Professional and reliable."
     },
     {
       name: "David Kim",
       role: "Owner, SportGear Pro",
-      content: "The e-commerce site Faizan built for us handles thousands of products seamlessly. His WooCommerce expertise and custom functionality development made our online store a success."
+      company: "SportGear Pro",
+      content: "The e-commerce site Faizan built for us handles thousands of products seamlessly. His WooCommerce expertise and custom functionality development made our online store a success. Very satisfied with the results!"
+    },
+    {
+      name: "Amanda Foster",
+      role: "Director, Creative Agency",
+      company: "Pixel Perfect Agency",
+      content: "We've collaborated with Faizan on multiple client projects. His WordPress skills and problem-solving abilities are outstanding. Always delivers on time and exceeds expectations. A true professional."
     }
   ],
 
