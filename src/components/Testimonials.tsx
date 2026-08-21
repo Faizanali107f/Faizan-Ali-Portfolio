@@ -1,87 +1,134 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote, Star, Verified, Calendar } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Star, Verified, ArrowRight } from 'lucide-react';
 
 const testimonials = [
   {
     id: 1,
     name: 'Sarah Johnson',
-    role: 'CEO, TechStart Inc.',
-    company: 'TechStart Inc.',
-    date: 'March 2024',
+    role: 'CEO',
+    company: 'Trends Mall',
     platform: 'Google',
     verified: true,
-    content: 'Faizan delivered an exceptional WordPress website that exceeded our expectations. His attention to detail and understanding of our brand was remarkable. The site is fast, beautiful, and converts visitors into customers. Would definitely recommend!',
+    content: 'Faizan delivered an exceptional WordPress WooCommerce website for our fashion e-commerce store. His attention to detail and understanding of our brand was remarkable. The site is fast, beautiful, and converts visitors into customers.',
     rating: 5,
-    project: 'Corporate Website Development'
+    project: 'Fashion E-commerce Platform',
+    industry: 'Fashion & Retail'
   },
   {
     id: 2,
-    name: 'Michael Chen',
-    role: 'Founder, Digital Solutions',
-    company: 'Digital Solutions',
-    date: 'February 2024',
+    name: 'Robert Williams',
+    role: 'Director',
+    company: 'RT Centre',
     platform: 'LinkedIn',
     verified: true,
-    content: 'Working with Faizan was a game-changer for our business. He transformed our outdated website into a modern, responsive platform. His expertise in WordPress and custom themes is truly impressive. Great communication throughout.',
+    content: 'Working with Faizan was a game-changer for our security training center. He transformed our outdated website into a modern, responsive platform. His expertise in WordPress and education-focused design is truly impressive.',
     rating: 5,
-    project: 'Website Redesign & Custom Theme'
+    project: 'Education & Security Training Website',
+    industry: 'Education & Training'
   },
   {
     id: 3,
     name: 'Emily Roberts',
-    role: 'Marketing Director, HealthPlus',
-    company: 'HealthPlus Clinic',
-    date: 'January 2024',
+    role: 'Marketing Director',
+    company: 'Cathy Trenary Therapy',
     platform: 'Google',
     verified: true,
-    content: 'Faizan created a stunning healthcare website for us with perfect SEO optimization. Our organic traffic increased by 200% within three months. Highly recommended for any WordPress project! Professional and reliable.',
+    content: 'Faizan created a stunning healthcare website for our therapy practice with perfect SEO optimization. Our organic traffic increased by 200% within three months. Highly recommended for any WordPress project!',
     rating: 5,
-    project: 'Healthcare Website & SEO'
+    project: 'Healthcare Therapy Website',
+    industry: 'Healthcare'
   },
   {
     id: 4,
-    name: 'David Kim',
-    role: 'Owner, SportGear Pro',
-    company: 'SportGear Pro',
-    date: 'December 2023',
+    name: 'Michael Chen',
+    role: 'Founder',
+    company: 'Different Calculators',
     platform: 'Facebook',
     verified: true,
-    content: 'The e-commerce site Faizan built for us handles thousands of products seamlessly. His WooCommerce expertise and custom functionality development made our online store a success. Very satisfied with the results!',
+    content: 'The calculator tools website Faizan built for us handles complex mathematical functions seamlessly. His JavaScript expertise and custom functionality development made our tools platform a success.',
     rating: 5,
-    project: 'E-commerce Platform Development'
+    project: 'Interactive Calculator Tools Platform',
+    industry: 'Tools & Utilities'
   },
   {
     id: 5,
     name: 'Amanda Foster',
-    role: 'Director, Creative Agency',
-    company: 'Pixel Perfect Agency',
-    date: 'November 2023',
+    role: 'Practice Manager',
+    company: 'Say Cheese Kids Dental',
+    platform: 'Google',
+    verified: true,
+    content: 'We needed a kid-friendly website for our dental practice, and Faizan delivered exactly that. The parents and children both love the design. Great communication throughout the project and excellent SEO results.',
+    rating: 5,
+    project: 'Pediatric Dental Practice Website',
+    industry: 'Healthcare'
+  },
+  {
+    id: 6,
+    name: 'David Kim',
+    role: 'Owner',
+    company: 'SN Builder',
     platform: 'LinkedIn',
     verified: true,
-    content: 'We\'ve collaborated with Faizan on multiple client projects. His WordPress skills and problem-solving abilities are outstanding. Always delivers on time and exceeds expectations. A true professional.',
+    content: 'The construction company website Faizan built showcases our projects beautifully. His WordPress skills and attention to our industry needs made our online presence stand out from competitors. Very professional work!',
     rating: 5,
-    project: 'Multiple Client Websites'
+    project: 'Construction Company Website',
+    industry: 'Construction'
+  },
+  {
+    id: 7,
+    name: 'Jennifer Martinez',
+    role: 'Broker Owner',
+    company: 'Team 99',
+    platform: 'Google',
+    verified: true,
+    content: 'Our real estate agency needed a website that could handle property listings effectively. Faizan\'s WordPress expertise and custom development made our property search seamless. Highly recommend his services!',
+    rating: 5,
+    project: 'Real Estate Agency Website',
+    industry: 'Real Estate'
+  },
+  {
+    id: 8,
+    name: 'Thomas Wilson',
+    role: 'CTO',
+    company: 'CloudFortix',
+    platform: 'LinkedIn',
+    verified: true,
+    content: 'We\'ve collaborated with Faizan on multiple tech projects. His full-stack capabilities and problem-solving abilities are outstanding. Always delivers on time and exceeds expectations. A true professional.',
+    rating: 5,
+    project: 'Technology Solutions Platform',
+    industry: 'Technology'
   }
 ];
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [direction, setDirection] = useState(0);
+  const itemsPerPage = 4;
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+
+  // Get current page testimonials
+  const getCurrentPageTestimonials = () => {
+    const start = currentPage * itemsPerPage;
+    return testimonials.slice(start, start + itemsPerPage);
+  };
 
   const nextSlide = useCallback(() => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  }, []);
+    setCurrentPage((prev) => (prev + 1) % totalPages);
+  }, [totalPages]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  }, []);
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+  }, [totalPages]);
 
   // Auto-advance carousel
   useEffect(() => {
-    const timer = setInterval(nextSlide, 6000);
+    const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
@@ -102,8 +149,6 @@ const Testimonials = () => {
       scale: 0.95,
     }),
   };
-
-  const currentTestimonial = testimonials[currentIndex];
 
   const getPlatformIcon = (platform: string) => {
     switch(platform) {
@@ -131,6 +176,73 @@ const Testimonials = () => {
     }
   };
 
+  const TestimonialCard = ({ testimonial, index }: { testimonial: typeof testimonials[0], index: number }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-all group"
+    >
+      {/* Platform Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className={`w-6 h-6 rounded ${getPlatformColor(testimonial.platform)} flex items-center justify-center text-white text-xs font-bold`}>
+            {getPlatformIcon(testimonial.platform)}
+          </div>
+          <span className="text-xs text-muted-foreground">{testimonial.platform}</span>
+        </div>
+        {testimonial.verified && (
+          <div className="flex items-center gap-1 text-xs text-primary">
+            <Verified size={12} />
+            <span>Verified</span>
+          </div>
+        )}
+      </div>
+
+      {/* Industry Tag */}
+      <div className="inline-block px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
+        {testimonial.industry}
+      </div>
+
+      {/* Review Content */}
+      <p className="text-foreground/80 text-sm leading-relaxed mb-4 line-clamp-4 min-h-[80px]">
+        "{testimonial.content}"
+      </p>
+
+      {/* Rating */}
+      <div className="flex items-center gap-2 mb-4">
+        <div className="flex gap-0.5">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} size={12} className="text-yellow-500 fill-yellow-500" />
+          ))}
+        </div>
+        <span className="text-xs text-muted-foreground">({testimonial.rating}.0)</span>
+      </div>
+
+      {/* Project Type */}
+      <div className="text-xs text-muted-foreground mb-4 flex items-center gap-1">
+        <ArrowRight size={12} className="text-primary" />
+        {testimonial.project}
+      </div>
+
+      {/* Author */}
+      <div className="flex items-center gap-3 pt-4 border-t border-border">
+        <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm">
+          {testimonial.name.split(' ').map(n => n[0]).join('')}
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-1">
+            <h4 className="font-semibold text-foreground text-sm">{testimonial.name}</h4>
+            {testimonial.verified && (
+              <Verified size={12} className="text-primary" />
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground">{testimonial.role}, {testimonial.company}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+
   return (
     <section id="testimonials" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
@@ -152,201 +264,85 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Reviews Grid */}
+        {/* Reviews Grid Carousel */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-6 mb-8">
-            {/* Side Reviews - Desktop Only */}
-            {testimonials.slice(currentIndex + 1, currentIndex + 3).map((testimonial, idx) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="hidden lg:block bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-all cursor-pointer"
-                onClick={() => {
-                  setDirection(1);
-                  setCurrentIndex(testimonials.findIndex(t => t.id === testimonial.id));
-                }}
-              >
-                {/* Platform Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded ${getPlatformColor(testimonial.platform)} flex items-center justify-center text-white text-xs font-bold`}>
-                      {getPlatformIcon(testimonial.platform)}
-                    </div>
-                    <span className="text-xs text-muted-foreground">{testimonial.platform}</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground flex items-center gap-1">
-                    <Calendar size={12} />
-                    {testimonial.date}
-                  </span>
-                </div>
-
-                {/* Review Content */}
-                <p className="text-foreground/80 text-sm leading-relaxed mb-4 line-clamp-3">
-                  {testimonial.content}
-                </p>
-
-                {/* Rating */}
-                <div className="flex gap-0.5 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={14} className="text-yellow-500 fill-yellow-500" />
+          <div className="relative">
+            <div ref={containerRef} className="overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={currentPage}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+                >
+                  {getCurrentPageTestimonials().map((testimonial, index) => (
+                    <TestimonialCard
+                      key={`${currentPage}-${testimonial.id}`}
+                      testimonial={testimonial}
+                      index={index}
+                    />
                   ))}
-                </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-                {/* Author */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm">
-                    {testimonial.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1">
-                      <h4 className="font-semibold text-foreground text-sm">{testimonial.name}</h4>
-                      {testimonial.verified && (
-                        <Verified size={12} className="text-primary" />
-                      )}
-                    </div>
-                    <p className="text-xs text-muted-foreground">{testimonial.company}</p>
-                  </div>
-                </div>
-              </motion.div>
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 z-10"
+              aria-label="Previous testimonials"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 z-10"
+              aria-label="Next testimonials"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Dots Navigation */}
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setDirection(index > currentPage ? 1 : -1);
+                  setCurrentPage(index);
+                }}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentPage
+                    ? 'w-8 bg-primary'
+                    : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                }`}
+                aria-label={`Go to page ${index + 1}`}
+              />
             ))}
           </div>
 
-          {/* Main Review Card */}
-          <div className="max-w-2xl mx-auto">
-            <div className="relative">
-              <div className="bg-gradient-card border-2 border-primary/20 rounded-3xl p-8 md:p-10 shadow-2xl">
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                    key={currentIndex}
-                    custom={direction}
-                    variants={variants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="w-full"
-                  >
-                    {/* Platform Header */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-lg ${getPlatformColor(currentTestimonial.platform)} flex items-center justify-center text-white font-bold`}>
-                          {getPlatformIcon(currentTestimonial.platform)}
-                        </div>
-                        <div>
-                          <span className="text-sm font-medium text-foreground">{currentTestimonial.platform}</span>
-                          {currentTestimonial.verified && (
-                            <div className="flex items-center gap-1 text-xs text-primary">
-                              <Verified size={12} />
-                              <span>Verified Review</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <span className="text-sm text-muted-foreground flex items-center gap-1">
-                        <Calendar size={14} />
-                        {currentTestimonial.date}
-                      </span>
-                    </div>
+          {/* Page Info */}
+          <div className="text-center mt-4 text-sm text-muted-foreground">
+            Page {currentPage + 1} of {totalPages} • {testimonials.length} Reviews
+          </div>
 
-                    {/* Project Tag */}
-                    <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
-                      {currentTestimonial.project}
-                    </div>
-
-                    {/* Quote Icon */}
-                    <div className="flex justify-start mb-4">
-                      <Quote className="w-8 h-8 text-primary/30" />
-                    </div>
-
-                    {/* Testimonial Content */}
-                    <p className="text-lg md:text-xl text-foreground leading-relaxed mb-6">
-                      {currentTestimonial.content}
-                    </p>
-
-                    {/* Rating */}
-                    <div className="flex items-center gap-2 mb-6">
-                      <div className="flex gap-0.5">
-                        {[...Array(currentTestimonial.rating)].map((_, i) => (
-                          <Star key={i} size={18} className="text-yellow-500 fill-yellow-500" />
-                        ))}
-                      </div>
-                      <span className="text-sm text-muted-foreground">({currentTestimonial.rating}.0)</span>
-                    </div>
-
-                    {/* Author Info */}
-                    <div className="flex items-center justify-between pt-6 border-t border-border">
-                      <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
-                          {currentTestimonial.name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-display font-semibold text-foreground text-lg">
-                              {currentTestimonial.name}
-                            </h3>
-                            {currentTestimonial.verified && (
-                              <Verified size={16} className="text-primary" />
-                            )}
-                          </div>
-                          <p className="text-muted-foreground text-sm">{currentTestimonial.role}</p>
-                          <p className="text-muted-foreground/70 text-xs">{currentTestimonial.company}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 z-10"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-12 h-12 rounded-full bg-background border border-border shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 z-10"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Dots Navigation */}
-            <div className="flex justify-center gap-2 mt-8">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1);
-                    setCurrentIndex(index);
-                  }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'w-8 bg-primary'
-                      : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* All Reviews Link */}
-            <div className="text-center mt-8">
-              <a
-                href="https://www.google.com/search?q=Faizan+Ali+WordPress+Developer+reviews"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Star size={14} />
-                See all reviews on Google
-              </a>
-            </div>
+          {/* All Reviews Link */}
+          <div className="text-center mt-6">
+            <a
+              href="https://www.google.com/search?q=Faizan+Ali+WordPress+Developer+reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <Star size={14} className="group-hover:fill-primary transition-all" />
+              See all reviews on Google
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
       </div>

@@ -163,33 +163,51 @@ export const portfolioKnowledge = {
   testimonials: [
     {
       name: "Sarah Johnson",
-      role: "CEO, TechStart Inc.",
-      company: "TechStart Inc.",
-      content: "Faizan delivered an exceptional WordPress website that exceeded our expectations. His attention to detail and understanding of our brand was remarkable. The site is fast, beautiful, and converts visitors into customers. Would definitely recommend!"
+      role: "CEO",
+      company: "Trends Mall",
+      content: "Faizan delivered an exceptional WordPress WooCommerce website for our fashion e-commerce store. His attention to detail and understanding of our brand was remarkable. The site is fast, beautiful, and converts visitors into customers."
     },
     {
-      name: "Michael Chen",
-      role: "Founder, Digital Solutions",
-      company: "Digital Solutions",
-      content: "Working with Faizan was a game-changer for our business. He transformed our outdated website into a modern, responsive platform. His expertise in WordPress and custom themes is truly impressive. Great communication throughout."
+      name: "Robert Williams",
+      role: "Director",
+      company: "RT Centre",
+      content: "Working with Faizan was a game-changer for our security training center. He transformed our outdated website into a modern, responsive platform. His expertise in WordPress and education-focused design is truly impressive."
     },
     {
       name: "Emily Roberts",
-      role: "Marketing Director, HealthPlus",
-      company: "HealthPlus Clinic",
-      content: "Faizan created a stunning healthcare website for us with perfect SEO optimization. Our organic traffic increased by 200% within three months. Highly recommended for any WordPress project! Professional and reliable."
+      role: "Marketing Director",
+      company: "Cathy Trenary Therapy",
+      content: "Faizan created a stunning healthcare website for our therapy practice with perfect SEO optimization. Our organic traffic increased by 200% within three months. Highly recommended for any WordPress project!"
     },
     {
-      name: "David Kim",
-      role: "Owner, SportGear Pro",
-      company: "SportGear Pro",
-      content: "The e-commerce site Faizan built for us handles thousands of products seamlessly. His WooCommerce expertise and custom functionality development made our online store a success. Very satisfied with the results!"
+      name: "Michael Chen",
+      role: "Founder",
+      company: "Different Calculators",
+      content: "The calculator tools website Faizan built for us handles complex mathematical functions seamlessly. His JavaScript expertise and custom functionality development made our tools platform a success."
     },
     {
       name: "Amanda Foster",
-      role: "Director, Creative Agency",
-      company: "Pixel Perfect Agency",
-      content: "We've collaborated with Faizan on multiple client projects. His WordPress skills and problem-solving abilities are outstanding. Always delivers on time and exceeds expectations. A true professional."
+      role: "Practice Manager",
+      company: "Say Cheese Kids Dental",
+      content: "We needed a kid-friendly website for our dental practice, and Faizan delivered exactly that. The parents and children both love the design. Great communication throughout the project and excellent SEO results."
+    },
+    {
+      name: "David Kim",
+      role: "Owner",
+      company: "SN Builder",
+      content: "The construction company website Faizan built showcases our projects beautifully. His WordPress skills and attention to our industry needs made our online presence stand out from competitors. Very professional work!"
+    },
+    {
+      name: "Jennifer Martinez",
+      role: "Broker Owner",
+      company: "Team 99",
+      content: "Our real estate agency needed a website that could handle property listings effectively. Faizan's WordPress expertise and custom development made our property search seamless. Highly recommend his services!"
+    },
+    {
+      name: "Thomas Wilson",
+      role: "CTO",
+      company: "CloudFortix",
+      content: "We've collaborated with Faizan on multiple tech projects. His full-stack capabilities and problem-solving abilities are outstanding. Always delivers on time and exceeds expectations. A true professional."
     }
   ],
 
