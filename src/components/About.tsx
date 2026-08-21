@@ -61,7 +61,7 @@ const About = () => {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <Briefcase size={24} className="text-primary" />
-              <h3 className="text-2xl font-bold text-foreground">Experience</h3>
+              <h2 className="text-2xl font-bold text-foreground">Experience</h2>
             </div>
             <div className="space-y-4">
               {experience.map((item, index) => (
@@ -74,7 +74,7 @@ const About = () => {
                   className="rounded-2xl p-6 border border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] transition-all"
                 >
                   <span className="text-primary text-xs font-mono-tech tracking-wider">{item.year}</span>
-                  <h4 className="text-lg font-semibold text-foreground mt-1">{item.title}</h4>
+                  <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.company}</p>
                 </motion.div>
               ))}
@@ -85,7 +85,7 @@ const About = () => {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <GraduationCap size={24} className="text-primary" />
-              <h3 className="text-2xl font-bold text-foreground">Education</h3>
+              <h2 className="text-2xl font-bold text-foreground">Education</h2>
             </div>
             <div className="space-y-4">
               {education.map((item, index) => (
@@ -98,7 +98,7 @@ const About = () => {
                   className="rounded-2xl p-6 border border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] transition-all"
                 >
                   <span className="text-primary text-xs font-mono-tech tracking-wider">{item.year}</span>
-                  <h4 className="text-lg font-semibold text-foreground mt-1">{item.title}</h4>
+                  <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.institution}</p>
                 </motion.div>
               ))}

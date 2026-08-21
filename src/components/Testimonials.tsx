@@ -143,12 +143,15 @@ const Testimonials = () => {
                   <div className="flex flex-col items-center">
                     <img
                       src={currentTestimonial.image}
-                      alt={currentTestimonial.name}
+                      alt={`${currentTestimonial.name} - ${currentTestimonial.role} testimonial author`}
                       className="w-16 h-16 rounded-full object-cover border-2 border-primary/30 mb-4"
+                      loading="lazy"
+                      width={64}
+                      height={64}
                     />
-                    <h4 className="font-display font-semibold text-foreground text-lg">
+                    <h3 className="font-display font-semibold text-foreground text-lg">
                       {currentTestimonial.name}
-                    </h4>
+                    </h3>
                     <p className="text-muted-foreground text-sm">
                       {currentTestimonial.role}
                     </p>

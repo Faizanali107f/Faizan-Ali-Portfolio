@@ -13,7 +13,14 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Faizan Ali - WordPress Developer Logo" className="w-10 h-10 rounded-lg object-cover" width={40} height={40} />
+            <img
+              src={logo}
+              alt="Faizan Ali - WordPress Developer Logo"
+              className="w-10 h-10 rounded-lg object-cover"
+              width={40}
+              height={40}
+              loading="lazy"
+            />
             <span className="font-display text-xl font-semibold text-foreground">Faizan Ali</span>
           </div>
 
