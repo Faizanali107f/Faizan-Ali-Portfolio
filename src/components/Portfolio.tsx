@@ -1,0 +1,202 @@
+import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, ArrowRight } from 'lucide-react';
+import Tilt3D from '@/components/three/Tilt3D';
+
+const projects = [
+  {
+    title: 'Trends Mall',
+    categories: ['WordPress', 'WooCommerce', 'Fashion'],
+    url: 'https://trendsmall.pk/',
+    image: '/portfolio/trendsmall.png',
+  },
+  {
+    title: 'RT Centre',
+    categories: ['WordPress', 'Education', 'Security Training'],
+    url: 'https://rtcentre.co.uk/',
+    image: '/portfolio/rtcentre.png',
+  },
+  {
+    title: 'Cathy Trenary',
+    categories: ['WordPress', 'Healthcare', 'Therapy'],
+    url: 'https://cathytrenary.com/',
+    image: '/portfolio/cathytrenary.png',
+  },
+  {
+    title: 'Different Calculators',
+    categories: ['WordPress', 'HTML/CSS/JS'],
+    url: 'https://differentcalculators.com/',
+    image: '/portfolio/differentcalculators.png',
+  },
+  {
+    title: 'Say Cheese Kids Dental',
+    categories: ['WordPress', 'Healthcare', 'Kids Dental & Orthodontics'],
+    url: 'https://www.saycheesekidsdental.com/',
+    image: '/portfolio/saycheesekidsdental.png',
+  },
+  {
+    title: 'SN Builder',
+    categories: ['WordPress', 'Construction'],
+    url: 'http://snbuilder.com/',
+    image: '/portfolio/snbuilder.png',
+  },
+  {
+    title: 'Team 99',
+    categories: ['WordPress', 'Real Estate'],
+    url: 'https://team99.pk/',
+    image: '/portfolio/team99.png',
+  },
+  {
+    title: 'CloudFortix',
+    categories: ['WordPress', 'HTML/CSS/JS', 'Technology'],
+    url: 'https://cloudfortix.com/',
+    image: '/portfolio/cloudfortix.png',
+  },
+];
+
+const Portfolio = () => {
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  // Extract unique categories
+  const allCategories = useMemo(() => {
+    const categories = new Set<string>();
+    projects.forEach(project => {
+      project.categories.forEach(cat => categories.add(cat));
+    });
+    return ['All', ...Array.from(categories).sort()];
+  }, []);
+
+  // Filter projects
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'All') return projects;
+    return projects.filter(project => 
+      project.categories.includes(activeFilter)
+    );
+  }, [activeFilter]);
+
+  return (
+    <section id="portfolio" className="py-24 relative">
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="text-primary font-semibold tracking-widest text-sm mb-4 block">
+            Latest Portfolio
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            Featured WordPress <br />Projects & Websites
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            A showcase of my recent WordPress development projects including corporate websites, e-commerce platforms, and custom theme implementations.
+          </p>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {allCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeFilter === category
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Portfolio Grid */}
+        <motion.div layout className="grid md:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <Tilt3D key={project.title} className="h-full">
+              <motion.a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group relative overflow-hidden rounded-2xl bg-gradient-card border border-border hover:border-primary/50 transition-all duration-500 block"
+              >
+                {/* Image Container */}
+                <div className="relative overflow-hidden aspect-[4/3]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* View Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                  >
+                    <ExternalLink size={20} className="text-primary-foreground" />
+                  </motion.div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.categories.map((category, catIndex) => (
+                      <span
+                        key={catIndex}
+                        className="text-xs font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full"
+                      >
+                        {category}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.a>
+              </Tilt3D>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* More Work CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 md:mt-20"
+        >
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-card border border-border p-8 md:p-12 text-center">
+            {/* Background glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
+            
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                Want to see more work?
+              </h3>
+              <p className="text-muted-foreground text-base md:text-lg mb-8 leading-relaxed">
+                I have built many more WordPress, WooCommerce, and custom web projects. 
+                Let&apos;s discuss how I can help bring your idea to life.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-primary text-primary-foreground font-semibold text-sm md:text-base shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-105 group"
+              >
+                Contact Me
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;
