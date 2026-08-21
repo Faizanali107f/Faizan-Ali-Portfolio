@@ -325,25 +325,6 @@ const Testimonials = () => {
               />
             ))}
           </div>
-
-          {/* Page Info */}
-          <div className="text-center mt-4 text-sm text-muted-foreground">
-            Page {currentPage + 1} of {totalPages} • {testimonials.length} Reviews
-          </div>
-
-          {/* All Reviews Link */}
-          <div className="text-center mt-6">
-            <a
-              href="https://www.google.com/search?q=Faizan+Ali+WordPress+Developer+reviews"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
-            >
-              <Star size={14} className="group-hover:fill-primary transition-all" />
-              See all reviews on Google
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
         </div>
       </div>
     </section>
