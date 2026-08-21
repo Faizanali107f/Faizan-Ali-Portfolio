@@ -40,7 +40,7 @@ const About = () => {
           </div>
           <div className="lg:col-span-7 space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm Faizan Ali, a Senior WordPress Developer with 4+ years shipping fast, secure, and scalable web platforms. I specialize in high-performance WordPress and WooCommerce builds, custom plugins and themes, and modern application layers with Vue.js and NestJS.
+              I'm Faizan Ali, a WordPress & Full-Stack Developer with 4+ years shipping fast, secure, and scalable web platforms. I specialize in high-performance WordPress and WooCommerce builds, custom plugins and themes, and modern application layers with Vue.js and NestJS.
             </p>
             <div className="flex flex-wrap gap-2">
               {expertise.map((e) => (

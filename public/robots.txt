@@ -12,5 +12,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
 
-Sitemap: https://faizan-ali.lovable.app/sitemap.xml
+Sitemap: https://faizan-ali-portfolio.vercel.app/sitemap.xml

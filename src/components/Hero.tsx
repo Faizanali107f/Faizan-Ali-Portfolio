@@ -64,10 +64,10 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.7 }}
               className="text-[2.25rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[1.05] sm:leading-[0.95] mb-6 md:mb-8 break-words"
             >
-              <span className="text-gradient-white">Senior WordPress</span>
+              <span className="text-gradient-white">WordPress &</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[hsl(340,90%,65%)] to-primary">
-                Developer
+                Full-Stack Developer
               </span>
             </motion.h1>
 
@@ -153,9 +153,11 @@ const Hero = () => {
                 <div className="absolute inset-x-8 bottom-0 top-1/3 bg-gradient-to-t from-primary via-primary/60 to-transparent rounded-t-[50%]" />
                 <img
                   src={profileImage}
-                  alt="Faizan Ali, Senior WordPress Developer"
+                  alt="Faizan Ali, WordPress and Full-Stack Developer"
                   className="relative z-10 w-full h-full object-contain object-bottom drop-shadow-2xl"
                   loading="eager"
+                  width={280}
+                  height={350}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
               </div>

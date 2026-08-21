@@ -96,6 +96,35 @@
     font-family: 'Inter', system-ui, sans-serif;
     letter-spacing: -0.02em;
   }
+
+  /* Focus visible improvements for accessibility */
+  *:focus-visible {
+    outline: 2px solid hsl(340 82% 52%);
+    outline-offset: 2px;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid hsl(340 82% 52%);
+    outline-offset: 2px;
+  }
+
+  /* Skip to main content for keyboard users */
+  .skip-to-main {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1rem 2rem;
+    background: hsl(340 82% 52%);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+
+  .skip-to-main:focus {
+    left: 1rem;
+    top: 1rem;
+  }
 }
 
 @layer utilities {

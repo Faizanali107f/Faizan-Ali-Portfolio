@@ -108,7 +108,7 @@ const Services = () => {
               >
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-300">
+                  <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-gradient-primary transition-all duration-300" aria-hidden="true">
                     <IconComponent size={28} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                   </div>
                 </div>

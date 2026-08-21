@@ -127,8 +127,9 @@ const Portfolio = () => {
                 <div className="relative overflow-hidden aspect-[4/3]">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.categories.join(', ')} website project`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
                   />
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
