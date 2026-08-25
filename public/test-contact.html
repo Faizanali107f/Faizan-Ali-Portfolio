@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0b;
+            color: #fff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        button {
+            background: #ec4899;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #d9468f;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #065f46;
+            border: 1px solid #047857;
+        }
+        .error {
+            background: #7f1d1d;
+            border: 1px solid #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Form Test</h1>
+    <p>Test your contact form without validation:</p>
+
+    <form id="contactForm">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" id="name" value="Test User" required>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" value="test@example.com" required>
+        </div>
+        <div class="form-group">
+            <label>Phone:</label>
+            <input type="tel" id="phone" value="+92 300 1234567" required>
+        </div>
+        <div class="form-group">
+            <label>Subject:</label>
+            <input type="text" id="subject" value="Test Message" required>
+        </div>
+        <div class="form-group">
+            <label>Service:</label>
+            <input type="text" id="service" value="WordPress Development">
+        </div>
+        <div class="form-group">
+            <label>Message:</label>
+            <textarea id="message" rows="4">This is a test message from the contact form.</textarea>
+        </div>
+        <button type="submit">Send Test Email</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        const SUPABASE_URL = 'https://wfkwvqbgvuinctguooux.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indma3d2cWJndnVpbmN0Z3Vvb3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxMzg1ODQsImV4cCI6MjA4MjcxNDU4NH0.0Av9UpjVsmKArGRPpaPK43ONnas6OvuM6pkT582tI-k';
+
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'none';
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+
+            console.log('Sending test email...', formData);
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/send-contact-email`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'apikey': SUPABASE_ANON_KEY
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                console.log('Response:', data);
+
+                resultDiv.style.display = 'block';
+                if (response.ok) {
+                    resultDiv.className = 'success';
+                    resultDiv.innerHTML = `
+                        <strong>✅ Success!</strong><br>
+                        Email should be sent to: faizanali107f@gmail.com<br>
+                        <small>Check your inbox and spam folder</small>
+                    `;
+                } else {
+                    resultDiv.className = 'error';
+                    resultDiv.innerHTML = `
+                        <strong>❌ Error:</strong><br>
+                        ${data.error || data.message || 'Unknown error'}<br>
+                        <small>Status: ${response.status}</small>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'error';
+                resultDiv.innerHTML = `
+                    <strong>❌ Network Error:</strong><br>
+                    ${error.message}<br>
+                    <small>Check console for details</small>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
