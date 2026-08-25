@@ -19,7 +19,7 @@ const Hero = () => {
   const { tier, prefersReducedMotion } = useMotionProfile();
   const calm = tier !== 'full';
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-background">
+    <section id="home" className="relative min-h-0 lg:min-h-screen flex items-center overflow-hidden bg-background">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-[0.04]" style={{
