@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, Minimize2, Send, ExternalLink, Whatsapp, Mail, Phone, Linkedin } from 'lucide-react';
+import { MessageSquare, X, Minimize2, Send, ExternalLink, Mail, Phone, Linkedin } from 'lucide-react';
 import { portfolioKnowledge, intentPatterns } from '@/data/portfolioKnowledge';
 
 interface Message {
@@ -14,6 +14,7 @@ interface QuickAction {
   label: string;
   action: string;
   intent?: string;
+  url?: string;
 }
 
 interface ProjectInfo {
@@ -397,7 +398,7 @@ ${project.description}`,
     setMessages(prev => [...prev, inquiryMessage]);
   };
 
-  const handleInquiryResponse = (userInput: string) => {
+  const handleInquiryResponse = (userInput: string): Message => {
     const updatedInquiry = { ...projectInquiry };
 
     switch (inquiryStep) {
