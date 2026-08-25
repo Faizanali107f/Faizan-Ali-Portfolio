@@ -1,7 +1,7 @@
 import { trackCvDownload } from '@/lib/analytics';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Download, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Download, Loader2, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -54,6 +54,7 @@ const contactInfo = [
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [honeypot, setHoneypot] = useState(''); // Spam trap
   const [formData, setFormData] = useState({
@@ -71,10 +72,7 @@ const Contact = () => {
 
     // Honeypot check - if filled, it's a bot
     if (honeypot) {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out.",
-      });
+      setIsSubmitted(true);
       return;
     }
 
@@ -114,12 +112,8 @@ const Contact = () => {
         return;
       }
 
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-
       setFormData({ name: '', email: '', phone: '', subject: '', service: '', message: '' });
+      setIsSubmitted(true);
     } catch (error: any) {
       toast({
         title: "Error",
@@ -216,7 +210,42 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="bg-gradient-card rounded-2xl p-8 border border-border">
+            <AnimatePresence mode="wait">
+            {isSubmitted ? (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="bg-gradient-card rounded-2xl p-8 border border-border flex flex-col items-center justify-center text-center min-h-[400px]"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                  <CheckCircle2 size={32} className="text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">Message sent!</h3>
+                <p className="text-muted-foreground max-w-sm mb-8">
+                  Thank you for reaching out. I'll get back to you soon.
+                </p>
+                <Button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  variant="outline"
+                  className="rounded-xl"
+                >
+                  Send Another Message
+                </Button>
+              </motion.div>
+            ) : (
+            <motion.form
+              key="form"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4 }}
+              onSubmit={handleSubmit}
+              className="bg-gradient-card rounded-2xl p-8 border border-border"
+            >
               {/* Honeypot field - hidden from users, visible to bots */}
               <input
                 type="text"
@@ -228,7 +257,7 @@ const Contact = () => {
                 autoComplete="off"
                 aria-hidden="true"
               />
-              
+
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="text-sm font-medium text-foreground mb-2 block">
@@ -347,7 +376,9 @@ const Contact = () => {
                   </>
                 )}
               </Button>
-            </form>
+            </motion.form>
+            )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
