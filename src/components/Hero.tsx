@@ -36,20 +36,20 @@ const Hero = () => {
         <HeroScene />
       </Suspense>
 
-      <div className="container relative z-10 mx-auto px-5 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20">
-        <div className="grid lg:grid-cols-12 gap-10 md:gap-12 items-center">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16">
+        <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
           {/* Left: content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="col-span-12 lg:col-span-7 order-2 lg:order-1 min-w-0 text-center lg:text-left"
+            className="col-span-12 lg:col-span-7 order-2 lg:order-1 min-w-0 text-left"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-primary text-xs font-medium tracking-wide mb-6 sm:mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-primary text-xs font-medium tracking-wide mb-4 sm:mb-6 md:mb-8"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -62,10 +62,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.7 }}
-              className="text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold tracking-[-0.03em] leading-[1.1] sm:leading-[0.95] mb-6 md:mb-8 break-words"
+              className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-[5.5rem] font-bold tracking-[-0.02em] sm:tracking-[-0.03em] leading-[1.15] sm:leading-[1.1] md:leading-[0.95] mb-4 sm:mb-6 md:mb-8 break-words"
             >
               <span className="text-gradient-white">WordPress &</span>
-              <br />
+              <br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[hsl(340,90%,65%)] to-primary">
                 Full-Stack Developer
               </span>
@@ -75,7 +75,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8 md:mb-10"
+              className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6 sm:mb-8 md:mb-10"
             >
               Building high-performance WordPress websites, WooCommerce stores, and modern web applications using{' '}
               <span className="text-foreground">PHP, JavaScript, Vue.js, and NestJS</span>.
@@ -85,7 +85,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3"
+              className="flex flex-wrap items-center justify-start gap-2.5 sm:gap-3"
             >
               <motion.a
                 href="/Faizan_Ali_Resume.pdf"
@@ -135,7 +135,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-10 md:mt-14 flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-3 text-[10px] sm:text-xs font-mono-tech text-muted-foreground/60 tracking-widest uppercase"
+              className="mt-8 sm:mt-10 md:mt-14 flex flex-wrap items-center justify-start gap-x-4 gap-y-3 text-[10px] sm:text-xs font-mono-tech text-muted-foreground/60 tracking-widest uppercase"
             >
               <span>Trusted stack</span>
               <div className="hidden sm:block h-px flex-1 bg-white/5" />
