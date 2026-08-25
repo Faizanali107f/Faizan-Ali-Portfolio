@@ -9,7 +9,6 @@ import Services from '@/components/Services';
 import Contact from '@/components/Contact';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import CustomCursor from '@/components/CustomCursor';
 import Chatbot from '@/components/Chatbot';
 import { Helmet } from 'react-helmet-async';
@@ -298,7 +297,6 @@ const Index = () => {
           <Contact />
         </main>
         <Footer />
-        <WhatsAppButton />
         <Chatbot />
       </div>
     </>

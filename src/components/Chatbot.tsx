@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Bot, X, RotateCcw, Send, ExternalLink } from 'lucide-react';
+import { X, RotateCcw, Send, ExternalLink } from 'lucide-react';
 import { portfolioKnowledge, intentPatterns } from '@/data/portfolioKnowledge';
+
+const chatbotAvatar = '/chatbot-avatar.png';
 
 interface Message {
   id: string;
@@ -727,10 +729,14 @@ ${project.description}`,
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-gradient-to-br from-primary via-[hsl(340,90%,55%)] to-primary text-primary-foreground shadow-[0_0_30px_-5px_hsl(var(--primary))] hover:shadow-[0_0_45px_-5px_hsl(var(--primary))] transition-all duration-300 hover:scale-110 motion-safe:animate-float flex items-center justify-center group border border-white/10"
+          className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-[0_0_30px_-5px_hsl(var(--primary))] hover:shadow-[0_0_45px_-5px_hsl(var(--primary))] transition-all duration-300 hover:scale-110 motion-safe:animate-float flex items-center justify-center group"
           aria-label="Open chat with Faizan AI, portfolio assistant"
         >
-          <Bot size={28} className="group-hover:rotate-6 transition-transform duration-300" />
+          <img
+            src={chatbotAvatar}
+            alt="Faizan AI"
+            className="w-full h-full rounded-full object-cover group-hover:rotate-6 transition-transform duration-300"
+          />
           <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-background motion-safe:animate-pulse" />
         </button>
       )}
@@ -746,9 +752,11 @@ ${project.description}`,
           {/* Header */}
           <div className="bg-gradient-card border-b border-white/10 px-4 sm:px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-[hsl(340,90%,55%)] flex items-center justify-center shadow-[0_0_15px_-2px_hsl(var(--primary))]">
-                <Bot size={20} className="text-primary-foreground" />
-              </div>
+              <img
+                src={chatbotAvatar}
+                alt="Faizan AI"
+                className="w-10 h-10 rounded-full object-cover shadow-[0_0_15px_-2px_hsl(var(--primary))]"
+              />
               <div>
                 <h3 className="text-base font-semibold text-foreground">Faizan AI</h3>
                 <p className="text-xs text-muted-foreground flex items-center gap-1.5">
@@ -778,9 +786,7 @@ ${project.description}`,
           {!isOnline ? (
             /* Offline fallback */
             <div className="p-6 flex flex-col items-center text-center h-[calc(100%-73px)] overflow-y-auto">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-[hsl(340,90%,55%)] flex items-center justify-center mb-4">
-                <Bot size={28} className="text-primary-foreground" />
-              </div>
+              <img src={chatbotAvatar} alt="Faizan AI" className="w-16 h-16 rounded-full object-cover mb-4" />
               <h4 className="text-lg font-semibold text-foreground mb-1">I'm currently offline 😴</h4>
               <p className="text-sm text-muted-foreground mb-6">
                 But don't worry! Leave a message and I'll get back to you as soon as possible.
@@ -838,9 +844,11 @@ ${project.description}`,
                     className={`flex gap-2 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     {message.type === 'assistant' && (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-[hsl(340,90%,55%)] flex items-center justify-center flex-shrink-0 mt-1">
-                        <Bot size={14} className="text-primary-foreground" />
-                      </div>
+                      <img
+                        src={chatbotAvatar}
+                        alt="Faizan AI"
+                        className="w-7 h-7 rounded-full object-cover flex-shrink-0 mt-1"
+                      />
                     )}
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-3 ${
@@ -915,9 +923,7 @@ ${project.description}`,
 
                 {isTyping && (
                   <div className="flex items-center gap-2 justify-start">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-[hsl(340,90%,55%)] flex items-center justify-center flex-shrink-0">
-                      <Bot size={14} className="text-primary-foreground" />
-                    </div>
+                    <img src={chatbotAvatar} alt="Faizan AI" className="w-7 h-7 rounded-full object-cover flex-shrink-0" />
                     <div className="bg-muted rounded-2xl px-4 py-3 flex items-center gap-2">
                       <span className="text-xs text-muted-foreground">Faizan AI is typing</span>
                       <div className="flex gap-1">
