@@ -99,9 +99,11 @@ const Navbar = () => {
             Resume
           </a>
           <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, '#contact')}
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold tracking-wide hover:bg-primary/90 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all"
+            href="https://wa.me/923218956107?text=Hi%20Faizan%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20project%20with%20you."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Hire Me on WhatsApp"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary via-[hsl(340,90%,65%)] to-primary text-primary-foreground text-xs font-semibold tracking-wide hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all group"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -145,7 +147,12 @@ const Navbar = () => {
                 <a href="/Faizan_Ali_Resume.pdf" download onClick={() => trackCvDownload('navbar_mobile')} className="flex-1 text-center px-4 py-3 rounded-xl border border-white/10 text-foreground text-sm font-medium">
                   Resume
                 </a>
-                <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="flex-1 text-center px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-semibold">
+                <a
+                  href="https://wa.me/923218956107?text=Hi%20Faizan%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20project%20with%20you."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center px-4 py-3 rounded-xl bg-gradient-to-r from-primary via-[hsl(340,90%,65%)] to-primary text-primary-foreground text-sm font-semibold"
+                >
                   Hire Me
                 </a>
               </div>
