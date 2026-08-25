@@ -60,5 +60,5 @@ This portfolio is designed to demonstrate my expertise as a **Professional Web D
 
 **Faizan Ali**
 Professional Web Developer<br>
-🌐 Portfolio: https://faizan-ali.lovable.app/  <br>
+🌐 Portfolio: [https://faizan-ali-portfolio.vercel.app/]  <br>
 🔗 LinkedIn: [https://www.linkedin.com/in/faizan-ali-471877243/](https://www.linkedin.com/in/faizan-ali-471877243/)
