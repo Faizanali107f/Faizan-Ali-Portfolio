@@ -22,7 +22,7 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-16 sm:py-20 md:py-24 relative border-t border-white/5">
       <div className="container mx-auto px-6">
         {/* About header */}
         <motion.div
@@ -30,7 +30,7 @@ const About = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-12 gap-10 mb-20"
+          className="grid lg:grid-cols-12 gap-10 mb-12 sm:mb-16 md:mb-20"
         >
           <div className="lg:col-span-5">
             <span className="text-xs font-mono-tech text-primary tracking-[0.3em] uppercase mb-4 block">/ About</span>

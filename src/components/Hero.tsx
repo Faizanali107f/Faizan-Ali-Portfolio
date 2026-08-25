@@ -36,7 +36,7 @@ const Hero = () => {
         <HeroScene />
       </Suspense>
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24">
         <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
           {/* Left: content */}
           <motion.div

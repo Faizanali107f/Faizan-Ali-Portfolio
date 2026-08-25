@@ -37,9 +37,9 @@ const groups = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="relative py-24">
+    <section id="skills" className="relative py-16 sm:py-20 md:py-24 border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="max-w-2xl mb-14">
+        <div className="max-w-2xl mb-8 sm:mb-10 md:mb-14">
           <span className="text-xs font-mono-tech text-primary tracking-[0.3em] uppercase mb-4 block">/ Toolkit</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             The stack behind the work

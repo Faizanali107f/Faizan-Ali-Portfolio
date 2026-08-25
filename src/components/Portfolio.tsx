@@ -75,10 +75,10 @@ const Portfolio = () => {
   }, [activeFilter]);
 
   return (
-    <section id="portfolio" className="py-24 relative">
+    <section id="portfolio" className="py-16 sm:py-20 md:py-24 relative border-t border-white/5">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <span className="text-primary font-semibold tracking-widest text-sm mb-4 block">
             Latest Portfolio
           </span>
@@ -100,7 +100,7 @@ const Portfolio = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div id="projects-grid" className="flex flex-wrap justify-center gap-3 mb-12">
+        <div id="projects-grid" className="flex flex-wrap justify-center gap-3 mb-8 sm:mb-10 md:mb-12">
           {allCategories.map((category) => (
             <button
               key={category}
@@ -182,7 +182,7 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 md:mt-20"
+          className="mt-10 sm:mt-14 md:mt-20"
         >
           <div className="relative overflow-hidden rounded-3xl bg-gradient-card border border-border p-8 md:p-12 text-center">
             {/* Background glow */}
