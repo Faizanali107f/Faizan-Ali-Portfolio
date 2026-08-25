@@ -214,8 +214,8 @@ export const portfolioKnowledge = {
   stats: [
     { value: 40, suffix: "+", label: "Completed Projects" },
     { value: 4, suffix: "+", label: "Years Experience" },
-    { value: 15, suffix: "+", label: "Happy Clients" },
-    { value: 95, suffix: "+", label: "PageSpeed Score" }
+    { value: 20, suffix: "+", label: "Happy Clients" },
+    { value: 90, suffix: "+", label: "Performance Score" }
   ],
 
   technologies: [

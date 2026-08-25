@@ -153,7 +153,7 @@ const Chatbot = () => {
 🎓 Education: ${profile.education}
 📧 Email: ${profile.email}
 
-He has completed ${stats[0].value}${stats[0].suffix} projects and maintains a ${stats[3].value}${stats[3].suffix} PageSpeed score, showing his commitment to quality and performance.`,
+He has completed ${stats[0].value}${stats[0].suffix} projects and maintains a ${stats[3].value}${stats[3].suffix} performance score, showing his commitment to quality and performance.`,
       quickActions: [
         { label: "View Experience", action: "experience", intent: "experience" },
         { label: "See Skills", action: "skills", intent: "skills" },
