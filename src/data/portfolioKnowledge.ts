@@ -71,49 +71,57 @@ export const portfolioKnowledge = {
       title: "Trends Mall",
       categories: ["WordPress", "WooCommerce", "Fashion"],
       url: "https://trendsmall.pk/",
-      description: "Fashion e-commerce platform built with WordPress and WooCommerce"
+      description: "Fashion e-commerce platform built with WordPress and WooCommerce",
+      image: "/portfolio/trendsmall.png"
     },
     {
       title: "RT Centre",
       categories: ["WordPress", "Education", "Security Training"],
       url: "https://rtcentre.co.uk/",
-      description: "Education and security training website"
+      description: "Education and security training website",
+      image: "/portfolio/rtcentre.png"
     },
     {
       title: "Cathy Trenary",
       categories: ["WordPress", "Healthcare", "Therapy"],
       url: "https://cathytrenary.com/",
-      description: "Healthcare therapy website"
+      description: "Healthcare therapy website",
+      image: "/portfolio/cathytrenary.png"
     },
     {
       title: "Different Calculators",
       categories: ["WordPress", "HTML/CSS/JS"],
       url: "https://differentcalculators.com/",
-      description: "Interactive calculators website"
+      description: "Interactive calculators website",
+      image: "/portfolio/differentcalculators.png"
     },
     {
       title: "Say Cheese Kids Dental",
       categories: ["WordPress", "Healthcare", "Kids Dental & Orthodontics"],
       url: "https://www.saycheesekidsdental.com/",
-      description: "Pediatric dental practice website"
+      description: "Pediatric dental practice website",
+      image: "/portfolio/saycheesekidsdental.png"
     },
     {
       title: "SN Builder",
       categories: ["WordPress", "Construction"],
       url: "http://snbuilder.com/",
-      description: "Construction company website"
+      description: "Construction company website",
+      image: "/portfolio/snbuilder.png"
     },
     {
       title: "Team 99",
       categories: ["WordPress", "Real Estate"],
       url: "https://team99.pk/",
-      description: "Real estate agency website"
+      description: "Real estate agency website",
+      image: "/portfolio/team99.png"
     },
     {
       title: "CloudFortix",
       categories: ["WordPress", "HTML/CSS/JS", "Technology"],
       url: "https://cloudfortix.com/",
-      description: "Technology solutions website"
+      description: "Technology solutions website",
+      image: "/portfolio/cloudfortix.png"
     }
   ],
 
@@ -222,6 +230,45 @@ export const portfolioKnowledge = {
     "WordPress", "PHP", "JavaScript", "TypeScript", "Vue.js", "NestJS", "React",
     "Elementor", "WooCommerce", "Git", "MySQL", "Tailwind CSS", "HTML5", "CSS3",
     "jQuery", "Shopify", "REST APIs", "ACF", "Custom Post Types"
+  ],
+
+  faqs: [
+    {
+      question: "What services do you provide?",
+      answer: "I provide WordPress development, WooCommerce & Shopify stores, custom web applications, theme & plugin development, website speed optimization, SEO, and ongoing maintenance & support."
+    },
+    {
+      question: "Do you build WordPress websites?",
+      answer: "Yes, WordPress is my core specialty — custom themes, plugins, page builders like Elementor, and full site builds from scratch."
+    },
+    {
+      question: "Do you develop WooCommerce stores?",
+      answer: "Yes, I build complete WooCommerce stores including product catalogs, payment gateways, inventory management, and custom checkout flows."
+    },
+    {
+      question: "Do you work with Shopify?",
+      answer: "Yes, I develop and customize Shopify stores including theme customization and Liquid templating."
+    },
+    {
+      question: "Can you fix existing websites?",
+      answer: "Yes, I handle bug fixing, troubleshooting, and improvements on existing WordPress and WooCommerce websites."
+    },
+    {
+      question: "Do you provide website maintenance?",
+      answer: "Yes, I offer ongoing maintenance including regular updates, backups, security monitoring, and support."
+    },
+    {
+      question: "Do you optimize website speed?",
+      answer: "Yes, I optimize Core Web Vitals, caching, image optimization, and server performance to improve loading speed."
+    },
+    {
+      question: "What technologies do you use?",
+      answer: "WordPress, PHP, WooCommerce, Shopify, JavaScript, Vue.js, NestJS, and React, along with tools like Git, MySQL, and Tailwind CSS."
+    },
+    {
+      question: "How can I hire you?",
+      answer: "You can start a project inquiry right here in the chat, or reach out directly via WhatsApp or email — I typically respond within 24-48 hours."
+    }
   ]
 };
 
@@ -230,10 +277,11 @@ export const intentPatterns = {
   about: ["about", "who is", "tell me about", "what does", "biography", "profile", "background", "introduction"],
   experience: ["experience", "work history", "job", "employment", "career", "where does he work", "company"],
   skills: ["skills", "technologies", "tech stack", "what does he know", "can he", "does he know", "proficient", "expertise"],
-  projects: ["projects", "portfolio", "work", "built", "developed", "created", "websites", "show me", "examples"],
-  services: ["services", "offer", "provide", "what can he do", "hire for", "help with"],
+  projects: ["projects", "portfolio", "my work", "built", "developed", "created", "websites", "show me", "examples"],
+  services: ["services", "offer", "what can he do", "hire for", "help with"],
   contact: ["contact", "email", "phone", "whatsapp", "reach", "get in touch", "connect"],
   hire: ["hire", "project", "want to work", "inquiry", "quote", "estimate", "collaborate", "need a website"],
   pricing: ["price", "cost", "rates", "charges", "budget", "how much", "quote"],
-  education: ["education", "degree", "study", "university", "college", "qualification", "certified"]
+  education: ["education", "degree", "study", "university", "college", "qualification", "certified"],
+  faq: ["faq", "frequently asked", "common question", "maintenance", "speed", "optimi", "shopify", "woocommerce", "fix", "bug", "maintain"]
 };
