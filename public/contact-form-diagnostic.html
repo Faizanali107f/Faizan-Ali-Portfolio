@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Diagnostic Tool</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0a0a0b;
+            color: #fff;
+        }
+        .container {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        h1 { margin-top: 0; color: #ec4899; }
+        h2 { color: #a78bfa; margin-top: 0; }
+        .status {
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        .success { background: #064e3b; border: 1px solid #065f46; }
+        .error { background: #7f1d1d; border: 1px solid #991b1b; }
+        .warning { background: #78350f; border: 1px solid #92400e; }
+        .info { background: #1e3a8a; border: 1px solid #1e40af; }
+
+        button {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 4px;
+        }
+        button:hover { opacity: 0.9; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .form-group { margin: 12px 0; }
+        label { display: block; margin: 8px 0 4px; color: #a78bfa; }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            background: #2a2a2a;
+            color: #fff;
+        }
+        textarea { resize: vertical; min-height: 80px; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+        .step { margin: 16px 0; padding: 16px; background: #0f0f0f; border-radius: 8px; }
+        .step-title { font-weight: 600; margin-bottom: 8px; color: #ec4899; }
+
+        code { background: #2a2a2a; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+        .code-block {
+            background: #0a0a0a;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+
+        .progress { display: none; text-align: center; margin: 16px 0; }
+        .progress.active { display: block; }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #ec4899;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        #result { margin-top: 20px; }
+        .result-item {
+            background: #1a1a1a;
+            padding: 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ec4899;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Contact Form Diagnostic Tool</h1>
+
+    <div class="container">
+        <h2>📊 System Status</h2>
+        <div id="systemStatus"></div>
+    </div>
+
+    <div class="container">
+        <h2>🧪 Quick Test</h2>
+        <p>Test your contact form with default values:</p>
+        <button onclick="runQuickTest()">🚀 Run Quick Test</button>
+        <div class="progress" id="progress">
+            <div class="spinner"></div> Testing...
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>✏️ Custom Test Form</h2>
+        <form id="customTest">
+            <div class="grid">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="name" value="Test User" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" value="test@example.com" required>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="tel" id="phone" value="+92 300 1234567" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject:</label>
+                    <input type="text" id="subject" value="Test Message" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Service:</label>
+                <select id="service">
+                    <option value="">Select a service</option>
+                    <option value="WordPress Development" selected>WordPress Development</option>
+                    <option value="WooCommerce Development">WooCommerce Development</option>
+                    <option value="Custom Web Applications">Custom Web Applications</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Message:</label>
+                <textarea id="message">This is a test message from the diagnostic tool.</textarea>
+            </div>
+            <button type="submit">📧 Send Custom Test</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>🔍 Setup Instructions</h2>
+
+        <div class="step">
+            <div class="step-title">Step 1: Get Resend API Key</div>
+            <p>1. Go to <a href="https://resend.com/signup" target="_blank" style="color: #ec4899;">resend.com/signup</a></p>
+            <p>2. Create a free account</p>
+            <p>3. Go to Settings → API Keys</p>
+            <p>4. Click "Create API Key"</p>
+            <p>5. Copy your API key (starts with <code>re_</code>)</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 2: Add API Key to Supabase</div>
+            <p>1. Go to <a href="https://supabase.com/dashboard/project/wfkwvqbgvuinctguooux/functions/send-contact-email" target="_blank" style="color: #ec4899;">Supabase Dashboard → Functions</a></p>
+            <p>2. Click on your function: <code>send-contact-email</code></p>
+            <p>3. Go to "Settings" tab</p>
+            <p>4. Add Environment Variable:</p>
+            <div class="code-block">
+                <strong>Name:</strong> RESEND_API_KEY<br>
+                <strong>Value:</strong> re_your_api_key_here
+            </div>
+            <p>5. Click "Save"</p>
+            <p>6. Redeploy the function</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 3: Deploy Edge Function</div>
+            <p>1. Make sure your function code is in:</p>
+            <div class="code-block">supabase/functions/send-contact-email/index.ts</div>
+            <p>2. Deploy using Supabase CLI:</p>
+            <div class="code-block">
+                supabase functions deploy send-contact-email
+            </div>
+            <p>Or use the dashboard to deploy manually.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">Step 4: Test the Form</div>
+            <p>1. Use the quick test above</p>
+            <p>2. Check your email: <strong>faizanali107f@gmail.com</strong></p>
+            <p>3. Also check spam folder</p>
+            <p>4. If working, the form should send emails!</p>
+        </div>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const CONFIG = {
+            SUPABASE_URL: 'https://wfkwvqbgvuinctguooux.supabase.co',
+            SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indma3d2cWJndnVpbmN0Z3Vvb3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxMzg1ODQsImV4cCI6MjA4MjcxNDU4NH0.0Av9UpjVsmKArGRPpaPK43ONnas6OvuM6pkT582tI-k',
+            DESTINATION_EMAIL: 'faizanali107f@gmail.com'
+        };
+
+        async function checkSystemStatus() {
+            const statusDiv = document.getElementById('systemStatus');
+            let html = '';
+
+            // Check Supabase connectivity
+            try {
+                const response = await fetch(`${CONFIG.SUPABASE_URL}/functions/v1/send-contact-email`, {
+                    method: 'OPTIONS'
+                });
+                html += '<div class="status success">✅ Supabase Edge Function endpoint accessible</div>';
+            } catch (error) {
+                html += '<div class="status error">❌ Cannot reach Supabase Edge Function</div>';
+            }
+
+            // Check configuration
+            html += '<div class="status info">ℹ️ Destination Email: ' + CONFIG.DESTINATION_EMAIL + '</div>';
+            html += '<div class="status info">ℹ️ Supabase Project: wfkwvqbgvuinctguooux</div>';
+            html += '<div class="status warning">⚠️ RESEND_API_KEY status: Unknown (check Supabase dashboard)</div>';
+
+            statusDiv.innerHTML = html;
+        }
+
+        async function sendContactForm(formData) {
+            const progress = document.getElementById('progress');
+            progress.classList.add('active');
+
+            try {
+                console.log('Sending contact form:', formData);
+
+                const response = await fetch(`${CONFIG.SUPABASE_URL}/functions/v1/send-contact-email`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${CONFIG.SUPABASE_KEY}`,
+                        'apikey': CONFIG.SUPABASE_KEY
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                console.log('Response:', data);
+
+                progress.classList.remove('active');
+
+                const resultDiv = document.getElementById('result');
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="result-item">
+                            <h3 style="color: #10b981;">✅ Success!</h3>
+                            <p><strong>Email sent to:</strong> ${CONFIG.DESTINATION_EMAIL}</p>
+                            <p><strong>Subject:</strong> ${formData.subject}</p>
+                            <p><strong>From:</strong> ${formData.email}</p>
+                            <p style="margin-top: 12px;"><strong>Next steps:</strong></p>
+                            <ol>
+                                <li>Check your inbox at <strong>${CONFIG.DESTINATION_EMAIL}</strong></li>
+                                <li>Check spam/junk folder</li>
+                                <li>Look for email with subject: "🚀 New Inquiry: ${formData.subject}"</li>
+                            </ol>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result-item" style="border-left-color: #ef4444;">
+                            <h3 style="color: #ef4444;">❌ Error: ${data.error || 'Unknown error'}</h3>
+                            <p><strong>Status:</strong> ${response.status}</p>
+                            <p><strong>Message:</strong> ${data.message || 'No additional information'}</p>
+                            <div style="margin-top: 12px; padding: 12px; background: #0a0a0a; border-radius: 6px;">
+                                <strong>Possible solutions:</strong>
+                                <ul style="margin: 8px 0; padding-left: 20px;">
+                                    <li>Make sure RESEND_API_KEY is set in Supabase</li>
+                                    <li>Verify the edge function is deployed</li>
+                                    <li>Check Supabase logs for detailed error</li>
+                                    <li>Ensure Resend API key is valid</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('progress').classList.remove('active');
+                document.getElementById('result').innerHTML = `
+                    <div class="result-item" style="border-left-color: #ef4444;">
+                        <h3 style="color: #ef4444;">❌ Network Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function runQuickTest() {
+            const quickTestData = {
+                name: 'Diagnostic Test User',
+                email: 'test@diagnostic.com',
+                phone: '+92 300 1234567',
+                subject: '🔧 Diagnostic Test Message',
+                service: 'WordPress Development',
+                message: 'This is an automated test message from the contact form diagnostic tool. If you receive this email, your contact form is working correctly!'
+            };
+            sendContactForm(quickTestData);
+        }
+
+        document.getElementById('customTest').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            sendContactForm(formData);
+        });
+
+        // Check system status on load
+        checkSystemStatus();
+    </script>
+</body>
+</html>
