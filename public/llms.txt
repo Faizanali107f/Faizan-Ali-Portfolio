@@ -1,0 +1,146 @@
+# Faizan Ali Portfolio - AI/Crawler Information
+# This file provides structured information about this website for AI systems and crawlers
+
+title: Faizan Ali | WordPress & Full-Stack Developer
+description: Professional portfolio of Faizan Ali, a WordPress and Full-Stack Developer specializing in WordPress, WooCommerce, Shopify, PHP, JavaScript, Vue.js, and NestJS development.
+
+# Website Information
+url: https://faizan-ali-portfolio.vercel.app
+name: Faizan Ali Portfolio
+type: Personal Portfolio / Professional Website
+
+# About the Owner
+name: Faizan Ali
+title: WordPress & Full-Stack Developer
+location: Pakistan
+email: faizanali107f@gmail.com
+phone: +92 321-8956-107
+linkedin: https://www.linkedin.com/in/faizan-ali-471877243/
+instagram: https://www.instagram.com/its_faizan412/
+
+# Core Services
+services:
+  - WordPress Development
+  - WooCommerce Development
+  - PHP Backend Development
+  - Vue.js Frontend Development
+  - NestJS Development
+  - Shopify Development
+  - Custom Web Application Development
+  - Technical SEO
+
+# Technical Expertise
+technologies:
+  - WordPress
+  - WooCommerce
+  - PHP
+  - JavaScript
+  - Vue.js
+  - NestJS
+  - Shopify
+  - Elementor
+  - React
+  - Three.js
+  - Tailwind CSS
+  - Supabase
+
+# Featured Projects
+projects:
+  - title: Trends Mall
+    url: https://trendsmall.pk/
+    type: E-Commerce WordPress Website
+    technologies: WordPress, WooCommerce
+
+  - title: RT Centre
+    url: https://rtcentre.co.uk/
+    type: Educational Platform
+    technologies: WordPress, Custom Development
+
+  - title: Cathy Trenary
+    url: https://cathytrenary.com/
+    type: Healthcare Website
+    technologies: WordPress
+
+  - title: Different Calculators
+    url: https://differentcalculators.com/
+    type: Calculator Platform
+    technologies: WordPress, Custom Development
+
+  - title: Say Cheese Kids Dental
+    url: https://www.saycheesekidsdental.com/
+    type: Healthcare Business
+    technologies: WordPress
+
+  - title: SN Builder
+    url: http://snbuilder.com/
+    type: Business Website
+    technologies: WordPress
+
+  - title: Team 99
+    url: https://team99.pk/
+    type: Business Website
+    technologies: WordPress
+
+  - title: CloudFortix
+    url: https://cloudfortix.com/
+    type: Business Platform
+    technologies: WordPress, Custom Development
+
+# Site Sections
+sections:
+  - url: https://faizan-ali-portfolio.vercel.app#home
+    title: Hero Section
+    description: Introduction and overview of Faizan Ali as a WordPress and Full-Stack Developer
+
+  - url: https://faizan-ali-portfolio.vercel.app#about
+    title: About Section
+    description: Professional background, education, and experience details
+
+  - url: https://faizan-ali-portfolio.vercel.app#portfolio
+    title: Portfolio/Projects Section
+    description: Showcase of WordPress and web development projects
+
+  - url: https://faizan-ali-portfolio.vercel.app#services
+    title: Services Section
+    description: Detailed service offerings for web development
+
+  - url: https://faizan-ali-portfolio.vercel.app#skills
+    title: Skills Section
+    description: Technical skills and expertise areas
+
+  - url: https://faizan-ali-portfolio.vercel.app#contact
+    title: Contact Section
+    description: Contact form and communication options
+
+# Business Information
+business:
+  name: Khired Networks
+  role: WordPress Developer
+  education: Virtual University of Pakistan
+  availability: Available for new projects
+
+# Additional Information
+portfolio_type: Professional Developer Portfolio
+target_audience: Businesses seeking WordPress and web development services
+regions_served: Global (Remote Services)
+languages: English, Urdu
+
+# Links for Crawling
+important_links:
+  - https://faizan-ali-portfolio.vercel.app
+  - https://faizan-ali-portfolio.vercel.app#portfolio
+  - https://faizan-ali-portfolio.vercel.app#contact
+  - https://www.linkedin.com/in/faizan-ali-471877243/
+  - https://trendsmall.pk/
+  - https://rtcentre.co.uk/
+
+# Resume Download
+resume: https://faizan-ali-portfolio.vercel.app/Faizan_Ali_Resume.pdf
+
+# Contact
+contact:
+  email: faizanali107f@gmail.com
+  phone: +92 321-8956-107
+  whatsapp: https://wa.me/923218956107
+
+# Last Updated: 2026-08-25
