@@ -2,7 +2,7 @@ import { trackCvDownload } from '@/lib/analytics';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, MapPin, Phone, Mail, Instagram, Linkedin, Download, Loader2, CheckCircle2 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, isSupabaseConfigured } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -95,6 +95,18 @@ const Contact = () => {
     }
 
     setIsSubmitting(true);
+
+    // Supabase env vars missing (e.g. deployment without VITE_SUPABASE_* set) —
+    // fail with a direct email fallback instead of a cryptic crash.
+    if (!isSupabaseConfigured || !supabase) {
+      toast({
+        title: "Email Service Unavailable",
+        description: "Please email faizanali107f@gmail.com directly — I usually reply within 24–48 hours.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email-gmail', {
