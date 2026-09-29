@@ -293,8 +293,8 @@ const Index = () => {
           <TechStack />
           {/* Portfolio temporarily hidden — kept for easy re-enable */}
           {/* <Portfolio /> */}
-          <Services />
-          <Testimonials />
+          {/* Testimonials temporarily hidden — kept for easy re-enable */}
+          {/* <Testimonials /> */}
           <Contact />
         </main>
         <Footer />
