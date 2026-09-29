@@ -291,7 +291,8 @@ const Index = () => {
           <About />
           <Skills />
           <TechStack />
-          <Portfolio />
+          {/* Portfolio temporarily hidden — kept for easy re-enable */}
+          {/* <Portfolio /> */}
           <Services />
           <Testimonials />
           <Contact />
