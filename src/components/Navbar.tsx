@@ -7,7 +7,7 @@ const navLinks = [
   { name: 'Home', href: '#home', id: 'home' },
   { name: 'About', href: '#about', id: 'about' },
   { name: 'Skills', href: '#skills', id: 'skills' },
-  { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
+  // { name: 'Portfolio', href: '#portfolio', id: 'portfolio' }, // hidden while portfolio section is hidden
   { name: 'Services', href: '#services', id: 'services' },
   { name: 'Contact', href: '#contact', id: 'contact' },
 ];
