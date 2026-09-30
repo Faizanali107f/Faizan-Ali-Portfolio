@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { X, RotateCcw, Send, ExternalLink } from 'lucide-react';
+import { X, RotateCcw, Send } from 'lucide-react';
 import { portfolioKnowledge, intentPatterns } from '@/data/portfolioKnowledge';
 
 const chatbotAvatar = '/chatbot-avatar.png';
@@ -9,8 +9,6 @@ interface Message {
   type: 'user' | 'assistant';
   content: string;
   quickActions?: QuickAction[];
-  projectInfo?: ProjectInfo;
-  projectsList?: ProjectInfo[];
 }
 
 interface QuickAction {
@@ -18,14 +16,6 @@ interface QuickAction {
   action: string;
   intent?: string;
   url?: string;
-}
-
-interface ProjectInfo {
-  title: string;
-  categories: string[];
-  url: string;
-  description: string;
-  image?: string;
 }
 
 interface ProjectInquiry {
@@ -112,11 +102,11 @@ const Chatbot = () => {
       id: generateId(),
       type: 'assistant',
       content:
-        "Hi! I'm Faizan AI 👋\n\nI'm here to help you learn about Faizan, his experience, projects, services, and help you discuss your project.\n\nHow can I help you today?",
+        "Hi! I'm Faizan AI 👋\n\nI'm here to help you learn about Faizan, his experience, services, and help you discuss your project.\n\nHow can I help you today?",
       quickActions: [
         { label: 'About Faizan', action: 'about', intent: 'about' },
         { label: 'My Services', action: 'services', intent: 'services' },
-        { label: 'View Projects', action: 'projects', intent: 'projects' },
+        { label: 'Contact', action: 'contact', intent: 'contact' },
         { label: 'Hire Me', action: 'hire', intent: 'hire' },
       ],
     };
@@ -192,7 +182,7 @@ He has completed ${stats[0].value}${stats[0].suffix} projects and maintains a ${
       quickActions: [
         { label: 'View Skills', action: 'skills', intent: 'skills' },
         { label: 'View Experience', action: 'experience', intent: 'experience' },
-        { label: 'View Projects', action: 'projects', intent: 'projects' },
+        { label: 'Contact', action: 'contact', intent: 'contact' },
         { label: 'Hire Me', action: 'hire', intent: 'hire' },
       ],
     };
@@ -233,44 +223,22 @@ He has completed ${stats[0].value}${stats[0].suffix} projects and maintains a ${
       type: 'assistant',
       content: skillsText,
       quickActions: [
-        { label: 'See Projects', action: 'projects', intent: 'projects' },
         { label: 'View Services', action: 'services', intent: 'services' },
+        { label: 'Contact Faizan', action: 'contact', intent: 'contact' },
       ],
     };
   };
 
   const generateProjectsResponse = (): Message => {
-    const { projects } = portfolioKnowledge;
-    const featured = projects.slice(0, 3);
-
     return {
       id: generateId(),
       type: 'assistant',
-      content: `Here are some of Faizan's featured projects. Click on any project to view details.`,
-      projectsList: featured,
-      quickActions: [{ label: 'View More Projects', action: 'view_all_projects' }],
-    };
-  };
-
-  const generateProjectDetailResponse = (projectTitle: string): Message => {
-    const project = portfolioKnowledge.projects.find((p) =>
-      p.title.toLowerCase().includes(projectTitle.toLowerCase())
-    );
-
-    if (!project) {
-      return generateUnknownResponse();
-    }
-
-    return {
-      id: generateId(),
-      type: 'assistant',
-      content: `**${project.title}**
-
-**Type:** ${project.categories.join(' • ')}
-
-${project.description}`,
-      projectInfo: project,
-      quickActions: [{ label: 'View Project →', action: 'external_link', url: project.url }],
+      content:
+        "Faizan's project showcase is being refreshed right now. If you'd like to see examples of his recent WordPress and WooCommerce work, just reach out — he'll gladly walk you through them.",
+      quickActions: [
+        { label: 'Contact Faizan', action: 'contact', intent: 'contact' },
+        { label: 'Hire Me', action: 'hire', intent: 'hire' },
+      ],
     };
   };
 
@@ -430,7 +398,7 @@ ${project.description}`,
         "I don't have that information available right now. You can contact Faizan directly and he'll be happy to help.",
       quickActions: [
         { label: 'About Faizan', action: 'about', intent: 'about' },
-        { label: 'Projects', action: 'projects', intent: 'projects' },
+        { label: 'My Services', action: 'services', intent: 'services' },
         { label: 'Contact Faizan', action: 'contact', intent: 'contact' },
       ],
     };
@@ -449,16 +417,6 @@ ${project.description}`,
 
     if (action === 'email') {
       openEmail();
-      return;
-    }
-
-    if (action === 'external_link') {
-      return;
-    }
-
-    if (action === 'view_all_projects') {
-      setIsOpen(false);
-      document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
       return;
     }
 
@@ -490,13 +448,6 @@ ${project.description}`,
     if (action.startsWith('service_')) {
       const category = action.replace('service_', '');
       setMessages((prev) => [...prev, generateServiceCategoryResponse(category)]);
-      return;
-    }
-
-    if (action.startsWith('project_')) {
-      const projectName = action.replace('project_', '');
-      const response = generateProjectDetailResponse(projectName);
-      setMessages((prev) => [...prev, response]);
       return;
     }
 
@@ -858,51 +809,6 @@ ${project.description}`,
                       }`}
                     >
                       <div className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</div>
-
-                      {message.projectInfo && (
-                        <a
-                          href={message.projectInfo.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 mt-2 text-sm opacity-90 hover:opacity-100 transition-opacity"
-                        >
-                          <ExternalLink size={14} />
-                          View Project →
-                        </a>
-                      )}
-
-                      {message.projectsList && message.projectsList.length > 0 && (
-                        <div className="mt-3 space-y-3">
-                          {message.projectsList.map((project) => (
-                            <a
-                              key={project.title}
-                              href={project.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition-colors"
-                            >
-                              {project.image && (
-                                <img
-                                  src={project.image}
-                                  alt={project.title}
-                                  className="w-14 h-14 rounded-lg object-cover flex-shrink-0"
-                                  loading="lazy"
-                                />
-                              )}
-                              <div className="min-w-0">
-                                <div className="text-sm font-semibold truncate">{project.title}</div>
-                                <div className="text-xs text-muted-foreground truncate">
-                                  {project.categories.join(', ')}
-                                </div>
-                                <div className="flex items-center gap-1 text-xs text-primary mt-0.5">
-                                  <ExternalLink size={11} />
-                                  View Project
-                                </div>
-                              </div>
-                            </a>
-                          ))}
-                        </div>
-                      )}
 
                       {message.quickActions && message.quickActions.length > 0 && (
                         <div className="mt-3 flex flex-wrap gap-2">
